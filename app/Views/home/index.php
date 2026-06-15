@@ -22,13 +22,10 @@
                     </div>
                 </div>
                 <div class="col-span-12 lg:col-span-8 order-1 lg:order-2">
-                    <div class="swiper mySwiper">
+                    <div class="swiper mySwiper relative">
                         <div class="swiper-wrapper">
                             <?php foreach ($banners as $banner): ?>
-                                <div class="swiper-slide rounded-xl overflow-hidden">
-                                    <div class="absolute bottom-0 left-0 right-0 p-3 text-center bg-orange-200 font-YekanBakh-SemiBold text-xs">
-                                        <?= esc($banner['alt']) ?>
-                                    </div>
+                                <div class="swiper-slide rounded-xl overflow-hidden" data-caption="<?= esc($banner['alt']) ?>">
                                     <img class="object-cover w-full h-64 md:h-96"
                                          src="<?= esc($banner['image']) ?>"
                                          alt="<?= esc($banner['alt']) ?>"
@@ -40,6 +37,7 @@
                         <div class="swiper-button-prev after:text-2xl after:text-stone-900 mx-2"></div>
                         <div class="swiper-pagination"></div>
                     </div>
+                    <div id="slider-caption" class="p-3 text-center bg-orange-200 font-YekanBakh-SemiBold text-xs rounded-xl relative z-10"></div>
                 </div>
                 <?php /*
                 <div class="col-span-12 lg:col-span-8 order-1 lg:order-2">

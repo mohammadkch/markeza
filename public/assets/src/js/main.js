@@ -1,10 +1,28 @@
 var swiper = new Swiper(".mySwiper", {
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
     loop: true,
-  });
+    autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    on: {
+        slideChange: function () {
+            var caption = this.slides[this.activeIndex].getAttribute('data-caption');
+            document.getElementById('slider-caption').innerText = caption;
+        },
+        init: function () {
+            var caption = this.slides[this.activeIndex].getAttribute('data-caption');
+            document.getElementById('slider-caption').innerText = caption;
+        },
+    },
+});
 
   var swiper = new Swiper(".customer", {
     effect: "cube",
@@ -61,16 +79,22 @@ var swiper = new Swiper(".mySwiper", {
       },
     },
   });
-  var swiper2 = new Swiper(".project-main", {
+
+var swiper2 = new Swiper(".project-main", {
     spaceBetween: 10,
+    loop: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
     navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
     },
     thumbs: {
-      swiper: swiper,
+        swiper: swiper,
     },
-  });
+});
 
   var swiper = new Swiper(".sin-project", {
     slidesPerView: 1,
@@ -147,3 +171,54 @@ var swiper = new Swiper(".mySwiper", {
            });
        };
    }
+
+// Product gallery swiper
+if (document.querySelector('.product-main')) {
+    var productThumb = new Swiper('.gall-product', {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true,
+    });
+
+    var productMain = new Swiper('.product-main', {
+        spaceBetween: 10,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        thumbs: {
+            swiper: productThumb,
+        },
+    });
+}
+
+// Related products swiper (without autoplay)
+if (document.querySelector('.related-products')) {
+    var relatedProducts = new Swiper('.related-products', {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+        },
+    });
+}

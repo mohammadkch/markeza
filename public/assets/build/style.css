@@ -3168,3 +3168,25 @@ html:has(.drawer-toggle:checked){
     padding-top: 2.5rem;
   }
 }
+
+/* custom css */
+
+/*.mySwiper {*/
+/*    position: relative;*/
+/*}*/
+
+/*.mySwiper .swiper-pagination {*/
+/*    position: absolute;*/
+/*    bottom: 12px;*/
+/*    z-index: 10;*/
+/*}*/
+
+/*.mySwiper .swiper-pagination-bullet {*/
+/*    background: #fff;*/
+/*    opacity: 0.7;*/
+/*}*/
+
+/*.mySwiper .swiper-pagination-bullet-active {*/
+/*    background: #fed7aa;*/
+/*    opacity: 1;*/
+/*}*/
