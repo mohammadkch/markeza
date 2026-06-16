@@ -222,3 +222,24 @@ if (document.querySelector('.related-products')) {
         },
     });
 }
+
+// About gallery swiper (like collection page)
+if (document.querySelector('.about-main')) {
+    var aboutThumb = new Swiper('.about-thumb', {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true,
+    });
+
+    var aboutMain = new Swiper('.about-main', {
+        spaceBetween: 10,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        thumbs: {
+            swiper: aboutThumb,
+        },
+    });
+}

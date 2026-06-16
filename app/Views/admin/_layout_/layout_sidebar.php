@@ -46,6 +46,25 @@
                 </li>
 
                 <?php
+                $isActive = ($className == 'collection');
+                $activeClass = $isActive
+                        ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100'
+                        : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
+                $iconStroke = $isActive ? '#4f46e5' : 'currentColor';
+                ?>
+                <li class="py-2.5 px-1">
+                    <a href="<?= site_url('admin/collection') ?>"
+                       class="relative flex justify-start items-center py-1 px-5 <?= $activeClass ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStroke ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5" fill="<?= $iconStroke ?>"></circle>
+                            <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                        مدیریت کالکشن‌ها
+                    </a>
+                </li>
+
+                <?php
                 $isActive = ($className == 'menu1');
                 $activeClass = $isActive
                         ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100'
@@ -238,6 +257,20 @@
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.78325 2.1665H6.59991C7.77491 2.1665 8.71658 3.12484 8.71658 4.30067V7.1415C8.71658 8.32484 7.77491 9.27484 6.59991 9.27484H3.78325C2.61658 9.27484 1.66658 8.32484 1.66658 7.1415V4.30067C1.66658 3.12484 2.61658 2.1665 3.78325 2.1665ZM3.78325 11.7246H6.59991C7.77491 11.7246 8.71658 12.6754 8.71658 13.8588V16.6996C8.71658 17.8746 7.77491 18.8329 6.59991 18.8329H3.78325C2.61658 18.8329 1.66658 17.8746 1.66658 16.6996V13.8588C1.66658 12.6754 2.61658 11.7246 3.78325 11.7246ZM16.2167 2.1665H13.4C12.225 2.1665 11.2833 3.12484 11.2833 4.30067V7.1415C11.2833 8.32484 12.225 9.27484 13.4 9.27484H16.2167C17.3833 9.27484 18.3333 8.32484 18.3333 7.1415V4.30067C18.3333 3.12484 17.3833 2.1665 16.2167 2.1665ZM13.4 11.7246H16.2167C17.3833 11.7246 18.3333 12.6754 18.3333 13.8588V16.6996C18.3333 17.8746 17.3833 18.8329 16.2167 18.8329H13.4C12.225 18.8329 11.2833 17.8746 11.2833 16.6996V13.8588C11.2833 12.6754 12.225 11.7246 13.4 11.7246Z" fill="<?= $iconFillDashboard ?>"></path>
                     </svg>
                     پیشخوان فروش
+                </a>
+            </li>
+
+            <?php
+            $isActiveCollection = ($className == 'collection');
+            $activeClassCollection = $isActiveCollection ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100' : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
+            $iconStrokeCollection = $isActiveCollection ? '#4f46e5' : 'currentColor';
+            ?>
+            <li class="py-2.5 px-1">
+                <a href="<?= site_url('admin/menu1') ?>" class="relative flex justify-start items-center py-1 px-5 <?= $activeClassCollection ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
+                        <path d="M4 6h16M4 12h16M4 18h16" fill="<?= $iconStrokeCollection ?>"></path>
+                    </svg>
+                    مدیریت کالکشن
                 </a>
             </li>
 

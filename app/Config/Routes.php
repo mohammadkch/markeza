@@ -11,6 +11,9 @@ $routes->group('', ['filter' => 'parse_url'], function ($routes) {
     $routes->get('collection/(:segment)', 'Collection::show/$1');
 
     $routes->get('product/(:segment)', 'Product::show/$1');
+
+    $routes->get('about', 'About::index');
+
 });
 
 
@@ -29,6 +32,16 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'ad
 
     $routes->get('dashboard', 'Dashboard::index');
     $routes->get('test', 'Test::index');
+
+    // collection management
+    $routes->get('collection', 'Collection::index');
+    $routes->post('collection', 'Collection::index');
+    $routes->get('collection/create', 'Collection::create');
+    $routes->post('collection/create/handle', 'Collection::create/handle');
+    $routes->get('collection/edit/(:num)', 'Collection::edit/$1');
+    $routes->post('collection/edit/(:num)/handle', 'Collection::edit/$1/handle');
+    $routes->delete('collection/delete/(:num)', 'Collection::delete/$1');
+    $routes->post('collection/deleteImage', 'Collection::deleteImage');
 
     // menu_1
     $routes->get('menu1', 'Menu1::index');

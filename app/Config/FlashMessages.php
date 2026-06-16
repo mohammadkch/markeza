@@ -5,6 +5,20 @@ namespace App\Config;
 class FlashMessages
 {
     public static $success = [
+        // collection messages
+        'collection_create_success' => [
+            'message' => 'کالکشن با موفقیت ایجاد شد.',
+            'type' => 'success'
+        ],
+        'collection_update_success' => [
+            'message' => 'کالکشن با موفقیت بروزرسانی شد.',
+            'type' => 'success'
+        ],
+        'collection_delete_success' => [
+            'message' => 'کالکشن با موفقیت حذف شد.',
+            'type' => 'success'
+        ],
+
         'user_create_success' => [
             'message' => 'کاربر با موفقیت ایجاد شد.',
             'type' => 'success'
@@ -69,6 +83,19 @@ class FlashMessages
     ];
 
     public static $error = [
+        // collection errors
+        'collection_not_found' => [
+            'message' => 'کالکشن مورد نظر وجود ندارد.',
+            'type' => 'error'
+        ],
+        'collection_create_error' => [
+            'message' => 'مشکلی در ایجاد کالکشن پیش آمده. لطفاً دوباره تلاش کنید.',
+            'type' => 'error'
+        ],
+        'collection_update_error' => [
+            'message' => 'مشکلی در بروزرسانی کالکشن پیش آمده. لطفاً دوباره تلاش کنید.',
+            'type' => 'error'
+        ],
         'login_error' => [
             'message' => 'خطا در ورود کاربر.',
             'type' => 'error'

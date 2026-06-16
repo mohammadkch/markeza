@@ -24,7 +24,7 @@ class Home extends BaseController
 
         $this->viewData['collections'] = [
             ['title' => 'کالکشن پارما. ماژولار', 'slug' => 'collection-parma', 'thumbnail' => $this->viewData['assetsPath'] . 'images/collection/parma-collection.webp'],
-            ['title' => 'کالکشن جنوا', 'slug' => 'collection-genova', 'thumbnail' => $this->viewData['assetsPath'] . 'images/collection/genova-collection.webp'],
+            ['title' => 'کالکشن جنوا', 'slug' => 'genova-collection', 'thumbnail' => $this->viewData['assetsPath'] . 'images/collection/genova-collection.webp'],
             ['title' => 'کالکشن روما', 'slug' => 'collection-roma', 'thumbnail' => $this->viewData['assetsPath'] . 'images/collection/roma-collection.webp'],
             ['title' => 'کالکشن ونیز. شزلون و ال شکل', 'slug' => 'collection-venice', 'thumbnail' => $this->viewData['assetsPath'] . 'images/collection/venice-collection.webp'],
             ['title' => 'کالکشن ریوولی. تکنفره', 'slug' => 'collection-rivoli', 'thumbnail' => $this->viewData['assetsPath'] . 'images/collection/rivoli-collection.webp'],
