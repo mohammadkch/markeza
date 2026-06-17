@@ -19,9 +19,6 @@ class ProductFaqModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-    /**
-     * Get FAQs by product ID
-     */
     public function getByProduct(int $productId): array
     {
         return $this->where('product_id', $productId)

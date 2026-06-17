@@ -21,8 +21,8 @@
             <!-- اطلاعات کاربر -->
             <div class="relative z-0 mx-6 mb-5 after:content-[''] after:absolute after:top-[60%] after:right-1 after:left-1 after:bottom-0 after:h-2.5 after:z-[-1] after:shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
                 <div class="relative z-10 bg-white dark:bg-custom-dark">
-                    <div class="text-lg font-bold"><?= $full_name ?? 'فروشگاه الکترونیک' ?></div>
-                    <div class="text-primary-500 py-1 pb-2.5"><?= $role ?? 'فروشنده: امیر رضایی' ?></div>
+                    <div class="text-lg font-bold"><?= $full_name ?? 'ادمین ماکزا' ?></div>
+                    <div class="text-primary-500 py-1 pb-2.5"><?= $role ?? 'ادمین' ?></div>
                 </div>
             </div>
 
@@ -65,111 +65,20 @@
                 </li>
 
                 <?php
-                $isActive = ($className == 'menu1');
+                $isActive = ($className == 'product');
                 $activeClass = $isActive
                         ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100'
                         : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
                 $iconStroke = $isActive ? '#4f46e5' : 'currentColor';
                 ?>
                 <li class="py-2.5 px-1">
-                    <a href="<?= site_url('admin/menu1') ?>"
+                    <a href="<?= site_url('admin/product') ?>"
                        class="relative flex justify-start items-center py-1 px-5 <?= $activeClass ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStroke ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
-                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"></path>
                         </svg>
-                        مدیریت منو سطح ۱
-                    </a>
-                </li>
-
-                <?php
-                $isActive = ($className == 'menu1image');
-                $activeClass = $isActive
-                        ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100'
-                        : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
-                $iconStroke = $isActive ? '#4f46e5' : 'currentColor';
-                ?>
-                <li class="py-2.5 px-1">
-                    <a href="<?= site_url('admin/menu1-image') ?>"
-                       class="relative flex justify-start items-center py-1 px-5 <?= $activeClass ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStroke ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
-                            <rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect>
-                            <circle cx="8.5" cy="8.5" r="2.5"></circle>
-                            <polyline points="21 15 16 10 5 21"></polyline>
-                        </svg>
-                        مدیریت تصاویر منو ۱
-                    </a>
-                </li>
-
-                <?php
-                $isActive = ($className == 'menu2');
-                $activeClass = $isActive
-                        ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100'
-                        : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
-                $iconStroke = $isActive ? '#4f46e5' : 'currentColor';
-                ?>
-                <li class="py-2.5 px-1">
-                    <a href="<?= site_url('admin/menu2') ?>"
-                       class="relative flex justify-start items-center py-1 px-5 <?= $activeClass ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStroke ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
-                            <path d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                        مدیریت منو سطح ۲
-                    </a>
-                </li>
-
-                <?php
-                $isActive = ($className == 'menu2image');
-                $activeClass = $isActive
-                        ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100'
-                        : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
-                $iconStroke = $isActive ? '#4f46e5' : 'currentColor';
-                ?>
-                <li class="py-2.5 px-1">
-                    <a href="<?= site_url('admin/menu2-image') ?>"
-                       class="relative flex justify-start items-center py-1 px-5 <?= $activeClass ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStroke ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
-                            <rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect>
-                            <circle cx="8.5" cy="8.5" r="2.5"></circle>
-                            <polyline points="21 15 16 10 5 21"></polyline>
-                        </svg>
-                        مدیریت تصاویر منو ۲
-                    </a>
-                </li>
-
-                <?php
-                $isActive = ($className == 'menu3');
-                $activeClass = $isActive
-                        ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100'
-                        : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
-                $iconStroke = $isActive ? '#4f46e5' : 'currentColor';
-                ?>
-                <li class="py-2.5 px-1">
-                    <a href="<?= site_url('admin/menu3') ?>"
-                       class="relative flex justify-start items-center py-1 px-5 <?= $activeClass ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStroke ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
-                            <path d="M4 6h16M4 12h16M4 18h16"></path>
-                            <path d="M8 6v12"></path>
-                        </svg>
-                        مدیریت منو سطح ۳
-                    </a>
-                </li>
-
-                <?php
-                $isActive = ($className == 'menu3image');
-                $activeClass = $isActive
-                        ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100'
-                        : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
-                $iconStroke = $isActive ? '#4f46e5' : 'currentColor';
-                ?>
-                <li class="py-2.5 px-1">
-                    <a href="<?= site_url('admin/menu3-image') ?>"
-                       class="relative flex justify-start items-center py-1 px-5 <?= $activeClass ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStroke ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
-                            <rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect>
-                            <circle cx="8.5" cy="8.5" r="2.5"></circle>
-                            <polyline points="21 15 16 10 5 21"></polyline>
-                        </svg>
-                        مدیریت تصاویر منو ۳
+                        مدیریت محصولات
                     </a>
                 </li>
 
@@ -232,15 +141,15 @@
                 </defs>
             </svg>
             <img class="absolute top-[-10px] start-0 end-0 mx-auto w-[73px] h-[73px] rounded-full object-cover"
-                 src="<?= base_url($avatar ?? 'assets/images/user/profile-img-2.jpg') ?>"
+                 src="<?= $assetsPath.$avatar ?>"
                  alt="پروفایل فروشنده">
         </div>
 
         <!-- اطلاعات کاربر -->
         <div class="relative z-0 mx-6 mb-5 after:content-[''] after:absolute after:top-[60%] after:right-1 after:left-1 after:bottom-0 after:h-2.5 after:z-[-1] after:shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
             <div class="relative z-10 bg-white dark:bg-custom-dark">
-                <div class="text-lg font-bold"><?= $full_name ?? 'فروشگاه الکترونیک' ?></div>
-                <div class="text-primary-500 py-1 pb-2.5"><?= $role ?? 'فروشنده: امیر رضایی' ?></div>
+                <div class="text-lg font-bold"><?= $full_name ?? 'ماکزا' ?></div>
+                <div class="text-primary-500 py-1 pb-2.5"><?= $role ?? 'ادمین' ?></div>
             </div>
         </div>
 
@@ -266,105 +175,28 @@
             $iconStrokeCollection = $isActiveCollection ? '#4f46e5' : 'currentColor';
             ?>
             <li class="py-2.5 px-1">
-                <a href="<?= site_url('admin/menu1') ?>" class="relative flex justify-start items-center py-1 px-5 <?= $activeClassCollection ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
-                        <path d="M4 6h16M4 12h16M4 18h16" fill="<?= $iconStrokeCollection ?>"></path>
+                <a href="<?= site_url('admin/collection') ?>" class="relative flex justify-start items-center py-1 px-5 <?= $activeClassCollection ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStroke ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <circle cx="8.5" cy="8.5" r="1.5" fill="<?= $iconStroke ?>"></circle>
+                        <polyline points="21 15 16 10 5 21"></polyline>
                     </svg>
                     مدیریت کالکشن
                 </a>
             </li>
 
             <?php
-            $isActiveMenu1 = ($className == 'menu1');
-            $activeClassMenu1 = $isActiveMenu1 ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100' : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
-            $iconStrokeMenu1 = $isActiveMenu1 ? '#4f46e5' : 'currentColor';
+            $isActiveProduct = ($className == 'product');
+            $activeClassProduct = $isActiveProduct ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100' : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
+            $iconStrokeProduct = $activeClassProduct ? '#4f46e5' : 'currentColor';
             ?>
             <li class="py-2.5 px-1">
-                <a href="<?= site_url('admin/menu1') ?>" class="relative flex justify-start items-center py-1 px-5 <?= $activeClassMenu1 ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
-                        <path d="M4 6h16M4 12h16M4 18h16" fill="<?= $iconStrokeMenu1 ?>"></path>
+                <a href="<?= site_url('admin/product') ?>" class="relative flex justify-start items-center py-1 px-5 <?= $activeClassProduct ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStrokeProduct ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                        <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"></path>
                     </svg>
-                    مدیریت منو سطح ۱
-                </a>
-            </li>
-
-            <?php
-            $isActiveMenu1Image = ($className == 'menu1image');
-            $activeClassMenu1Image = $isActiveMenu1Image ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100' : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
-            $iconStrokeMenu1Image = $isActiveMenu1Image ? '#4f46e5' : 'currentColor';
-            ?>
-            <li class="py-2.5 px-1">
-                <a href="<?= site_url('admin/menu1-image') ?>" class="relative flex justify-start items-center py-1 px-5 <?= $activeClassMenu1Image ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStrokeMenu1Image ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
-                        <rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect>
-                        <circle cx="8.5" cy="8.5" r="2.5"></circle>
-                        <polyline points="21 15 16 10 5 21"></polyline>
-                    </svg>
-                    مدیریت تصاویر منو ۱
-                </a>
-            </li>
-
-            <?php
-            $isActive = ($className == 'menu2');
-            $activeClass = $isActive
-                    ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100'
-                    : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
-            $iconStroke = $isActive ? '#4f46e5' : 'currentColor';
-            ?>
-            <li class="py-2.5 px-1">
-                <a href="<?= site_url('admin/menu2') ?>"
-                   class="relative flex justify-start items-center py-1 px-5 <?= $activeClass ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStroke ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
-                        <path d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                    مدیریت منو سطح ۲
-                </a>
-            </li>
-
-            <?php
-            $isActiveMenu2Image = ($className == 'menu2image');
-            $activeClassMenu2Image = $isActiveMenu2Image ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100' : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
-            $iconStrokeMenu2Image = $isActiveMenu2Image ? '#4f46e5' : 'currentColor';
-            ?>
-            <li class="py-2.5 px-1">
-                <a href="<?= site_url('admin/menu2-image') ?>" class="relative flex justify-start items-center py-1 px-5 <?= $activeClassMenu2Image ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStrokeMenu2Image ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
-                        <rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect>
-                        <circle cx="8.5" cy="8.5" r="2.5"></circle>
-                        <polyline points="21 15 16 10 5 21"></polyline>
-                    </svg>
-                    مدیریت تصاویر منو ۲
-                </a>
-            </li>
-
-
-            <?php
-            $isActiveMenu3 = ($className == 'menu3');
-            $activeClassMenu3 = $isActiveMenu3 ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100' : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
-            $iconStrokeMenu3 = $isActiveMenu3 ? '#4f46e5' : 'currentColor';
-            ?>
-            <li class="py-2.5 px-1">
-                <a href="<?= site_url('admin/menu1') ?>" class="relative flex justify-start items-center py-1 px-5 <?= $activeClassMenu3 ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
-                        <path d="M4 6h16M4 12h16M4 18h16" fill="<?= $iconStrokeMenu3 ?>"></path>
-                    </svg>
-                    مدیریت منو سطح ۳
-                </a>
-            </li>
-
-            <?php
-            $isActiveMenu3Image = ($className == 'menu3image');
-            $activeClassMenu3Image = $isActiveMenu3Image ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100' : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
-            $iconStrokeMenu3Image = $isActiveMenu3Image ? '#4f46e5' : 'currentColor';
-            ?>
-            <li class="py-2.5 px-1">
-                <a href="<?= site_url('admin/menu3-image') ?>" class="relative flex justify-start items-center py-1 px-5 <?= $activeClassMenu3Image ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStrokeMenu3Image ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
-                        <rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect>
-                        <circle cx="8.5" cy="8.5" r="2.5"></circle>
-                        <polyline points="21 15 16 10 5 21"></polyline>
-                    </svg>
-                    مدیریت تصاویر منو ۳
+                    مدیریت محصولات
                 </a>
             </li>
 

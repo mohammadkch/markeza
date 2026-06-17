@@ -19,9 +19,6 @@ class ProductMaterialModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-    /**
-     * Get materials by product ID
-     */
     public function getByProduct(int $productId): array
     {
         return $this->where('product_id', $productId)

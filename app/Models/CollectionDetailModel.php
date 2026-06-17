@@ -13,6 +13,7 @@ class CollectionDetailModel extends Model
     protected $allowedFields = [
         'collection_id', 'icon_type', 'label', 'value', 'sort_order'
     ];
+
     protected $useTimestamps = true;
     protected $dateFormat = 'int';
     protected $createdField  = 'created_at';

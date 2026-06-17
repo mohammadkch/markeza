@@ -464,6 +464,135 @@ class Collection extends BaseController
         ]);
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+    public function manageDetails($collectionId)
+    {
+        $collectionId = (int) $collectionId;
+        $collectionModel = model('App\Models\CollectionModel');
+        $collection = $collectionModel->find($collectionId);
+
+        if (!$collection) {
+            $this->flash('collection_not_found');
+            return redirect()->to('admin/collection');
+        }
+
+        $detailModel = model('App\Models\CollectionDetailModel');
+        $details = $detailModel->getByCollection($collectionId);
+
+        $this->viewData['collection'] = $collection;
+        $this->viewData['details'] = $details;
+        $this->viewData['collectionId'] = $collectionId;
+
+        return view($this->viewPath . 'collection/details', $this->viewData);
+    }
+
+    public function addDetail($collectionId)
+    {
+        $collectionId = (int) $collectionId;
+        $collectionModel = model('App\Models\CollectionModel');
+        $collection = $collectionModel->find($collectionId);
+
+        if (!$collection) {
+            $this->flash('collection_not_found');
+            return redirect()->to('admin/collection');
+        }
+
+        $method = $this->request->getMethod();
+        if ($method === 'post' || $method === 'POST') {
+            helper('sanitize');
+            $detailModel = model('App\Models\CollectionDetailModel');
+
+            $data = [
+                'collection_id' => $collectionId,
+                'label' => $this->request->getPost('label', FILTER_SANITIZE_STRING),
+                'value' => $this->request->getPost('value', FILTER_SANITIZE_STRING),
+                'icon_type' => $this->request->getPost('icon_type', FILTER_SANITIZE_STRING),
+                'sort_order' => (int) $this->request->getPost('sort_order') ?: 0,
+                'created_at' => time(),
+                'updated_at' => time()
+            ];
+
+            if ($detailModel->insert($data)) {
+                $this->flash('detail_create_success');
+            } else {
+                $this->flash('detail_create_error');
+            }
+
+            return redirect()->to('admin/collection/details/' . $collectionId);
+        }
+
+        $this->viewData['collection'] = $collection;
+        $this->viewData['collectionId'] = $collectionId;
+        $this->viewData['form_action'] = 'admin/collection/addDetail/' . $collectionId;
+
+        return view($this->viewPath . 'collection/detail_form', $this->viewData);
+    }
+
+    public function editImage($imageId)
+    {
+        $imageId = (int) $imageId;
+        $imageModel = model('App\Models\ProductImageModel');
+        $image = $imageModel->find($imageId);
+
+        if (!$image) {
+            $this->flash('image_not_found');
+            return redirect()->to('admin/product');
+        }
+
+        $productModel = model('App\Models\ProductModel');
+        $product = $productModel->find($image['product_id']);
+
+        if ($this->request->is('post')) {
+            $data = [
+                'alt_text' => $this->request->getPost('alt_text'),
+                'sort_order' => (int) $this->request->getPost('sort_order') ?: 0,
+                'updated_at' => time()
+            ];
+
+            if ($imageModel->update($imageId, $data)) {
+                $this->flash('image_update_success');
+            } else {
+                $this->flash('image_update_error');
+            }
+
+            return redirect()->to('admin/product/images/' . $image['product_id']);
+        }
+
+        $this->viewData['image'] = $image;
+        $this->viewData['product'] = $product;
+        $this->viewData['productId'] = $image['product_id'];
+        $this->viewData['form_action'] = 'admin/product/editImage/' . $imageId;
+
+        return view($this->viewPath . 'product/image_form', $this->viewData);
+    }
+
+    public function deleteDetail($detailId)
+    {
+        $detailId = (int) $detailId;
+        $detailModel = model('App\Models\CollectionDetailModel');
+        $detail = $detailModel->find($detailId);
+
+        if (!$detail) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'آیتم یافت نشد'
+            ]);
+        }
+
+        if ($detailModel->delete($detailId)) {
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => 'آیتم با موفقیت حذف شد'
+            ]);
+        }
+
+        return $this->response->setJSON([
+            'status' => 'error',
+            'message' => 'خطا در حذف آیتم'
+        ]);
+    }
+
     private function slugify($text)
     {
         $text = preg_replace('~[^\pL\d]+~u', '-', $text);
@@ -477,4 +606,5 @@ class Collection extends BaseController
         }
         return $text;
     }
+
 }
