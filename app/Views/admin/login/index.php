@@ -55,7 +55,7 @@
 
         <!-- Logo -->
         <div class="text-center mb-8">
-            <img src="<?= $assetsPath ?>images/logo.png" class="h-12 mx-auto dark:invert" alt="Logo">
+            <img src="<?= $assetsPath ?>images/logo/logo-black-trans.png" class="h-12 mx-auto dark:invert" alt="Logo">
             <h2 class="mt-4 text-2xl font-bold text-gray-800 dark:text-gray-200">پنل مدیریت</h2>
             <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">لطفاً اطلاعات خود را وارد کنید</p>
         </div>
