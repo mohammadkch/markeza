@@ -11,7 +11,7 @@
  Target Server Version : 100432 (10.4.32-MariaDB)
  File Encoding         : 65001
 
- Date: 15/06/2026 04:57:24
+ Date: 17/06/2026 14:23:06
 */
 
 SET NAMES utf8mb4;
@@ -41,9 +41,9 @@ CREATE TABLE `collection`  (
 -- ----------------------------
 -- Records of collection
 -- ----------------------------
-INSERT INTO `collection` VALUES (1, 'کالکشن جنوا', 'genova-collection', 'ترکیب سنت و تجمل در یک مجموعه', 'مجموعه جنوا (Genoa) ترکیبی از طراحی شیک و فضای نشیمن وسیع است که آن را به انتخابی ایده‌آل برای فضاهای بزرگ تبدیل می‌کند. با طراحی به سبک آمریکایی، این مجموعه راحتی فراوان را با فضای نشیمن گسترده خود ارائه می‌دهد و پشتیبانی کامل از بدن را برای ساعت‌ها استراحت فراهم می‌کند. چه در حال لذت بردن از لحظات آرام باشید و چه پذیرای مهمانان، مجموعه جنوا تجربه‌ای لذت‌بخش و لوکس را به شما هدیه می‌دهد.\r\n\r\nمجموعه جنوا در نسخه‌های تک‌نفره، دو‌نفره، سه‌نفره و دو‌نفره با شزلون عرضه می‌شود و امکان چیدمان به صورت ست کامل یا نیم‌ست را فراهم می‌کند تا به‌طور یکپارچه با فضای خانه شما هماهنگ شود. این مجموعه، مناسب اتاق‌های نشیمن بزرگ یا دفاتر وسیع بوده و به هر محیطی هم ظرافت و هم راحتی می‌بخشد.', NULL, 'کالکشن کلاسیک ایتالیایی | مارکزا', 'مبلمان چرم کلاسیک ایتالیایی با کیفیت صادراتی', 1, 1, 1781397850, 1781397850);
-INSERT INTO `collection` VALUES (2, 'کالکشن مینیمال مدرن', 'minimal-modern', 'سادگی در اوج زیبایی', 'طراحی مینیمال با خطوط تمیز و چرم نرم، مناسب فضاهای مدرن و معاصر.', NULL, 'کالکشن مینیمال مدرن | مارکزا', 'مبلمان چرم مینیمال با طراحی مدرن', 1, 2, 1781397850, 1781397850);
-INSERT INTO `collection` VALUES (3, 'کالکشن رویال', 'royal', 'شکوه و عظمت در هر تکه', 'کالکشن رویال با چرم دباغی شده دست و طلاکاری‌های繊細، انتخاب اول فضاهای لوکس.', NULL, 'کالکشن رویال | مارکزا', 'مبلمان چرم لوکس رویال صادراتی', 1, 3, 1781397850, 1781397850);
+INSERT INTO `collection` VALUES (1, 'کالکشن جنوا', 'genova-collection', 'ترکیب سنت و تجمل در یک مجموعه', 'مجموعه جنوا (Genoa) ترکیبی از طراحی شیک و فضای نشیمن وسیع است که آن را به انتخابی ایده‌آل برای فضاهای بزرگ تبدیل می‌کند. با طراحی به سبک آمریکایی، این مجموعه راحتی فراوان را با فضای نشیمن گسترده خود ارائه می‌دهد و پشتیبانی کامل از بدن را برای ساعت‌ها استراحت فراهم می‌کند. چه در حال لذت بردن از لحظات آرام باشید و چه پذیرای مهمانان، مجموعه جنوا تجربه‌ای لذت‌بخش و لوکس را به شما هدیه می‌دهد.\r\n\r\nمجموعه جنوا در نسخه‌های تک‌نفره، دو‌نفره، سه‌نفره و دو‌نفره با شزلون عرضه می‌شود و امکان چیدمان به صورت ست کامل یا نیم‌ست را فراهم می‌کند تا به‌طور یکپارچه با فضای خانه شما هماهنگ شود. این مجموعه، مناسب اتاق‌های نشیمن بزرگ یا دفاتر وسیع بوده و به هر محیطی هم ظرافت و هم راحتی می‌بخشد.', 'assets/images/collection/1781648618_asd.webp', 'کالکشن کلاسیک ایتالیایی | مارکزا', 'مبلمان چرم کلاسیک ایتالیایی با کیفیت صادراتی', 1, 1, 1781397850, 1781648618);
+INSERT INTO `collection` VALUES (2, 'کالکشن ونیز', 'venice-collection', 'ترکیبی کامل از راحتی، سبک و کارایی', '(Venice Collection)مجموعه ونیز ترکیبی کامل از راحتی، سبک و کارایی است. این مجموعه با هدف ایجاد یک تجربه استراحت بی‌نظیر طراحی شده و هر قطعه آن با دقت و ظرافت ساخته شده است. بالشتک‌های نرم و الیاف مرغوب، نشیمنی راحت و خوش‌فرم ایجاد می‌کنند. همچنین پایه‌های چوبی مقاوم، جلوه‌ای شیک و پایدار به این مجموعه می‌دهند.\r\nمبل ال‌شکل\r\n\r\nاین مبل، فضایی جادار و کاربردی برای نشستن فراهم می‌کند. طراحی ال‌شکل آن، محیطی دعوت‌کننده برای دورهمی‌های دوستانه، جمع‌های خانوادگی یا استراحت روزانه می‌سازد. این مدل به‌راحتی در اکثر چیدمان‌ها قرار می‌گیرد و فضای نشیمن را منظم‌تر و مدرن‌تر می‌کند.\r\nشزلون (Chaise Lounge)\r\n\r\nشزلون، بخش لوکس و تکمیل‌کننده مبل ال‌شکل است. این قطعه فضای ایده‌آلی برای دراز کشیدن و استراحت عمیق فراهم می‌کند. شزلون به‌صورت هماهنگ کنار مبل قرار می‌گیرد و راحتی بیشتری به مجموعه می‌دهد.\r\nامکان گسترش مجموعه\r\n\r\nاگر بخواهید فضای نشیمن خود را بزرگ‌تر کنید، می‌توانید صندلی‌های تک‌نفره یا ماژول‌های اضافی به مجموعه اضافه کنید. این قابلیت به شما اجازه می‌دهد چیدمان را مطابق نیاز و فضای خانه تغییر دهید.\r\nچه میزبان یک مهمانی باشید، چه در یک عصر آرام استراحت کنید، مجموعه ونیز فضایی راحت، شیک و هماهنگ ایجاد می‌کند و ظاهر دکوراسیون شما را ارتقا می‌دهد.', 'assets/images/collection/1781648574_dd.webp', 'کالکشن مبل چرم ونیز | مارکزا', 'مبلمان چرم  مدرن ونیز', 1, 2, 1781397850, 1781648588);
+INSERT INTO `collection` VALUES (3, 'کالکشن ورونا', 'verona-collection', 'ازتعریفی از راحتی و زیبایی در قالب طراحی اصیل ایتالیایی', 'کالکشن رویال با چرم دباغی شده دست و طلاکاری‌های繊細، انتخاب اول فضاهای لوکس.', 'assets/images/collection/1781648932_fggh.webp', 'کالکشن مبل ورونا| مارکزا', 'مبلمان چرم لوکس صادراتی', 1, 3, 1781397850, 1781648941);
 
 -- ----------------------------
 -- Table structure for collection_detail
@@ -88,16 +88,20 @@ CREATE TABLE `collection_image`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `collection_id`(`collection_id` ASC) USING BTREE,
   CONSTRAINT `collection_image_ibfk_1` FOREIGN KEY (`collection_id`) REFERENCES `collection` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of collection_image
 -- ----------------------------
-INSERT INTO `collection_image` VALUES (1, 1, 'assets/images/collection/genova-1024-614-1.webp', 'مبل جنوا صادراتی', 1, 1781397854, 1781397854);
-INSERT INTO `collection_image` VALUES (2, 1, 'assets/images/collection/genova-1024-614-2.webp', 'مبل جنوا صادراتی', 2, 1781397854, 1781397854);
-INSERT INTO `collection_image` VALUES (3, 1, 'assets/images/collection/genova-1024-614-3.webp', 'مبل جنوا صادراتی', 3, 1781397854, 1781397854);
-INSERT INTO `collection_image` VALUES (4, 1, 'assets/images/collection/genova-1024-614-4.webp', 'مبل جنوا صادراتی', 4, 1781397866, 1781397866);
-INSERT INTO `collection_image` VALUES (5, 1, 'assets/images/collection/genova-1024-614-5.webp', 'مبل جنوا صادراتی', 5, 1781397866, 1781397866);
+INSERT INTO `collection_image` VALUES (1, 1, 'assets/images/collection/genova-1024-614-1.webp', 'مبل جنوا صادراتی', 1, 1781397854, 1781648618);
+INSERT INTO `collection_image` VALUES (2, 1, 'assets/images/collection/genova-1024-614-2.webp', 'مبل جنوا صادراتی', 2, 1781397854, 1781648618);
+INSERT INTO `collection_image` VALUES (3, 1, 'assets/images/collection/genova-1024-614-3.webp', 'مبل جنوا صادراتی', 3, 1781397854, 1781648618);
+INSERT INTO `collection_image` VALUES (4, 1, 'assets/images/collection/genova-1024-614-4.webp', 'مبل جنوا صادراتی', 4, 1781397866, 1781648618);
+INSERT INTO `collection_image` VALUES (5, 1, 'assets/images/collection/genova-1024-614-5.webp', 'مبل جنوا صادراتی', 5, 1781397866, 1781648618);
+INSERT INTO `collection_image` VALUES (7, 2, 'assets/images/collection/1781648574_Untitled-1.webp', 'کالکشن ونیز', 1, 1781648574, 1781648588);
+INSERT INTO `collection_image` VALUES (8, 2, 'assets/images/collection/1781648588_z.webp', 'کالکشن ونیز', 2, 1781648588, 1781648588);
+INSERT INTO `collection_image` VALUES (9, 3, 'assets/images/collection/1781648932_kj.webp', 'کالکشن ورونا', 1, 1781648932, 1781648941);
+INSERT INTO `collection_image` VALUES (10, 3, 'assets/images/collection/1781648941_Untitled-1-Recovered.webp', 'کالکشن ورونا', 2, 1781648941, 1781648941);
 
 -- ----------------------------
 -- Table structure for product
@@ -216,10 +220,10 @@ INSERT INTO `product_image` VALUES (28, 3, 'assets/images/collection/product/gen
 INSERT INTO `product_image` VALUES (29, 3, 'assets/images/collection/product/genova-3-seater-dimension-1.webp', 'ابعاد مبل سه نفره جنوا - نمای روبرو', 7, 1781482003, 1781482003);
 INSERT INTO `product_image` VALUES (30, 3, 'assets/images/collection/product/genova-3-seater-dimension-2.webp', 'ابعاد مبل سه نفره جنوا - نمای کنار', 8, 1781482003, 1781482003);
 INSERT INTO `product_image` VALUES (31, 4, 'assets/images/collection/product/genova-full-plus-corner.webp', 'ست کامل جنوا - نمای جلو', 1, 1781482169, 1781482169);
-INSERT INTO `product_image` VALUES (32, 4, 'assets/images/collection/product/genova-full-plus-corner-2.webp', 'ست کامل جنوا - نمای کنار', 2, 1781482169, 1781482169);
-INSERT INTO `product_image` VALUES (33, 4, 'assets/images/collection/product/genova-full-plus-corner-3.webp', 'ست کامل جنوا - نمای بالا', 3, 1781482169, 1781482169);
-INSERT INTO `product_image` VALUES (34, 4, 'assets/images/collection/product/genova-full-plus-corner-dimension-1.webp', 'ابعاد ست کامل جنوا - نمای روبرو', 4, 1781482169, 1781482169);
-INSERT INTO `product_image` VALUES (35, 4, 'assets/images/collection/product/genova-full-plus-corner-dimension-2.webp', 'ابعاد ست کامل جنوا - نمای کنار', 5, 1781482169, 1781482169);
+INSERT INTO `product_image` VALUES (32, 4, 'assets/images/collection/product/genova-full-plus-corner-2.webp', 'ست کامل جنوا - نمای بالا', 2, 1781482169, 1781653945);
+INSERT INTO `product_image` VALUES (33, 4, 'assets/images/collection/product/genova-full-plus-corner-3.webp', 'ست کامل جنوا - نمای دسته', 3, 1781482169, 1781653931);
+INSERT INTO `product_image` VALUES (34, 4, 'assets/images/collection/product/genova-full-plus-corner-dimension-1.webp', 'ابعاد ست کامل جنوا - نمای کنار', 4, 1781482169, 1781653962);
+INSERT INTO `product_image` VALUES (35, 4, 'assets/images/collection/product/genova-full-plus-corner-dimension-2.webp', 'ابعاد ست کامل جنوا - نمای روبرو', 5, 1781482169, 1781653969);
 
 -- ----------------------------
 -- Table structure for product_material
@@ -291,6 +295,6 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'admin', '123456', 'رضا کوچنانی', 'admin', 1780932821, 'images/user/user.png', 1, 0, 1780932821);
+INSERT INTO `user` VALUES (1, 'admin', '123456', 'رضا کوچنانی', 'admin', 1781648306, 'images/user/user.png', 1, 0, 1781648306);
 
 SET FOREIGN_KEY_CHECKS = 1;
