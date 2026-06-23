@@ -112,6 +112,11 @@ class Collection extends BaseController
                 'data' => ['class' => 'form-control', 'id' => 'subtitle', 'name' => 'subtitle', 'placeholder' => 'زیر عنوان'],
                 'type' => 'text'
             ],
+            'excerpt' => [
+                'input' => 'form_textarea',
+                'data' => ['class' => 'form-control', 'id' => 'excerpt', 'name' => 'excerpt', 'placeholder' => 'متن کوتاه لیست کالکشن‌ها', 'rows' => 3],
+                'type' => 'textarea'
+            ],
             'description' => [
                 'input' => 'form_textarea',
                 'data' => ['class' => 'form-control', 'id' => 'description', 'name' => 'description', 'placeholder' => 'توضیحات کامل', 'rows' => 5],
@@ -147,6 +152,7 @@ class Collection extends BaseController
             'slug' => 'slug',
             'subtitle' => 'زیر عنوان',
             'description' => 'توضیحات',
+            'excerpt' => 'متن کوتاه (خلاصه)',
             'meta_title' => 'عنوان سئو',
             'meta_description' => 'توضیحات سئو',
             'sort_order' => 'ترتیب نمایش',
@@ -203,6 +209,11 @@ class Collection extends BaseController
             'description' => [
                 'input' => 'form_textarea',
                 'data' => ['class' => 'form-control', 'id' => 'description', 'name' => 'description', 'placeholder' => 'توضیحات کامل', 'rows' => 5],
+                'type' => 'textarea'
+            ],
+            'excerpt' => [
+                'input' => 'form_textarea',
+                'data' => ['class' => 'form-control', 'id' => 'excerpt', 'name' => 'excerpt', 'placeholder' => 'متن کوتاه لیست کالکشن‌ها', 'rows' => 3],
                 'type' => 'textarea'
             ],
             'meta_title' => [
@@ -291,6 +302,7 @@ class Collection extends BaseController
             'slug' => $slug,
             'subtitle' => $this->request->getPost('subtitle', FILTER_SANITIZE_STRING),
             'description' => $this->request->getPost('description'),
+            'excerpt' => $this->request->getPost('excerpt', FILTER_SANITIZE_STRING),
             'meta_title' => $this->request->getPost('meta_title', FILTER_SANITIZE_STRING),
             'meta_description' => $this->request->getPost('meta_description', FILTER_SANITIZE_STRING),
             'sort_order' => (int) $this->request->getPost('sort_order') ?: 0,

@@ -11,7 +11,7 @@ class CollectionModel extends Model
     protected $returnType = 'array';
 
     protected $allowedFields = [
-        'title', 'slug', 'subtitle', 'description',
+        'title', 'slug', 'subtitle', 'description', 'excerpt',
         'thumbnail', 'meta_title', 'meta_description',
         'is_active', 'sort_order'
     ];

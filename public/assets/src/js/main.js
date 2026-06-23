@@ -2,7 +2,7 @@ var swiper = new Swiper(".mySwiper", {
     loop: true,
     autoplay: {
         delay: 4000,
-        disableOnInteraction: false,
+        disableOnInteraction: true,
     },
     navigation: {
         nextEl: ".swiper-button-next",
@@ -85,11 +85,15 @@ var swiper2 = new Swiper(".project-main", {
     loop: true,
     autoplay: {
         delay: 3000,
-        disableOnInteraction: false,
+        disableOnInteraction: true,
     },
     navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+        el: ".project-pagination",
+        clickable: true,
     },
     thumbs: {
         swiper: swiper,
@@ -172,27 +176,6 @@ var swiper2 = new Swiper(".project-main", {
        };
    }
 
-// Product gallery swiper
-if (document.querySelector('.product-main')) {
-    var productThumb = new Swiper('.gall-product', {
-        spaceBetween: 10,
-        slidesPerView: 4,
-        freeMode: true,
-        watchSlidesProgress: true,
-    });
-
-    var productMain = new Swiper('.product-main', {
-        spaceBetween: 10,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        thumbs: {
-            swiper: productThumb,
-        },
-    });
-}
-
 // Related products swiper (without autoplay)
 if (document.querySelector('.related-products')) {
     var relatedProducts = new Swiper('.related-products', {
@@ -241,5 +224,36 @@ if (document.querySelector('.about-main')) {
         thumbs: {
             swiper: aboutThumb,
         },
+    });
+}
+
+// Product gallery swiper
+if (document.querySelector('.product-main')) {
+    var productThumb = new Swiper('.gall-product', {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true,
+    });
+
+    var productMain = new Swiper('.product-main', {
+        spaceBetween: 10,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.product-main-pagination',
+            clickable: true,
+        },
+        thumbs: {
+            swiper: productThumb,
+        },
+        // ====== اضافه کن اینجا ======
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: true, // وقتی کاربر دست بزنه، اتوپلی متوقف میشه
+        },
+        // ==========================
     });
 }

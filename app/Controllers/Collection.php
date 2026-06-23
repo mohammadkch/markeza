@@ -27,9 +27,11 @@ class Collection extends BaseController
     {
         $this->viewData['collections'] = $this->collectionModel->getAllActive();
 
+
         $this->viewData['seo'] = [
             'title'       => 'کالکشن‌ها | مارکزا',
             'description' => 'مجموعه کالکشن‌های مبلمان چرم لوکس مارکزا',
+            'canonical'   => base_url('collection'),
         ];
 
         return view($this->viewPath . 'collection/index', $this->viewData);

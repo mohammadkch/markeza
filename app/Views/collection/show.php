@@ -43,7 +43,7 @@
                 <!-- Gallery -->
                 <?php if (!empty($images)): ?>
                     <div class="mb-12">
-                        <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper project-main">
+                        <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #4f46e5" class="swiper project-main">
                             <div class="swiper-wrapper">
                                 <?php foreach ($images as $img): ?>
                                     <div class="swiper-slide">
@@ -55,6 +55,7 @@
                             </div>
                             <div class="swiper-button-next after:text-sm"></div>
                             <div class="swiper-button-prev after:text-sm"></div>
+                            <div class="swiper-pagination project-pagination"></div>
                         </div>
                         <div thumbsSlider="" class="swiper gall-project mt-4">
                             <div class="swiper-wrapper">

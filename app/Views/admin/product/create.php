@@ -86,7 +86,7 @@
                             <hr class="my-6 border-gray-200 dark:border-gray-700">
 
                             <!-- Thumbnail Upload -->
-                            <div class="space-y-4">
+                            <div class="space-y-4 mb-6">
                                 <h3 class="font-black text-lg with-highlight dark:text-gray-200">تصویر شاخص محصول</h3>
                                 <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -100,6 +100,27 @@
                                                 </div>
                                             <?php endif; ?>
                                             <input type="file" name="thumbnail" accept="image/jpeg,image/png,image/gif,image/webp" class="w-full text-sm">
+                                            <p class="text-xs text-gray-500 mt-1">حداکثر: 2MB</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Dimensions Image Upload -->
+                            <div class="space-y-4">
+                                <h3 class="font-black text-lg with-highlight dark:text-gray-200">تصویر ابعاد محصول</h3>
+                                <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                                تصویر ابعاد
+                                            </label>
+                                            <?php if (isset($edit_row) && !empty($edit_row['dimensions_img'])): ?>
+                                                <div class="mb-2">
+                                                    <img src="<?= base_url($edit_row['dimensions_img']) ?>" class="w-20 h-20 object-cover rounded-lg border">
+                                                </div>
+                                            <?php endif; ?>
+                                            <input type="file" name="dimensions_img" accept="image/jpeg,image/png,image/gif,image/webp" class="w-full text-sm">
                                             <p class="text-xs text-gray-500 mt-1">حداکثر: 2MB</p>
                                         </div>
                                     </div>

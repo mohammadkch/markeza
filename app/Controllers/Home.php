@@ -2,10 +2,15 @@
 
 namespace App\Controllers;
 
+use App\Models\CollectionModel;
+
 class Home extends BaseController
 {
     public function index(): string
     {
+
+        $collectionModel = new CollectionModel();
+        $collections = $collectionModel->getAllActive();
 
         $this->viewData['banners'] = [
             ['image' => $this->viewData['assetsPath'] . 'images/banner/slider1_1160x530.webp', 'alt' => 'تصویری از خانه‌ای منظم، امن و پر از احساس'],
@@ -22,6 +27,7 @@ class Home extends BaseController
             ['icon' => $this->viewData['assetsPath'] . 'images/16.png', 'title' => 'Tailwind CSS', 'summary' => 'لورم ایپسوم متن ساختگی...'],
         ];
 
+        /*
         $this->viewData['collections'] = [
             ['title' => 'کالکشن پارما. ماژولار', 'slug' => 'collection-parma', 'thumbnail' => $this->viewData['assetsPath'] . 'images/collection/parma-collection.webp'],
             ['title' => 'کالکشن جنوا', 'slug' => 'genova-collection', 'thumbnail' => $this->viewData['assetsPath'] . 'images/collection/genova-collection.webp'],
@@ -38,6 +44,9 @@ class Home extends BaseController
             ['title' => 'کالکشن فلورنس. چرم و پارچه', 'slug' => 'collection-florence', 'thumbnail' => $this->viewData['assetsPath'] . 'images/collection/florence-collection.webp'],
 
         ];
+        */
+
+        $this->viewData['collections'] = $collections;
 
       /*  $this->viewData['collections'] = [
             ['title' => 'کالکشن شماره یک', 'slug' => 'collection-1', 'thumbnail' => $this->viewData['assetsPath'] . 'images/project-30.jpg'],

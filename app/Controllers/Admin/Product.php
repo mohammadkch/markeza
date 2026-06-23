@@ -128,7 +128,12 @@ class Product extends BaseController
                     '1' => 'فعال',
                     '0' => 'غیرفعال'
                 ]
-            ]
+            ],
+            'dimensions_img' => [
+                'input' => 'file',
+                'data' => ['class' => 'form-control', 'id' => 'dimensions_img', 'name' => 'dimensions_img', 'accept' => 'image/jpeg,image/png,image/gif,image/webp'],
+                'type' => 'file'
+            ],
         ];
 
         $this->viewData['fields_name'] = [
@@ -138,7 +143,8 @@ class Product extends BaseController
             'description' => 'توضیحات',
             'dimensions_text' => 'متن ابعاد',
             'sort_order' => 'ترتیب نمایش',
-            'is_active' => 'وضعیت'
+            'is_active' => 'وضعیت',
+            'dimensions_img' => 'تصویر ابعاد محصول'
         ];
 
         $this->viewData['form_action'] = 'admin/product/create/handle';
@@ -210,7 +216,12 @@ class Product extends BaseController
                     '1' => 'فعال',
                     '0' => 'غیرفعال'
                 ]
-            ]
+            ],
+            'dimensions_img' => [
+                'input' => 'file',
+                'data' => ['class' => 'form-control', 'id' => 'dimensions_img', 'name' => 'dimensions_img', 'accept' => 'image/jpeg,image/png,image/gif,image/webp'],
+                'type' => 'file'
+            ],
         ];
 
         $this->viewData['fields_name'] = [
@@ -220,7 +231,8 @@ class Product extends BaseController
             'description' => 'توضیحات',
             'dimensions_text' => 'متن ابعاد',
             'sort_order' => 'ترتیب نمایش',
-            'is_active' => 'وضعیت'
+            'is_active' => 'وضعیت',
+            'dimensions_img' => 'تصویر ابعاد محصول'
         ];
 
         return view($this->viewPath . 'product/create', $this->viewData);
@@ -314,6 +326,24 @@ class Product extends BaseController
 
                 $productModel->update($productId, [
                     'thumbnail' => 'assets/images/product/' . $newName
+                ]);
+            }
+        }
+
+        // Handle dimensions image upload
+        $dimensionsImg = $this->request->getFile('dimensions_img');
+        if ($dimensionsImg && $dimensionsImg->getError() !== UPLOAD_ERR_NO_FILE) {
+            if ($dimensionsImg->isValid()) {
+                $uploadPath = FCPATH . 'assets/images/product/';
+                if (!is_dir($uploadPath)) {
+                    mkdir($uploadPath, 0777, true);
+                }
+
+                $newName = time() . '_dim_' . $dimensionsImg->getClientName();
+                $dimensionsImg->move($uploadPath, $newName);
+
+                $productModel->update($productId, [
+                    'dimensions_img' => 'assets/images/product/' . $newName
                 ]);
             }
         }
