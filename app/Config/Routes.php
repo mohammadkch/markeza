@@ -10,6 +10,7 @@ $routes->group('', ['filter' => 'parse_url'], function ($routes) {
     $routes->get('collection', 'Collection::index');
     $routes->get('collection/(:segment)', 'Collection::show/$1');
 
+    $routes->get('product', 'Product::index');
     $routes->get('product/(:segment)', 'Product::show/$1');
 
     $routes->get('about', 'About::index');

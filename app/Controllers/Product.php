@@ -23,6 +23,28 @@ class Product extends BaseController
         $this->productFaqModel = new ProductFaqModel();
     }
 
+    public function index(): string
+    {
+        $collectionModel = model('App\Models\CollectionModel');
+        $productModel = model('App\Models\ProductModel');
+
+        $collections = $collectionModel->getAllActive();
+
+        foreach ($collections as &$collection) {
+            $collection['products'] = $productModel->getByCollection($collection['id']);
+        }
+
+        $this->viewData['collections'] = $collections;
+
+        $this->viewData['seo'] = [
+            'title'       => 'محصولات | مارکزا',
+            'description' => 'مشاهده تمام محصولات مبلمان چرم مارکزا',
+        ];
+
+        return view($this->viewPath . 'product/index', $this->viewData);
+    }
+
+
     /**
      * Show product detail page
      */

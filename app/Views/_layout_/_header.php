@@ -25,7 +25,7 @@
                             </div>
                             <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'home' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('/') ?>">صفحه اصلی</a></li>
                             <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'collection' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('collection') ?>">کالکشن‌</a></li>
-                            <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'services' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('services') ?>">خدمات</a></li>
+                            <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'product' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('product') ?>">محصول ها</a></li>
                             <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'blog' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('blog') ?>">وبلاگ</a></li>
                             <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'about' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('about') ?>">درباره ما</a></li>
                             <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'contact' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('contact') ?>">تماس با ما</a></li>
@@ -45,7 +45,7 @@
                     <ul class="flex menu lg:menu-horizontal">
                         <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'home' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('/') ?>">صفحه اصلی</a></li>
                         <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'collection' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('collection') ?>">کالکشن‌ها</a></li>
-                        <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'services' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('services') ?>">خدمات</a></li>
+                        <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'product' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('product') ?>">محصولات</a></li>
                         <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'blog' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('blog') ?>">وبلاگ</a></li>
                         <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'about' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('about') ?>">درباره ما</a></li>
                         <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'contact' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('contact') ?>">تماس با ما</a></li>
