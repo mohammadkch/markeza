@@ -58,7 +58,7 @@
                 </div>
 
                 <?php if ($collection !== end($collections)): ?>
-                    <hr class="border-gray-200 my-16">
+                    <hr style="border-color: #e5e7eb; margin-top: 30px; margin-bottom: 30px;">
                 <?php endif; ?>
 
             <?php endforeach; ?>
