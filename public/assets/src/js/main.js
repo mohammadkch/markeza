@@ -100,28 +100,31 @@ var swiper2 = new Swiper(".project-main", {
     },
 });
 
-  var swiper = new Swiper(".sin-project", {
+var swiper = new Swiper(".sin-project", {
     slidesPerView: 1,
     spaceBetween: 20,
     autoplay: {
         delay: 5000,
-      },
-      breakpoints: {
+    },
+    pagination: {
+        el: ".swiper-pagination",  // برگشت به کلاس اصلی
+        clickable: true,
+    },
+    breakpoints: {
         640: {
-          slidesPerView: 1,
-          spaceBetween: 15,
+            slidesPerView: 1,
+            spaceBetween: 15,
         },
         768: {
-          slidesPerView: 2,
-          spaceBetween: 15,
+            slidesPerView: 2,
+            spaceBetween: 15,
         },
         1024: {
-          slidesPerView: 3,
-          spaceBetween: 15,
+            slidesPerView: 3,
+            spaceBetween: 15,
         },
-      },
-  });
-
+    },
+});
   function showTab(tabId) {
     // Hide all tab content
     const tabContents = document.querySelectorAll('.tab-content');

@@ -119,6 +119,7 @@
                                 <p class="mt-2">برای مشاهده جزئیات محصول کلیک کنید</p>
                             </div>
                         </div>
+
                         <div class="swiper sin-project">
                             <div class="swiper-wrapper ease-linear">
                                 <?php foreach ($products as $product): ?>
@@ -135,24 +136,11 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <!--<div class="swiper-slide">
-                                        <div class="group/item">
-                                            <a class="relative w-full" href="<?php /*= base_url('product/' . $product['slug']) */?>">
-                                                <div class="overflow-hidden bg-cover bg-no-repeat">
-                                                    <img class="transition duration-300 ease-in-out hover:scale-110 rounded-2xl w-full"
-                                                         src="<?php /*= base_url(esc($product['thumbnail'])) */?>"
-                                                         alt="<?php /*= esc($product['title']) */?>">
-                                                </div>
-                                                <div class="absolute bottom-0 w-full text-center text-white bg-gradient-to-t from-stone-800 pt-10 rounded-b-2xl">
-                                                    <h3><?php /*= esc($product['title']) */?></h3>
-                                                    <p class="opacity-0 group-hover/item:opacity-100 transition-all duration-300 group-hover/item:my-3 text-xs">جهت مشاهده کلیک کنید...</p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>-->
                                 <?php endforeach; ?>
                             </div>
-                            <div class="swiper-pagination"></div>
+
+                            <!-- پاگینیشن داخل اسلایدر ولی با فاصله از پایین -->
+                            <div class="swiper-pagination" style="position: relative; margin-top: 20px;"></div>
                         </div>
                     </div>
                 <?php endif; ?>
