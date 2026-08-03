@@ -44,6 +44,7 @@
                     <li><a href="<?= base_url('contact') ?>">تماس با ما</a></li>
                     <li><a href="<?= base_url('collection') ?>">کالکشن‌ها</a></li>
                     <li><a href="<?= base_url('product') ?>">محصولات</a></li>
+                    <li><a href="<?= base_url('branches') ?>">نمایندگی‌ها</a></li>
                 </ul>
             </div>
             <div class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-2 text-right md:text-center">

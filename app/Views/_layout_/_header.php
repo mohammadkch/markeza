@@ -3,7 +3,7 @@
         <div class="flex justify-between items-center py-6">
 
             <!-- Mobile Drawer -->
-            <div class="lg:hidden leading-none z-10">
+            <div class="lg:hidden leading-none z-50">
                 <div class="drawer">
                     <input id="my-drawer" type="checkbox" class="drawer-toggle"/>
                     <div class="drawer-content">
@@ -29,6 +29,7 @@
                             <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'blog' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('blog') ?>">وبلاگ</a></li>
                             <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'about' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('about') ?>">درباره ما</a></li>
                             <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'contact' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('contact') ?>">تماس با ما</a></li>
+                            <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'branches' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('branches') ?>">نمایندگی‌ها</a></li>
                         </ul>
                     </div>
                 </div>
@@ -49,6 +50,7 @@
                         <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'blog' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('blog') ?>">وبلاگ</a></li>
                         <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'about' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('about') ?>">درباره ما</a></li>
                         <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'contact' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('contact') ?>">تماس با ما</a></li>
+                        <li><a class="hover:border-b hover:border-orange-200 pb-1 duration-300 <?= $className === 'branches' ? 'border-b border-orange-200' : '' ?>" href="<?= base_url('branches') ?>">نمایندگی‌ها</a></li>
                     </ul>
                 </div>
             </div>

@@ -16,7 +16,10 @@ class UrlFilter implements FilterInterface
             'home/index' => 'ماکزا | مبلمان چرم',
             'collection/index' => 'مارکزا | کالکشن‌ها',
             'collection/show'  => 'مارکزا | جزئیات کالکشن',
+            'blog/index' => 'وبلاگ | مارکزا هوم',
+            'blog/show' => 'جزئیات مقاله | مارکزا هوم',
             'about/index' => 'درباره ما | مارکزا هوم',
+            'branches/index' => 'نمایندگی‌ها | مارکزا هوم',
         ];
 
         $url = service('url');

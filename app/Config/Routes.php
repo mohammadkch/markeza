@@ -13,7 +13,15 @@ $routes->group('', ['filter' => 'parse_url'], function ($routes) {
     $routes->get('product', 'Product::index');
     $routes->get('product/(:segment)', 'Product::show/$1');
 
+    $routes->get('blog', 'Blog::index');
+    $routes->get('blog/(:segment)', 'Blog::show/$1');
+
     $routes->get('about', 'About::index');
+
+    $routes->get('branches', 'Branches::index');
+
+    $routes->get('contact', 'Contact::index');
+    $routes->post('contact', 'Contact::submit', ['filter' => 'csrf']);
 
 });
 

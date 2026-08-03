@@ -66,15 +66,15 @@
     <section class="px-4 py-14 bg-gradient-to-t from-orange-100">
         <div class="container mx-auto max-w-screen-xl">
             <div class="flex justify-center relative mb-14">
-                <h2 class="font-YekanBakh-ExtraBlack text-3xl">خـــــدمــــات لاریـــــن</h2>
-                <div class="absolute -top-6"><span class="font-YekanBakh-ExtraBlack text-6xl text-opacity-10 text-stone-900">services</span></div>
+                <h2 class="font-YekanBakh-ExtraBlack text-3xl">چرا مارکزا هوم؟</h2>
+                <div class="absolute -top-6"><span class="font-YekanBakh-ExtraBlack text-6xl text-opacity-10 text-stone-900">why markeza?</span></div>
                 <div class="bg-orange-200 w-20 h-1.5 rounded-full absolute top-10"></div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <?php foreach ($services as $service): ?>
                     <div class="bg-white p-6 rounded-3xl leading-8 transform hover:-translate-y-1 duration-300 transition-transform cursor-pointer">
-                        <div class="w-16 mb-4">
-                            <img src="<?= esc($service['icon']) ?>" alt="<?= esc($service['title']) ?>">
+                        <div class="w-24 mb-4">
+                            <img class="w-24 h-24 object-contain" src="<?= esc($service['icon']) ?>" alt="<?= esc($service['title']) ?>">
                         </div>
                         <div class="flex items-center mb-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -218,7 +218,7 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <?php foreach ($latestPosts as $post): ?>
-                    <div class="bg-white overflow-hidden rounded-3xl leading-8 transform hover:-translate-y-1 duration-300 transition-transform">
+                    <div class="bg-white overflow-hidden rounded-3xl leading-8 transform hover:-translate-y-1 duration-300 transition-transform flex flex-col">
                         <div class="p-6">
                             <div class="flex items-center mb-4 border-b border-dashed pb-4">
                                 <div class="avatar ml-2">
@@ -243,9 +243,9 @@
                                 <p><?= esc($post['summary']) ?></p>
                             </div>
                         </div>
-                        <div>
+                        <div style="margin-top: auto">
                             <a href="<?= base_url('blog/' . $post['slug']) ?>">
-                                <img class="rounded-b-lg" src="<?= esc($post['thumbnail']) ?>" alt="<?= esc($post['title']) ?>">
+                                <img class="rounded-b-lg w-full object-cover" style="height: 14rem" src="<?= esc($post['thumbnail']) ?>" alt="<?= esc($post['title']) ?>">
                             </a>
                         </div>
                     </div>

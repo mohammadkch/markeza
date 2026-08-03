@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\CollectionModel;
+use App\Models\BlogPostModel;
 
 class Home extends BaseController
 {
@@ -21,10 +22,26 @@ class Home extends BaseController
         ];
 
         $this->viewData['services'] = [
-            ['icon' => $this->viewData['assetsPath'] . 'images/feature/feature1.svg', 'title' => 'شخصی سازی آسان', 'summary' => 'لورم ایپسوم متن ساختگی...'],
-            ['icon' => $this->viewData['assetsPath'] . 'images/feature/feature2.svg', 'title' => 'کدنویسی تمیز', 'summary' => 'لورم ایپسوم متن ساختگی...'],
-            ['icon' => $this->viewData['assetsPath'] . 'images/feature/feature3.svg', 'title' => 'کاملا ریسپانسیو', 'summary' => 'لورم ایپسوم متن ساختگی...'],
-            ['icon' => $this->viewData['assetsPath'] . 'images/16.png', 'title' => 'Tailwind CSS', 'summary' => 'لورم ایپسوم متن ساختگی...'],
+            [
+                'icon' => $this->viewData['assetsPath'] . 'images/features/markeza-italian-design.png',
+                'title' => 'طراحی ایتالیایی',
+                'summary' => 'الهام‌گرفته از سبک طراحی ایتالیا با تمرکز بر زیبایی، ارگونومی و جزئیات ماندگار.',
+            ],
+            [
+                'icon' => $this->viewData['assetsPath'] . 'images/features/markeza-italian-leather .png',
+                'title' => 'چرم وارداتی ایتالیایی',
+                'summary' => 'استفاده از چرم طبیعی ایتالیایی با کیفیت ممتاز، دوام بالا و حس لمس بی‌نظیر.',
+            ],
+            [
+                'icon' => $this->viewData['assetsPath'] . 'images/features/markeza-guarantee.png',
+                'title' => 'گارانتی ۳۶ ماهه',
+                'summary' => '۳۶ ماه ضمانت کیفیت همراه با خدمات پس از فروش، برای اطمینان خاطر از خرید شما.',
+            ],
+            [
+                'icon' => $this->viewData['assetsPath'] . 'images/features/markeza-diffrent-colors.png',
+                'title' => 'قابل سفارش در رنگ‌های مختلف',
+                'summary' => 'امکان انتخاب رنگ، چرم و پارچه متناسب با دکوراسیون و سلیقه شما.',
+            ],
         ];
 
         /*
@@ -60,12 +77,20 @@ class Home extends BaseController
             ['name' => 'فرهاد یاسری', 'role' => 'طراح گرافیک', 'avatar' => $this->viewData['assetsPath'] . 'images/avatar-4.jpg', 'text' => 'لورم ایپسوم متن ساختگی...'],
         ];
 
-        $this->viewData['latestPosts'] = [
-            ['title' => 'جذاب ترین صندلی مینیمال', 'slug' => 'post-1', 'summary' => 'لورم ایپسوم...', 'thumbnail' => $this->viewData['assetsPath'] . 'images/blog-9.jpg', 'author_name' => 'نوید محمودی', 'author_role' => 'طراح گرافیک', 'author_avatar' => $this->viewData['assetsPath'] . 'images/avatar-1.jpg'],
-            ['title' => 'پرفروش ترین مبل ایران', 'slug' => 'post-2', 'summary' => 'لورم ایپسوم...', 'thumbnail' => $this->viewData['assetsPath'] . 'images/blog-3.jpg', 'author_name' => 'سهیلا صادقی', 'author_role' => 'طراح گرافیک', 'author_avatar' => $this->viewData['assetsPath'] . 'images/avatar-2.jpg'],
-            ['title' => 'نکات مهم هنگام خرید صندلی', 'slug' => 'post-3', 'summary' => 'لورم ایپسوم...', 'thumbnail' => $this->viewData['assetsPath'] . 'images/blog-10.jpg', 'author_name' => 'سارا توحیدی', 'author_role' => 'طراح گرافیک', 'author_avatar' => $this->viewData['assetsPath'] . 'images/avatar-3.jpg'],
-            ['title' => 'صندلی های مینیمال اداری', 'slug' => 'post-4', 'summary' => 'لورم ایپسوم...', 'thumbnail' => $this->viewData['assetsPath'] . 'images/blog-12.jpg', 'author_name' => 'فرهاد یاسری', 'author_role' => 'طراح گرافیک', 'author_avatar' => $this->viewData['assetsPath'] . 'images/avatar-4.jpg'],
+        $roleLabels = [
+            'admin' => 'مدیر محتوا',
+            'manager' => 'نویسنده',
+            'viewer' => 'همکار تحریریه',
         ];
+        $latestPosts = (new BlogPostModel())->getLatestPublished(4);
+        foreach ($latestPosts as &$post) {
+            $post['summary'] = $post['excerpt'];
+            $post['thumbnail'] = base_url($post['thumbnail']);
+            $post['author_avatar'] = $this->viewData['assetsPath'] . 'images/user.jpg';
+            $post['author_role'] = $roleLabels[$post['author_role']] ?? 'نویسنده';
+        }
+        unset($post);
+        $this->viewData['latestPosts'] = $latestPosts;
 
         $this->viewData['partners'] = [
             ['name' => 'شریک ۱', 'logo' => $this->viewData['assetsPath'] . 'images/logo-8.png'],
