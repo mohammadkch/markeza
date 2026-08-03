@@ -1,84 +1,66 @@
+<?php
+$assetsPath = base_url('assets/');
+$className = '';
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
-    <meta charset="utf-8">
-    <title><?= lang('Errors.pageNotFound') ?></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>صفحه پیدا نشد | مارکزا هوم</title>
 
-    <style>
-        div.logo {
-            height: 200px;
-            width: 155px;
-            display: inline-block;
-            opacity: 0.08;
-            position: absolute;
-            top: 2rem;
-            left: 50%;
-            margin-left: -73px;
-        }
-        body {
-            height: 100%;
-            background: #fafafa;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            color: #777;
-            font-weight: 300;
-        }
-        h1 {
-            font-weight: lighter;
-            letter-spacing: normal;
-            font-size: 3rem;
-            margin-top: 0;
-            margin-bottom: 0;
-            color: #222;
-        }
-        .wrap {
-            max-width: 1024px;
-            margin: 5rem auto;
-            padding: 2rem;
-            background: #fff;
-            text-align: center;
-            border: 1px solid #efefef;
-            border-radius: 0.5rem;
-            position: relative;
-        }
-        pre {
-            white-space: normal;
-            margin-top: 1.5rem;
-        }
-        code {
-            background: #fafafa;
-            border: 1px solid #efefef;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            display: block;
-        }
-        p {
-            margin-top: 1.5rem;
-        }
-        .footer {
-            margin-top: 2rem;
-            border-top: 1px solid #efefef;
-            padding: 1em 2em 0 2em;
-            font-size: 85%;
-            color: #999;
-        }
-        a:active,
-        a:link,
-        a:visited {
-            color: #dd4814;
-        }
-    </style>
+    <?php include APPPATH . 'Views/_layout_/_favicon.php'; ?>
+    <link rel="stylesheet" href="<?= esc($assetsPath) ?>modules/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="<?= esc($assetsPath) ?>build/style.css">
 </head>
-<body>
-    <div class="wrap">
-        <h1>404</h1>
+<body class="font-YekanBakh-Regular text-sm bg-[#f5f1e4]">
 
-        <p>
-            <?php if (ENVIRONMENT !== 'production') : ?>
-                <?= nl2br(esc($message)) ?>
-            <?php else : ?>
-                <?= lang('Errors.sorryCannotFind') ?>
-            <?php endif; ?>
-        </p>
-    </div>
+<?php include APPPATH . 'Views/_layout_/_header.php'; ?>
+
+<main>
+    <section class="px-4 mb-24">
+        <div class="container mx-auto max-w-screen-xl">
+            <nav class="flex mb-5 border-y border-orange-200 py-3" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-2">
+                    <li class="inline-flex items-center">
+                        <a href="<?= base_url('/') ?>">خانه</a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
+                            </svg>
+                            <span class="mr-1">خطای ۴۰۴</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+
+            <div class="container mx-auto max-w-screen-md text-center leading-10">
+                <img class="w-3/4 mb-8 mx-auto" src="<?= base_url('assets/images/404.png') ?>" alt="صفحه مورد نظر پیدا نشد">
+
+                <div class="bg-white rounded-3xl p-6 shadow-lg">
+                    <span class="font-YekanBakh-ExtraBlack text-6xl text-stone-900">۴۰۴</span>
+                    <h1 class="font-YekanBakh-ExtraBlack text-2xl mt-4 mb-3">صفحه مورد نظر شما یافت نشد!</h1>
+                    <p class="text-base text-stone-700 mb-6">
+                        ممکن است آدرس صفحه تغییر کرده باشد یا محتوای مورد نظر دیگر در دسترس نباشد.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center gap-3">
+                        <a class="bg-stone-800 text-white hover:bg-orange-200 hover:text-stone-900 duration-300 py-2.5 px-6 rounded-full" href="<?= base_url('/') ?>">
+                            بازگشت به صفحه اصلی
+                        </a>
+                        <a class="border border-stone-800 text-stone-900 hover:bg-stone-800 hover:text-white duration-300 py-2.5 px-6 rounded-full" href="<?= base_url('contact') ?>">
+                            تماس با ما
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<?php include APPPATH . 'Views/_layout_/_footer.php'; ?>
+
 </body>
 </html>
