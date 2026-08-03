@@ -89,6 +89,22 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'ad
     $routes->post('product/editFaq/(:num)', 'Product::editFaq/$1');
     $routes->delete('product/deleteFaq/(:num)', 'Product::deleteFaq/$1');
 
+    // blog management
+    $routes->get('blog', 'Blog::index');
+    $routes->group('blog', ['filter' => 'csrf'], function ($routes) {
+        $routes->get('create', 'Blog::create');
+        $routes->post('create', 'Blog::store');
+        $routes->get('edit/(:num)', 'Blog::edit/$1');
+        $routes->post('edit/(:num)', 'Blog::update/$1');
+        $routes->post('delete/(:num)', 'Blog::delete/$1');
+        $routes->get('blocks/(:num)', 'Blog::blocks/$1');
+        $routes->post('blocks/(:num)/create', 'Blog::storeBlock/$1');
+        $routes->get('blocks/(:num)/edit/(:num)', 'Blog::editBlock/$1/$2');
+        $routes->post('blocks/(:num)/edit/(:num)', 'Blog::updateBlock/$1/$2');
+        $routes->post('blocks/(:num)/delete/(:num)', 'Blog::deleteBlock/$1/$2');
+        $routes->post('blocks/(:num)/reorder', 'Blog::reorderBlocks/$1');
+    });
+
     // menu_1
     $routes->get('menu1', 'Menu1::index');
     $routes->post('menu1', 'Menu1::index');

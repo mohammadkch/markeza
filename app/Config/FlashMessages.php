@@ -66,6 +66,34 @@ class FlashMessages
             'message' => 'سوال با موفقیت حذف شد.',
             'type' => 'success'
         ],
+        'blog_create_success' => [
+            'message' => 'مقاله با موفقیت ایجاد شد.',
+            'type' => 'success'
+        ],
+        'blog_update_success' => [
+            'message' => 'مقاله با موفقیت بروزرسانی شد.',
+            'type' => 'success'
+        ],
+        'blog_delete_success' => [
+            'message' => 'مقاله با موفقیت حذف شد.',
+            'type' => 'success'
+        ],
+        'blog_block_create_success' => [
+            'message' => 'بلوک جدید به مقاله اضافه شد.',
+            'type' => 'success'
+        ],
+        'blog_block_update_success' => [
+            'message' => 'بلوک مقاله بروزرسانی شد.',
+            'type' => 'success'
+        ],
+        'blog_block_delete_success' => [
+            'message' => 'بلوک مقاله حذف شد.',
+            'type' => 'success'
+        ],
+        'blog_blocks_reorder_success' => [
+            'message' => 'ترتیب بلوک‌ها ذخیره شد.',
+            'type' => 'success'
+        ],
     ];
 
     public static $error = [
@@ -136,6 +164,26 @@ class FlashMessages
         ],
         'faq_update_error' => [
             'message' => 'مشکلی در بروزرسانی سوال پیش آمده.',
+            'type' => 'error'
+        ],
+        'blog_not_found' => [
+            'message' => 'مقاله مورد نظر پیدا نشد.',
+            'type' => 'error'
+        ],
+        'blog_save_error' => [
+            'message' => 'ذخیره مقاله با خطا مواجه شد.',
+            'type' => 'error'
+        ],
+        'blog_delete_error' => [
+            'message' => 'حذف مقاله با خطا مواجه شد.',
+            'type' => 'error'
+        ],
+        'blog_block_not_found' => [
+            'message' => 'بلوک مورد نظر پیدا نشد.',
+            'type' => 'error'
+        ],
+        'blog_block_save_error' => [
+            'message' => 'ذخیره بلوک با خطا مواجه شد.',
             'type' => 'error'
         ],
 

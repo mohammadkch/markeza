@@ -82,6 +82,24 @@
                     </a>
                 </li>
 
+                <?php
+                $isActive = ($className == 'blog');
+                $activeClass = $isActive
+                        ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100'
+                        : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
+                $iconStroke = $isActive ? '#4f46e5' : 'currentColor';
+                ?>
+                <li class="py-2.5 px-1">
+                    <a href="<?= site_url('admin/blog') ?>"
+                       class="relative flex justify-start items-center py-1 px-5 <?= $activeClass ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStroke ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
+                            <path d="M4 19.5A2.5 2.5 0 016.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"></path>
+                        </svg>
+                        مدیریت وبلاگ
+                    </a>
+                </li>
+
 
                 <li class="py-2.5 px-1">
                     <a href="<?= site_url('admin/logout') ?>"
@@ -176,9 +194,9 @@
             ?>
             <li class="py-2.5 px-1">
                 <a href="<?= site_url('admin/collection') ?>" class="relative flex justify-start items-center py-1 px-5 <?= $activeClassCollection ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStroke ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStrokeCollection ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                        <circle cx="8.5" cy="8.5" r="1.5" fill="<?= $iconStroke ?>"></circle>
+                        <circle cx="8.5" cy="8.5" r="1.5" fill="<?= $iconStrokeCollection ?>"></circle>
                         <polyline points="21 15 16 10 5 21"></polyline>
                     </svg>
                     مدیریت کالکشن
@@ -197,6 +215,21 @@
                         <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"></path>
                     </svg>
                     مدیریت محصولات
+                </a>
+            </li>
+
+            <?php
+            $isActiveBlog = ($className == 'blog');
+            $activeClassBlog = $isActiveBlog ? 'text-gray-800 font-bold text-primary-600 before:bg-primary-600 before:scale-y-100' : 'dark:text-gray-500 text-gray-800 hover:text-primary-600 before:scale-y-0 hover:before:scale-y-100';
+            $iconStrokeBlog = $isActiveBlog ? '#4f46e5' : 'currentColor';
+            ?>
+            <li class="py-2.5 px-1">
+                <a href="<?= site_url('admin/blog') ?>" class="relative flex justify-start items-center py-1 px-5 <?= $activeClassBlog ?> before:content-[''] before:absolute before:top-0 before:right-0 before:bottom-0 before:w-1 before:rounded before:transition before:duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="<?= $iconStrokeBlog ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2.5">
+                        <path d="M4 19.5A2.5 2.5 0 016.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"></path>
+                    </svg>
+                    مدیریت وبلاگ
                 </a>
             </li>
 
