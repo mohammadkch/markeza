@@ -11,7 +11,7 @@ use Throwable;
 class Blog extends BaseController
 {
     private const MAX_IMAGE_SIZE = 5242880;
-    private const UPLOAD_DIRECTORY = 'assets/images/blog/uploads/';
+    private const UPLOAD_DIRECTORY = 'assets/images/blog/';
 
     public function index(): string
     {
@@ -249,11 +249,11 @@ class Blog extends BaseController
         $newFiles = [];
 
         try {
-            $thumbnail = $this->uploadImage('thumbnail', $slug, $existing === null);
+            $thumbnail = $this->uploadImage('thumbnail', $existing === null);
             if ($thumbnail !== null) {
                 $newFiles[] = $thumbnail;
             }
-            $banner = $this->uploadImage('banner', $slug, $existing === null);
+            $banner = $this->uploadImage('banner', $existing === null);
             if ($banner !== null) {
                 $newFiles[] = $banner;
             }
@@ -387,7 +387,7 @@ class Blog extends BaseController
         $newImage = null;
         try {
             if ($type === 'image') {
-                $newImage = $this->uploadImage('image', $post['slug'], $existing === null || empty($existing['image_path']));
+                $newImage = $this->uploadImage('image', $existing === null || empty($existing['image_path']));
             }
         } catch (RuntimeException $exception) {
             return $this->redirectBlockForm($postId, $blockId, [$exception->getMessage()]);
@@ -449,7 +449,7 @@ class Blog extends BaseController
         return redirect()->to(site_url('admin/blog/blocks/' . $postId));
     }
 
-    private function uploadImage(string $field, string $slug, bool $required): ?string
+    private function uploadImage(string $field, bool $required): ?string
     {
         $file = $this->request->getFile($field);
         if ($file === null || $file->getError() === UPLOAD_ERR_NO_FILE) {
@@ -479,7 +479,7 @@ class Blog extends BaseController
             throw new RuntimeException('ابعاد تصویر بیش از حد مجاز است.');
         }
 
-        $relativeDirectory = self::UPLOAD_DIRECTORY . $slug . '/';
+        $relativeDirectory = self::UPLOAD_DIRECTORY;
         $absoluteDirectory = FCPATH . str_replace('/', DIRECTORY_SEPARATOR, $relativeDirectory);
         if (! is_dir($absoluteDirectory) && ! mkdir($absoluteDirectory, 0755, true) && ! is_dir($absoluteDirectory)) {
             throw new RuntimeException('امکان ساخت پوشه تصاویر وجود ندارد.');

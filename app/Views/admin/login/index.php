@@ -6,9 +6,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>ورود به پنل مدیریت</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= $assetsPath ?>images/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= $assetsPath ?>images/favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= $assetsPath ?>images/favicon_io/favicon-16x16.png">
+    <link rel="icon" type="image/jpeg" sizes="32x32" href="<?= base_url('assets/favicon/favicon32x32.jpg') ?>">
+    <link rel="icon" type="image/jpeg" sizes="192x192" href="<?= base_url('assets/favicon/favicon192x192.jpg') ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url('assets/favicon/favicon180x180.jpg') ?>">
+    <link rel="shortcut icon" href="<?= base_url('favicon.ico') ?>">
     <link rel="stylesheet" href="<?= $assetsPath ?>css/app.css">
 </head>
 <script>

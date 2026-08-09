@@ -104,6 +104,7 @@ _modules/*
 /nbproject/
 /build/
 /nbbuild/
+/node_modules/
 /dist/
 /nbdist/
 /nbactions.xml

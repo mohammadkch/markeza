@@ -68,7 +68,7 @@
                             <?php endif; ?>
                         </figure>
                     <?php elseif ($block['block_type'] === 'quote'): ?>
-                        <blockquote class="p-6 bg-orange-100 rounded-3xl font-YekanBakh-Bold leading-9" style="margin-top: 2.5rem; margin-bottom: 2.5rem; border-right: 4px solid #fed7aa; font-size: 1.125rem">
+                        <blockquote class="p-6 bg-orange-100 rounded-3xl font-YekanBakh-Bold leading-9" style="margin-top: 2.5rem; margin-bottom: 2.5rem; border-right: 4px solid #b9d8d1; font-size: 1.125rem">
                             <?= esc($block['content']) ?>
                         </blockquote>
                     <?php endif; ?>

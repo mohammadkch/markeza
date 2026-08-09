@@ -40,7 +40,7 @@
                 <!-- Gallery -->
                 <?php if (!empty($images)): ?>
                     <div class="mb-12">
-                        <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #4f46e5" class="swiper product-main">
+                        <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #124f48" class="swiper product-main">
                             <div class="swiper-wrapper">
                                 <?php foreach ($images as $img): ?>
                                     <div class="swiper-slide">

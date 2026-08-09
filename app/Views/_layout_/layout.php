@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="<?= $assetsPath ?>modules/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="<?= $assetsPath ?>build/style.css">
 </head>
-<body class="font-YekanBakh-Regular text-sm bg-[#f5f1e4]">
+<body class="font-YekanBakh-Regular text-sm bg-[#f7f7f5]">
 
 <?= $this->include('_layout_/_header') ?>
 
