@@ -1,6 +1,42 @@
 <?= $this->extend('_layout_/layout') ?>
 <?= $this->section('content') ?>
 
+<?php
+$branchSchemas = [
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'خانه', 'item' => base_url('/')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'نمایندگی‌ها', 'item' => base_url('branches')],
+        ],
+    ],
+];
+foreach ($branches as $index => $branch) {
+    $locality = trim((string) preg_replace('/\s*\(.*/u', '', $branch['city']));
+    $branchSchemas[] = [
+        '@context' => 'https://schema.org',
+        '@type' => 'FurnitureStore',
+        '@id' => base_url('branches') . '#branch-' . ($index + 1),
+        'name' => 'نمایندگی مارکزا هوم در ' . $branch['city'],
+        'url' => base_url('branches') . '#branch-' . ($index + 1),
+        'image' => $branch['image'] ?: $defaultBranchImage,
+        'telephone' => '+98' . substr($branch['mobile'], 1),
+        'address' => [
+            '@type' => 'PostalAddress',
+            'streetAddress' => $branch['address'],
+            'addressLocality' => $locality,
+            'addressCountry' => 'IR',
+        ],
+        'parentOrganization' => ['@id' => base_url('/') . '#organization'],
+    ];
+}
+?>
+
+<?php foreach ($branchSchemas as $schema): ?>
+    <script type="application/ld+json"><?= json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
+<?php endforeach; ?>
+
 <section class="px-4 mb-16">
     <div class="container mx-auto max-w-screen-xl">
         <nav class="flex mb-5 border-y border-orange-200 py-3" aria-label="Breadcrumb">
@@ -26,8 +62,8 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <?php foreach ($branches as $branch): ?>
-                <article class="bg-white rounded-3xl overflow-hidden shadow-lg transform hover:-translate-y-1 duration-300 transition-transform">
+            <?php foreach ($branches as $index => $branch): ?>
+                <article id="branch-<?= $index + 1 ?>" class="bg-white rounded-3xl overflow-hidden shadow-lg transform hover:-translate-y-1 duration-300 transition-transform">
                     <div class="bg-gradient-to-t from-orange-100 flex items-center justify-center p-6" style="min-height: 9rem">
                         <img
                             class="w-20 h-20 object-contain"

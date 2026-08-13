@@ -35,10 +35,19 @@ class Product extends BaseController
         }
 
         $this->viewData['collections'] = $collections;
+        $productListOgImage = null;
+        foreach ($collections as $collection) {
+            if (! empty($collection['products'][0]['thumbnail'])) {
+                $productListOgImage = base_url($collection['products'][0]['thumbnail']);
+                break;
+            }
+        }
 
         $this->viewData['seo'] = [
-            'title'       => 'محصولات | مارکزا',
-            'description' => 'مشاهده تمام محصولات مبلمان چرم مارکزا',
+            'title'       => 'مبلمان چرمی لوکس | محصولات مارکزا هوم',
+            'description' => 'مجموعه محصولات مارکزا هوم؛ مبلمان چرمی لوکس و دست‌ساز با طراحی ماندگار، متریال باکیفیت و جزئیات دقیق برای فضاهای مسکونی و اداری.',
+            'canonical'   => base_url('product'),
+            'og_image'    => $productListOgImage,
         ];
 
         return view($this->viewPath . 'product/index', $this->viewData);
@@ -61,6 +70,7 @@ class Product extends BaseController
         $materials = $this->productMaterialModel->getByProduct($product['id']);
         $faqs = $this->productFaqModel->getByProduct($product['id']);
         $relatedProducts = $this->productModel->getRelatedProducts($product['collection_id'], $product['id']);
+        $collection = model('App\Models\CollectionModel')->find($product['collection_id']);
 
         // Move thumbnail image to first position in gallery
         if (!empty($product['thumbnail']) && !empty($images)) {
@@ -86,12 +96,23 @@ class Product extends BaseController
         $this->viewData['materials'] = $materials;
         $this->viewData['faqs'] = $faqs;
         $this->viewData['relatedProducts'] = $relatedProducts;
+        $this->viewData['collection'] = $collection;
 
         // SEO
+        $metaTitle = trim((string) ($product['meta_title'] ?? ''));
+        if ($metaTitle === '') {
+            $metaTitle = $product['title'] . ' | مبلمان چرمی مارکزا هوم';
+        }
+        $metaDescription = trim((string) ($product['meta_description'] ?? ''));
+        if ($metaDescription === '') {
+            $metaDescription = mb_substr(trim(strip_tags((string) ($product['description'] ?? ''))), 0, 160);
+        }
         $this->viewData['seo'] = [
-            'title'       => $product['title'] . ' | مارکزا',
-            'description' => mb_substr(strip_tags($product['description'] ?? ''), 0, 160),
+            'title'       => $metaTitle,
+            'description' => $metaDescription,
             'canonical'   => base_url('product/' . $slug),
+            'og_type'     => 'product',
+            'og_image'    => ! empty($product['thumbnail']) ? base_url($product['thumbnail']) : null,
         ];
 
         return view($this->viewPath . 'product/show', $this->viewData);

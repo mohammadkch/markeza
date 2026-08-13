@@ -11,7 +11,7 @@ class ProductModel extends Model
     protected $returnType = 'array';
 
     protected $allowedFields = [
-        'collection_id', 'title', 'slug', 'thumbnail', 'description',
+        'collection_id', 'title', 'slug', 'thumbnail', 'description', 'meta_title', 'meta_description',
         'dimensions_text', 'dimensions_img', 'is_active', 'sort_order'
     ];
 

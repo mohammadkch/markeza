@@ -2643,6 +2643,25 @@ html:has(.drawer-toggle:checked){
   --tw-text-opacity: 1;
   color: rgb(23 23 23 / var(--tw-text-opacity));
 }
+.blog-rich-content p{
+  margin-bottom: 1rem;
+}
+.blog-rich-content ul{
+  margin-bottom: 1rem;
+  list-style-type: disc;
+  padding-right: 1.5rem;
+}
+.blog-rich-content ol{
+  margin-bottom: 1rem;
+  list-style-type: decimal;
+  padding-right: 1.5rem;
+}
+.blog-rich-content a{
+  --tw-text-opacity: 1;
+  color: rgb(26 51 54 / var(--tw-text-opacity));
+  text-decoration-line: underline;
+  text-underline-offset: 4px;
+}
 .sr-only{
   position: absolute;
   width: 1px;
@@ -3951,6 +3970,9 @@ html:has(.drawer-toggle:checked){
 .font-semibold{
   font-weight: 600;
 }
+.italic{
+  font-style: italic;
+}
 .leading-10{
   line-height: 2.5rem;
 }
@@ -4035,7 +4057,7 @@ html:has(.drawer-toggle:checked){
 }
 .text-orange-600{
   --tw-text-opacity: 1;
-  color: rgb(18 79 72 / var(--tw-text-opacity));
+  color: rgb(26 51 54 / var(--tw-text-opacity));
 }
 .text-primary{
   --tw-text-opacity: 1;
@@ -4094,6 +4116,9 @@ html:has(.drawer-toggle:checked){
 }
 .text-opacity-40{
   --tw-text-opacity: 0.4;
+}
+.underline{
+  text-decoration-line: underline;
 }
 .line-through{
   text-decoration-line: line-through;
@@ -4475,7 +4500,7 @@ html:has(.drawer-toggle:checked){
 }
 .hover\:text-orange-600:hover{
   --tw-text-opacity: 1;
-  color: rgb(18 79 72 / var(--tw-text-opacity));
+  color: rgb(26 51 54 / var(--tw-text-opacity));
 }
 .hover\:text-primary:hover{
   --tw-text-opacity: 1;

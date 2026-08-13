@@ -6,10 +6,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>ورود به پنل مدیریت</title>
-    <link rel="icon" type="image/jpeg" sizes="32x32" href="<?= base_url('assets/favicon/favicon32x32.jpg') ?>">
-    <link rel="icon" type="image/jpeg" sizes="192x192" href="<?= base_url('assets/favicon/favicon192x192.jpg') ?>">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= base_url('assets/favicon/favicon180x180.jpg') ?>">
-    <link rel="shortcut icon" href="<?= base_url('favicon.ico') ?>">
+    <?= $this->include('_layout_/_favicon') ?>
     <link rel="stylesheet" href="<?= $assetsPath ?>css/app.css">
 </head>
 <script>
@@ -91,6 +88,25 @@
                            placeholder="رمز عبور خود را وارد کنید" required>
                 </div>
 
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">کد امنیتی</label>
+                    <div class="flex items-stretch gap-2" dir="ltr">
+                        <input type="text" name="captcha" inputmode="numeric" pattern="[0-9]{4}" maxlength="4"
+                               autocomplete="off" aria-label="کد امنیتی چهار رقمی"
+                               class="min-w-0 flex-1 px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-xl
+                                      bg-white dark:bg-custom-dark text-gray-900 dark:text-gray-100 text-center tracking-[0.45em]
+                                      focus:ring-2 focus:ring-primary focus:border-transparent"
+                               placeholder="ــــ" required>
+                        <img id="admin-captcha" src="<?= site_url('admin/login/captcha') ?>"
+                             class="h-12 w-[142px] rounded-xl border border-gray-300 object-cover select-none"
+                             alt="تصویر کد امنیتی" draggable="false">
+                        <button type="button" id="refresh-captcha" title="ساخت کد جدید" aria-label="ساخت کد امنیتی جدید"
+                                class="h-12 w-12 shrink-0 rounded-xl border border-gray-300 text-xl text-gray-600 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
+                            &#8635;
+                        </button>
+                    </div>
+                </div>
+
                 <button type="submit"
                         class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-xl
                                transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
@@ -101,6 +117,12 @@
 
     </div>
 </div>
+<script>
+    document.getElementById('refresh-captcha').addEventListener('click', function () {
+        document.getElementById('admin-captcha').src = '<?= site_url('admin/login/captcha') ?>?t=' + Date.now();
+        document.querySelector('[name="captcha"]').value = '';
+    });
+</script>
 </body>
 <?= showFlash() ?>
 </html>

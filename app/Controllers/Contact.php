@@ -13,9 +13,10 @@ class Contact extends BaseController
     public function index(): string
     {
         $this->viewData['seo'] = [
-            'title'       => 'تماس با ما | مارکزا هوم',
-            'description' => 'راه‌های ارتباط با مارکزا هوم و ارسال پیام به تیم فروش و بازرگانی',
+            'title'       => 'تماس با مارکزا هوم | مشاوره خرید و اطلاعات کارخانه',
+            'description' => 'راه‌های تماس با مارکزا هوم برای مشاوره خرید مبلمان، سفارش سفارشی و همکاری تجاری؛ مشاهده شماره تماس، ایمیل، آدرس کارخانه و ساعات پاسخ‌گویی.',
             'canonical'   => base_url('contact'),
+            'og_image'    => base_url('assets/images/logo/logo-black-trans.png'),
         ];
 
         return view($this->viewPath . 'contact/index', $this->viewData);

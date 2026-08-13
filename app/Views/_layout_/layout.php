@@ -11,14 +11,34 @@
     <?php if (!empty($seo['canonical'])): ?>
         <link rel="canonical" href="<?= esc($seo['canonical']) ?>">
     <?php endif; ?>
+    <?php if (!empty($seo['prev'])): ?>
+        <link rel="prev" href="<?= esc($seo['prev']) ?>">
+    <?php endif; ?>
+    <?php if (!empty($seo['next'])): ?>
+        <link rel="next" href="<?= esc($seo['next']) ?>">
+    <?php endif; ?>
 
     <!-- Open Graph -->
     <meta property="og:title" content="<?= esc($seo['title'] ?? $title ?? 'مارکزا') ?>">
     <meta property="og:description" content="<?= esc($seo['description'] ?? '') ?>">
     <meta property="og:type" content="<?= esc($seo['og_type'] ?? 'website') ?>">
-    <meta property="og:url" content="<?= current_url() ?>">
+    <meta property="og:url" content="<?= esc($seo['canonical'] ?? current_url()) ?>">
+    <meta property="og:site_name" content="مارکزا هوم">
+    <meta property="og:locale" content="fa_IR">
     <?php if (!empty($seo['og_image'])): ?>
         <meta property="og:image" content="<?= esc($seo['og_image']) ?>">
+    <?php endif; ?>
+    <?php if (!empty($seo['article_published_time'])): ?>
+        <meta property="article:published_time" content="<?= esc($seo['article_published_time']) ?>">
+    <?php endif; ?>
+    <?php if (!empty($seo['article_modified_time'])): ?>
+        <meta property="article:modified_time" content="<?= esc($seo['article_modified_time']) ?>">
+    <?php endif; ?>
+    <meta name="twitter:card" content="<?= !empty($seo['og_image']) ? 'summary_large_image' : 'summary' ?>">
+    <meta name="twitter:title" content="<?= esc($seo['title'] ?? $title ?? 'مارکزا') ?>">
+    <meta name="twitter:description" content="<?= esc($seo['description'] ?? '') ?>">
+    <?php if (!empty($seo['og_image'])): ?>
+        <meta name="twitter:image" content="<?= esc($seo['og_image']) ?>">
     <?php endif; ?>
 
     <?= $this->include('_layout_/_favicon') ?>

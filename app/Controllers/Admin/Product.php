@@ -111,6 +111,16 @@ class Product extends BaseController
                 'data' => ['class' => 'form-control', 'id' => 'description', 'name' => 'description', 'placeholder' => 'توضیحات کامل محصول', 'rows' => 6],
                 'type' => 'textarea'
             ],
+            'meta_title' => [
+                'input' => 'form_input',
+                'data' => ['id' => 'meta_title', 'name' => 'meta_title', 'placeholder' => 'عنوان سئو؛ در صورت خالی بودن خودکار ساخته می‌شود', 'maxlength' => 255],
+                'type' => 'text'
+            ],
+            'meta_description' => [
+                'input' => 'form_textarea',
+                'data' => ['id' => 'meta_description', 'name' => 'meta_description', 'placeholder' => 'توضیحات سئو؛ در صورت خالی بودن از توضیحات محصول ساخته می‌شود', 'rows' => 3, 'maxlength' => 500],
+                'type' => 'textarea'
+            ],
             'dimensions_text' => [
                 'input' => 'form_textarea',
                 'data' => ['class' => 'form-control', 'id' => 'dimensions_text', 'name' => 'dimensions_text', 'placeholder' => 'متن ابعاد محصول (مثلاً: ارتفاع: ۹۰ سانتی‌متر)', 'rows' => 4],
@@ -141,6 +151,8 @@ class Product extends BaseController
             'title' => 'عنوان محصول',
             'slug' => 'slug',
             'description' => 'توضیحات',
+            'meta_title' => 'عنوان سئو',
+            'meta_description' => 'توضیحات سئو',
             'dimensions_text' => 'متن ابعاد',
             'sort_order' => 'ترتیب نمایش',
             'is_active' => 'وضعیت',
@@ -199,6 +211,16 @@ class Product extends BaseController
                 'data' => ['class' => 'form-control', 'id' => 'description', 'name' => 'description', 'placeholder' => 'توضیحات کامل محصول', 'rows' => 6],
                 'type' => 'textarea'
             ],
+            'meta_title' => [
+                'input' => 'form_input',
+                'data' => ['id' => 'meta_title', 'name' => 'meta_title', 'placeholder' => 'عنوان سئو؛ در صورت خالی بودن خودکار ساخته می‌شود', 'maxlength' => 255],
+                'type' => 'text'
+            ],
+            'meta_description' => [
+                'input' => 'form_textarea',
+                'data' => ['id' => 'meta_description', 'name' => 'meta_description', 'placeholder' => 'توضیحات سئو؛ در صورت خالی بودن از توضیحات محصول ساخته می‌شود', 'rows' => 3, 'maxlength' => 500],
+                'type' => 'textarea'
+            ],
             'dimensions_text' => [
                 'input' => 'form_textarea',
                 'data' => ['class' => 'form-control', 'id' => 'dimensions_text', 'name' => 'dimensions_text', 'placeholder' => 'متن ابعاد محصول (مثلاً: ارتفاع: ۹۰ سانتی‌متر)', 'rows' => 4],
@@ -229,6 +251,8 @@ class Product extends BaseController
             'title' => 'عنوان محصول',
             'slug' => 'slug',
             'description' => 'توضیحات',
+            'meta_title' => 'عنوان سئو',
+            'meta_description' => 'توضیحات سئو',
             'dimensions_text' => 'متن ابعاد',
             'sort_order' => 'ترتیب نمایش',
             'is_active' => 'وضعیت',
@@ -264,7 +288,15 @@ class Product extends BaseController
             'sort_order' => [
                 'label' => 'ترتیب نمایش',
                 'rules' => 'permit_empty|integer'
-            ]
+            ],
+            'meta_title' => [
+                'label' => 'عنوان سئو',
+                'rules' => 'permit_empty|max_length[255]'
+            ],
+            'meta_description' => [
+                'label' => 'توضیحات سئو',
+                'rules' => 'permit_empty|max_length[500]'
+            ],
         ];
 
         if (!$this->validate($rules)) {
@@ -288,6 +320,8 @@ class Product extends BaseController
             'title' => $this->request->getPost('title', FILTER_SANITIZE_STRING),
             'slug' => $slug,
             'description' => $this->request->getPost('description'),
+            'meta_title' => trim((string) $this->request->getPost('meta_title')) ?: null,
+            'meta_description' => trim((string) $this->request->getPost('meta_description')) ?: null,
             'dimensions_text' => $this->request->getPost('dimensions_text'),
             'sort_order' => (int) $this->request->getPost('sort_order') ?: 0,
             'is_active' => (int) $this->request->getPost('is_active'),

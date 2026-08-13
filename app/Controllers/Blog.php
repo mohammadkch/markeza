@@ -15,10 +15,24 @@ class Blog extends BaseController
 
         $this->viewData['posts'] = array_map([$this, 'preparePost'], $posts);
         $this->viewData['pager'] = $postModel->pager;
+        $currentPage = max(1, $postModel->pager->getCurrentPage());
+        $pageCount = max(1, $postModel->pager->getPageCount());
+        $canonical = base_url('blog') . ($currentPage > 1 ? '?page=' . $currentPage : '');
+        $title = 'مجله مبلمان، چرم و دکوراسیون | مارکزا هوم';
+        if ($currentPage > 1) {
+            $title .= ' | صفحه ' . $currentPage;
+        }
+
+        $this->viewData['currentPage'] = $currentPage;
         $this->viewData['seo'] = [
-            'title' => 'وبلاگ | مارکزا هوم',
-            'description' => 'مطالب تخصصی مارکزا هوم درباره مبلمان، چرم طبیعی و طراحی فضای داخلی',
-            'canonical' => base_url('blog'),
+            'title' => $title,
+            'description' => 'مجله مارکزا هوم؛ راهنماها و مطالب تخصصی درباره انتخاب مبلمان چرمی، نگهداری چرم طبیعی، چیدمان منزل و طراحی دکوراسیون داخلی.',
+            'canonical' => $canonical,
+            'og_image' => $this->viewData['posts'][0]['thumbnail_url'] ?? base_url('assets/images/logo/logo-black-trans.png'),
+            'prev' => $currentPage > 1
+                ? base_url('blog') . ($currentPage === 2 ? '' : '?page=' . ($currentPage - 1))
+                : null,
+            'next' => $currentPage < $pageCount ? base_url('blog') . '?page=' . ($currentPage + 1) : null,
         ];
 
         return view($this->viewPath . 'blog/index', $this->viewData);
@@ -46,6 +60,8 @@ class Blog extends BaseController
             'canonical' => base_url('blog/' . $post['slug']),
             'og_type' => 'article',
             'og_image' => base_url($post['banner']),
+            'article_published_time' => date(DATE_ATOM, (int) $post['created_at']),
+            'article_modified_time' => date(DATE_ATOM, (int) $post['updated_at']),
         ];
 
         return view($this->viewPath . 'blog/show', $this->viewData);
@@ -61,7 +77,9 @@ class Blog extends BaseController
 
         $post['thumbnail_url'] = base_url($post['thumbnail']);
         $post['banner_url'] = base_url($post['banner']);
-        $post['author_avatar_url'] = base_url('assets/images/user.jpg');
+        $post['author_avatar_url'] = ! empty($post['author_avatar'])
+            ? base_url($post['author_avatar'])
+            : base_url('assets/images/user.jpg');
         $post['author_role_label'] = $roleLabels[$post['author_role']] ?? 'نویسنده';
 
         return $post;

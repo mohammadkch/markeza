@@ -75,9 +75,10 @@ class Branches extends BaseController
 
         $this->viewData['defaultBranchImage'] = $this->viewData['assetsPath'] . 'images/feature/feature2.svg';
         $this->viewData['seo'] = [
-            'title' => 'نمایندگی‌های مارکزا هوم',
-            'description' => 'آدرس و اطلاعات تماس نمایندگی‌های مارکزا هوم در سراسر ایران',
+            'title' => 'نمایندگی‌های مارکزا هوم | آدرس و شماره تماس شعب',
+            'description' => 'فهرست نمایندگی‌های مارکزا هوم در شهرهای مختلف ایران؛ مشاهده آدرس، شماره تماس و اطلاعات مدیر فروشگاه برای بازدید حضوری و دریافت مشاوره.',
             'canonical' => base_url('branches'),
+            'og_image' => $this->viewData['defaultBranchImage'],
         ];
 
         return view($this->viewPath . 'branches/index', $this->viewData);

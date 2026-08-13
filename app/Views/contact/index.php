@@ -1,6 +1,69 @@
 <?= $this->extend('_layout_/layout') ?>
 <?= $this->section('content') ?>
 
+<?php
+$contactUrl = base_url('contact');
+$organizationId = base_url('/') . '#organization';
+$contactSchemas = [
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'خانه', 'item' => base_url('/')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'تماس با ما', 'item' => $contactUrl],
+        ],
+    ],
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'ContactPage',
+        '@id' => $contactUrl . '#webpage',
+        'url' => $contactUrl,
+        'name' => 'تماس با مارکزا هوم',
+        'description' => 'اطلاعات تماس، آدرس کارخانه و فرم ارتباط با مارکزا هوم.',
+        'inLanguage' => 'fa-IR',
+        'mainEntity' => ['@id' => $organizationId],
+    ],
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'Organization',
+        '@id' => $organizationId,
+        'name' => 'مارکزا هوم',
+        'url' => base_url('/'),
+        'email' => 'info@markeza.ir',
+        'telephone' => '+989128130135',
+        'address' => [
+            '@type' => 'PostalAddress',
+            'streetAddress' => 'شهرک صنعتی البرز، شرکت آسا چوب ارژن',
+            'addressLocality' => 'تنکابن',
+            'addressRegion' => 'مازندران',
+            'addressCountry' => 'IR',
+        ],
+        'geo' => [
+            '@type' => 'GeoCoordinates',
+            'latitude' => 36.7730486,
+            'longitude' => 50.8043941,
+        ],
+        'contactPoint' => [
+            '@type' => 'ContactPoint',
+            'telephone' => '+989128130135',
+            'email' => 'info@markeza.ir',
+            'contactType' => 'sales',
+            'availableLanguage' => ['fa'],
+        ],
+        'openingHoursSpecification' => [
+            '@type' => 'OpeningHoursSpecification',
+            'dayOfWeek' => ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+            'opens' => '08:00',
+            'closes' => '17:30',
+        ],
+    ],
+];
+?>
+
+<?php foreach ($contactSchemas as $schema): ?>
+    <script type="application/ld+json"><?= json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
+<?php endforeach; ?>
+
 <section class="px-4 mb-16">
     <div class="container mx-auto max-w-screen-xl">
         <nav class="flex mb-5 border-y border-orange-200 py-3" aria-label="Breadcrumb">
@@ -105,9 +168,9 @@
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
                     allowfullscreen></iframe>
-                <p class="p-6 leading-8 font-YekanBakh-Bold">
+                <address class="p-6 leading-8 font-YekanBakh-Bold not-italic">
                     آدرس کارخانه: مازندران – تنکابن – شهرک صنعتی البرز – شرکت آسا چوب ارژن
-                </p>
+                </address>
             </div>
 
             <div class="w-full md:w-1/2 p-8 rounded-3xl bg-gradient-to-t from-orange-100 flex flex-col justify-center">

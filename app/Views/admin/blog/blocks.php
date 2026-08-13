@@ -2,6 +2,8 @@
 <?php helper('form'); ?>
 <?= $this->section('content') ?>
 
+<link rel="stylesheet" href="<?= $assetsPath ?>js/plugin/pell/pell.min.css?v=2">
+
 <?php
 $editing = $edit_block !== null;
 $blockValue = static function (string $field, $default = '') use ($edit_block) {
@@ -71,7 +73,7 @@ $blockValue = static function (string $field, $default = '') use ($edit_block) {
                                                     </div>
                                                 </div>
                                             <?php else: ?>
-                                                <p class="leading-7"><?= nl2br(esc(mb_strimwidth((string) $block['content'], 0, 350, '...'))) ?></p>
+                                                <p class="leading-7"><?= nl2br(esc(mb_strimwidth(strip_tags((string) $block['content']), 0, 350, '...'))) ?></p>
                                             <?php endif; ?>
                                         </div>
 
@@ -125,6 +127,8 @@ $blockValue = static function (string $field, $default = '') use ($edit_block) {
                             <div id="content-field" class="md:col-span-2">
                                 <label for="content" class="block text-sm font-medium mb-2">محتوا</label>
                                 <textarea id="content" name="content" rows="7" class="w-full px-4 py-2 border border-gray-300 rounded-lg"><?= esc($blockValue('content')) ?></textarea>
+                                <div id="content-editor" class="hidden border border-gray-300 rounded-lg bg-white text-gray-900"></div>
+                                <p id="editor-help" class="hidden text-xs text-gray-500 mt-2">برای ساختار بهتر مقاله از پاراگراف، فهرست و لینک استفاده کنید؛ تیترهای H2 و H3 را به‌صورت بلوک تیتر جدا بسازید.</p>
                             </div>
                             <div id="image-fields" class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <?php if ($editing && ! empty($edit_block['image_path'])): ?>
@@ -157,18 +161,52 @@ $blockValue = static function (string $field, $default = '') use ($edit_block) {
     </div>
 </section>
 
+<script src="<?= $assetsPath ?>js/plugin/pell/pell.min.js?v=2"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+(() => {
     const typeSelect = document.getElementById('block_type');
     const contentField = document.getElementById('content-field');
     const imageFields = document.getElementById('image-fields');
     const headingLevel = document.getElementById('heading-level-field');
+    const contentInput = document.getElementById('content');
+    const editorElement = document.getElementById('content-editor');
+    const editorHelp = document.getElementById('editor-help');
+
+    if (!window.pell || typeof window.pell.init !== 'function') {
+        const warning = document.createElement('p');
+        warning.className = 'mt-2 text-sm text-red-600';
+        warning.textContent = 'فایل ادیتور بارگذاری نشد؛ pell.min.js را در assetهای ادمین بررسی کنید.';
+        contentField.appendChild(warning);
+        return;
+    }
+
+    const editor = window.pell.init({
+        element: editorElement,
+        defaultParagraphSeparator: 'p',
+        actions: [
+            'bold',
+            'italic',
+            'underline',
+            'paragraph',
+            'olist',
+            'ulist',
+            'link',
+            { name: 'undo', icon: '↶', title: 'بازگشت', result: () => window.pell.exec('undo') },
+            { name: 'redo', icon: '↷', title: 'انجام مجدد', result: () => window.pell.exec('redo') },
+        ],
+        onChange: html => contentInput.value = html,
+    });
+    editor.content.innerHTML = contentInput.value;
 
     function updateFields() {
         const type = typeSelect.value;
         contentField.classList.toggle('hidden', type === 'image');
         imageFields.classList.toggle('hidden', type !== 'image');
         headingLevel.classList.toggle('hidden', type !== 'heading');
+        const richTextEnabled = type === 'text';
+        contentInput.classList.toggle('hidden', richTextEnabled);
+        editorElement.classList.toggle('hidden', !richTextEnabled);
+        editorHelp.classList.toggle('hidden', !richTextEnabled);
     }
     typeSelect.addEventListener('change', updateFields);
     updateFields();
@@ -211,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function () {
         dragged = null;
         updateOrder();
     });
-});
+})();
 </script>
 
 <?= $this->endSection() ?>

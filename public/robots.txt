@@ -1,2 +1,8 @@
 User-agent: *
-Disallow: 
+Allow: /
+Disallow: /admin/
+Disallow: /admin
+Disallow: /writable/
+Disallow: /tests/
+
+Sitemap: https://www.markeza.ir/sitemap.xml

@@ -1,6 +1,69 @@
 <?= $this->extend('_layout_/layout') ?>
 <?= $this->section('content') ?>
 
+<?php
+$productImageUrls = [];
+if (! empty($product['thumbnail'])) {
+    $productImageUrls[] = base_url($product['thumbnail']);
+}
+foreach ($images as $image) {
+    if (! empty($image['image_path'])) {
+        $url = base_url($image['image_path']);
+        if (! in_array($url, $productImageUrls, true)) {
+            $productImageUrls[] = $url;
+        }
+    }
+}
+
+$productSchema = [
+    '@context' => 'https://schema.org',
+    '@type' => 'Product',
+    'name' => $product['title'],
+    'url' => base_url('product/' . $product['slug']),
+    'description' => trim(strip_tags((string) ($product['description'] ?? ''))),
+    'image' => $productImageUrls,
+    'brand' => ['@type' => 'Brand', 'name' => 'مارکزا هوم'],
+];
+if (! empty($collection['title'])) {
+    $productSchema['category'] = $collection['title'];
+}
+if ($materials !== []) {
+    $productSchema['material'] = array_values(array_filter(array_map(
+        static fn (array $material): string => trim((string) ($material['title'] ?? '')),
+        $materials
+    )));
+}
+
+$productSchemas = [
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'خانه', 'item' => base_url('/')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'محصولات', 'item' => base_url('product')],
+            ['@type' => 'ListItem', 'position' => 3, 'name' => $product['title'], 'item' => base_url('product/' . $product['slug'])],
+        ],
+    ],
+    $productSchema,
+];
+
+if ($faqs !== []) {
+    $productSchemas[] = [
+        '@context' => 'https://schema.org',
+        '@type' => 'FAQPage',
+        'mainEntity' => array_map(static fn (array $faq): array => [
+            '@type' => 'Question',
+            'name' => $faq['question'],
+            'acceptedAnswer' => ['@type' => 'Answer', 'text' => $faq['answer']],
+        ], $faqs),
+    ];
+}
+?>
+
+<?php foreach ($productSchemas as $schema): ?>
+    <script type="application/ld+json"><?= json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
+<?php endforeach; ?>
+
     <section class="px-4 mb-24">
         <div class="container mx-auto max-w-screen-xl">
 
@@ -40,7 +103,7 @@
                 <!-- Gallery -->
                 <?php if (!empty($images)): ?>
                     <div class="mb-12">
-                        <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #124f48" class="swiper product-main">
+                        <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #1a3336" class="swiper product-main">
                             <div class="swiper-wrapper">
                                 <?php foreach ($images as $img): ?>
                                     <div class="swiper-slide">

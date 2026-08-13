@@ -368,13 +368,19 @@ class Blog extends BaseController
         }
 
         $content = trim((string) $this->request->getPost('content'));
-        if ($type !== 'image' && $content === '') {
+        if ($type === 'text') {
+            helper('blog_content');
+            $content = sanitize_blog_rich_text($content);
+        } else {
+            $content = trim(strip_tags($content));
+        }
+        if ($type !== 'image' && trim(strip_tags($content)) === '') {
             return $this->redirectBlockForm($postId, $blockId, ['محتوای بلوک الزامی است.']);
         }
         if ($type === 'heading' && mb_strlen($content) > 255) {
             return $this->redirectBlockForm($postId, $blockId, ['عنوان بلوک نباید بیشتر از ۲۵۵ کاراکتر باشد.']);
         }
-        if ($type !== 'heading' && mb_strlen($content) > 10000) {
+        if ($type !== 'heading' && mb_strlen(strip_tags($content)) > 10000) {
             return $this->redirectBlockForm($postId, $blockId, ['محتوای بلوک بیش از حد طولانی است.']);
         }
 

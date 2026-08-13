@@ -1,6 +1,35 @@
 <?= $this->extend('_layout_/layout') ?>
 <?= $this->section('content') ?>
 
+<?php
+$productListItems = [];
+$productPosition = 1;
+foreach ($collections as $collection) {
+    foreach ($collection['products'] ?? [] as $product) {
+        $productListItems[] = [
+            '@type' => 'ListItem',
+            'position' => $productPosition++,
+            'item' => [
+                '@type' => 'Product',
+                'name' => $product['title'],
+                'url' => base_url('product/' . $product['slug']),
+                'image' => base_url($product['thumbnail'] ?? 'assets/images/product/default-product.webp'),
+            ],
+        ];
+    }
+}
+$productItemList = [
+    '@context' => 'https://schema.org',
+    '@type' => 'ItemList',
+    'name' => 'محصولات مارکزا هوم',
+    'url' => base_url('product'),
+    'numberOfItems' => count($productListItems),
+    'itemListElement' => $productListItems,
+];
+?>
+
+<script type="application/ld+json"><?= json_encode($productItemList, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
+
     <section class="px-4 mb-24">
         <div class="container mx-auto max-w-screen-xl">
 
@@ -23,7 +52,9 @@
             <div class="flex flex-col items-center justify-center relative my-16">
                 <h1 class="font-YekanBakh-ExtraBlack text-3xl">محصولات مارکزا</h1>
                 <div class="bg-orange-200 w-20 h-1.5 rounded-full absolute top-10"></div>
-                <p class="mt-4 text-gray-600">مجموعه‌ای از مبلمان چرم لوکس با طراحی ایتالیایی</p>
+                <p class="mt-6 max-w-3xl text-center text-gray-600 leading-8">
+                    محصولات مارکزا هوم مجموعه‌ای از مبلمان چرمی لوکس و دست‌ساز هستند که با الهام از طراحی ایتالیایی، متریال باکیفیت و توجه دقیق به جزئیات ساخته می‌شوند. کالکشن‌ها و مدل‌های مختلف را بررسی کنید و محصول متناسب با فضای خانه یا محل کار خود را بیابید.
+                </p>
             </div>
 
             <?php foreach ($collections as $collection): ?>

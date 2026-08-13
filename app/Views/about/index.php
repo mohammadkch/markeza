@@ -1,6 +1,38 @@
 <?= $this->extend('_layout_/layout') ?>
 <?= $this->section('content') ?>
 
+<?php
+$aboutUrl = base_url('about');
+$aboutSchemas = [
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'خانه', 'item' => base_url('/')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'درباره ما', 'item' => $aboutUrl],
+        ],
+    ],
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'AboutPage',
+        '@id' => $aboutUrl . '#webpage',
+        'url' => $aboutUrl,
+        'name' => 'درباره مارکزا هوم',
+        'description' => 'آشنایی با داستان، هنر ساخت و رویکرد مارکزا هوم در طراحی و تولید مبلمان چرمی لوکس و دست‌ساز.',
+        'inLanguage' => 'fa-IR',
+        'about' => ['@id' => base_url('/') . '#organization'],
+        'primaryImageOfPage' => [
+            '@type' => 'ImageObject',
+            'url' => base_url('assets/images/about/about-top-1.webp'),
+        ],
+    ],
+];
+?>
+
+<?php foreach ($aboutSchemas as $schema): ?>
+    <script type="application/ld+json"><?= json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
+<?php endforeach; ?>
+
     <section class="px-4 mb-12">
         <div class="container mx-auto max-w-screen-xl">
 
@@ -39,7 +71,7 @@
             <div class="flex flex-col md:flex-row gap-8 mb-12 items-center">
                 <div class="w-full md:w-1/2">
                     <h2 class="font-YekanBakh-ExtraBlack text-2xl mb-6">در مارکزا هوم ما رویاها را به واقعیت تبدیل می‌کنیم</h2>
-                    <p class="mb-4 leading-9">ما با هدف خلق مبلمان چرمی دست‌ساز و لوکس فعالیت خود را آغاز کرد و مسیر تازه‌ای را در دنیای طراحی و مبلمان رقم زد. ما در مارکزا هوم تلاش می‌کنیم تا تجربه‌ای منحصربه‌فرد برای مشتریان خود ایجاد کنیم؛ جایی که <strong>راحتی، زیبایی و دوام</strong> در هماهنگی کامل با یکدیگر معنا پیدا می‌کنند.</p>
+                    <p class="mb-4 leading-9">ما با هدف خلق مبلمان چرمی دست‌ساز و لوکس فعالیت خود را آغاز کردیم و مسیر تازه‌ای را در دنیای طراحی و مبلمان رقم زدیم. ما در مارکزا هوم تلاش می‌کنیم تا تجربه‌ای منحصربه‌فرد برای مشتریان خود ایجاد کنیم؛ جایی که <strong>راحتی، زیبایی و دوام</strong> در هماهنگی کامل با یکدیگر معنا پیدا می‌کنند.</p>
                     <p class="mb-4 leading-9">هر قطعه از مبلمان مارکزا هوم با <strong>ظرافتی بی‌نظیر و دقتی استادانه</strong> توسط هنرمندان و متخصصان ماهر ساخته می‌شود. استفاده از <strong>بهترین متریال‌ها، از جمله چرم اصیل ایتالیایی</strong>، باعث شده تا محصولات ما تجربه‌ای فراتر از انتظار را به شما هدیه دهند.</p>
                     <p class="font-YekanBakh-Bold text-stone-700 leading-9">تجربه‌ای از کیفیت، اصالت و آرامش جاودانه.</p>
                 </div>
@@ -105,16 +137,16 @@
                 <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper about-main">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-1.webp') ?>" alt="تصویر کارخانه مارکزا هوم">
+                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-1.webp') ?>" alt="نمای فضای تولید کارخانه مارکزا هوم">
                         </div>
                         <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-2.webp') ?>" alt="تصویر کارخانه مارکزا هوم">
+                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-2.webp') ?>" alt="فرآیند ساخت مبلمان در مارکزا هوم">
                         </div>
                         <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-3.webp') ?>" alt="تصویر کارخانه مارکزا هوم">
+                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-3.webp') ?>" alt="جزئیات تولید دست‌ساز مبلمان مارکزا هوم">
                         </div>
                         <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-4.webp') ?>" alt="تصویر کارخانه مارکزا هوم">
+                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-4.webp') ?>" alt="محصولات چرمی تولیدشده در مارکزا هوم">
                         </div>
                     </div>
                     <div class="swiper-button-next after:text-sm"></div>
@@ -123,16 +155,16 @@
                 <div thumbsSlider="" class="swiper about-thumb mt-4">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-1.webp') ?>" alt="تصویر کارخانه مارکزا هوم">
+                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-1.webp') ?>" alt="نمای فضای تولید کارخانه مارکزا هوم">
                         </div>
                         <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-2.webp') ?>" alt="تصویر کارخانه مارکزا هوم">
+                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-2.webp') ?>" alt="فرآیند ساخت مبلمان در مارکزا هوم">
                         </div>
                         <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-3.webp') ?>" alt="تصویر کارخانه مارکزا هوم">
+                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-3.webp') ?>" alt="جزئیات تولید دست‌ساز مبلمان مارکزا هوم">
                         </div>
                         <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-4.webp') ?>" alt="تصویر کارخانه مارکزا هوم">
+                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-4.webp') ?>" alt="محصولات چرمی تولیدشده در مارکزا هوم">
                         </div>
                     </div>
                 </div>

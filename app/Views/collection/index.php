@@ -1,6 +1,46 @@
 <?= $this->extend('_layout_/layout') ?>
 <?= $this->section('content') ?>
 
+<?php
+$collectionListItems = [];
+foreach ($collections as $index => $collection) {
+    $collectionListItems[] = [
+        '@type' => 'ListItem',
+        'position' => $index + 1,
+        'item' => [
+            '@type' => 'CollectionPage',
+            'name' => $collection['title'],
+            'url' => base_url('collection/' . $collection['slug']),
+            'image' => base_url($collection['thumbnail'] ?? 'assets/images/collection/default-collection.webp'),
+            'description' => $collection['excerpt'] ?: ($collection['subtitle'] ?? ''),
+        ],
+    ];
+}
+
+$collectionSchemas = [
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'خانه', 'item' => base_url('/')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'کالکشن‌ها', 'item' => base_url('collection')],
+        ],
+    ],
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'ItemList',
+        'name' => 'کالکشن‌های مارکزا هوم',
+        'url' => base_url('collection'),
+        'numberOfItems' => count($collectionListItems),
+        'itemListElement' => $collectionListItems,
+    ],
+];
+?>
+
+<?php foreach ($collectionSchemas as $schema): ?>
+    <script type="application/ld+json"><?= json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
+<?php endforeach; ?>
+
     <section class="px-4 mb-24">
         <div class="container mx-auto max-w-screen-xl">
 
@@ -25,7 +65,9 @@
             <div class="flex flex-col items-center justify-center relative my-16">
                 <h1 class="font-YekanBakh-ExtraBlack text-3xl">کالکشن‌های مارکزا</h1>
                 <div class="bg-orange-200 w-20 h-1.5 rounded-full absolute top-10"></div>
-                <p class="mt-4 text-gray-600">مجموعه‌ای از مبلمان چرم لوکس با طراحی ایتالیایی</p>
+                <p class="mt-6 max-w-3xl text-center text-gray-600 leading-8">
+                    کالکشن‌های مارکزا هوم با ترکیب طراحی ایتالیایی، چرم باکیفیت و هنر ساخت دست شکل گرفته‌اند. هر مجموعه هویت و جزئیات منحصربه‌فردی دارد تا برای سبک‌ها و فضاهای گوناگون، انتخابی هماهنگ و ماندگار در اختیار شما قرار دهد.
+                </p>
             </div>
 
             <!-- Collections List -->
@@ -51,7 +93,7 @@
                     <div class="<?= $isEven ? 'md:order-1' : 'md:order-2' ?>">
                         <a href="<?= base_url('collection/' . $collection['slug']) ?>" class="block group overflow-hidden rounded-3xl">
                             <img src="<?= $thumbnail ?>"
-                                 alt="<?= esc($collection['title']) ?>"
+                                 alt="کالکشن مبلمان چرمی <?= esc($collection['title']) ?> مارکزا هوم"
                                  class="w-full h-72 md:h-80 object-cover rounded-3xl transition duration-500 group-hover:scale-105"
                                  loading="lazy">
                         </a>
@@ -76,7 +118,7 @@
                                     ? $collection['excerpt']
                                     : strip_tags($collection['description'] ?? '');
                             if (mb_strlen($description) > 400) {
-                                echo esc(mb_substr($description, 0, 700)) . '...';
+                                echo esc(mb_substr($description, 0, 400)) . '...';
                             } else {
                                 echo esc($description);
                             }

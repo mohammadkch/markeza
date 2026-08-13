@@ -1,6 +1,53 @@
 <?= $this->extend('_layout_/layout') ?>
 <?= $this->section('content') ?>
 
+<?php
+$blogListItems = [];
+$startPosition = (($currentPage ?? 1) - 1) * 8;
+foreach ($posts as $index => $post) {
+    $blogListItems[] = [
+        '@type' => 'ListItem',
+        'position' => $startPosition + $index + 1,
+        'item' => [
+            '@type' => 'BlogPosting',
+            'headline' => $post['title'],
+            'description' => $post['excerpt'],
+            'url' => base_url('blog/' . $post['slug']),
+            'image' => $post['thumbnail_url'],
+            'author' => ['@type' => 'Person', 'name' => $post['author_name']],
+        ],
+    ];
+}
+
+$blogCanonical = base_url('blog') . (($currentPage ?? 1) > 1 ? '?page=' . $currentPage : '');
+$blogSchemas = [
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'خانه', 'item' => base_url('/')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'وبلاگ', 'item' => base_url('blog')],
+        ],
+    ],
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'CollectionPage',
+        'name' => 'مجله مبلمان، چرم و دکوراسیون مارکزا هوم',
+        'url' => $blogCanonical,
+        'description' => 'راهنماها و مطالب تخصصی مارکزا هوم درباره مبلمان چرمی، چرم طبیعی و دکوراسیون داخلی.',
+        'mainEntity' => [
+            '@type' => 'ItemList',
+            'numberOfItems' => count($blogListItems),
+            'itemListElement' => $blogListItems,
+        ],
+    ],
+];
+?>
+
+<?php foreach ($blogSchemas as $schema): ?>
+    <script type="application/ld+json"><?= json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
+<?php endforeach; ?>
+
 <section class="px-4 mb-24">
     <div class="container mx-auto max-w-screen-xl">
         <nav class="flex mb-5 border-y border-orange-200 py-3" aria-label="Breadcrumb">
@@ -20,12 +67,14 @@
         </nav>
 
         <div class="flex flex-col items-center justify-center relative my-16 text-center">
-            <h1 class="font-YekanBakh-ExtraBlack text-3xl">وبـــــــــلاگ</h1>
+            <h1 class="font-YekanBakh-ExtraBlack text-3xl">مجله مارکزا هوم</h1>
             <div class="absolute -top-6">
                 <span class="font-YekanBakh-ExtraBlack text-6xl text-opacity-10 text-stone-900">blog</span>
             </div>
             <div class="bg-orange-200 w-20 h-1.5 rounded-full absolute top-10"></div>
-            <p class="mt-8 text-stone-700 leading-8">راهنمای انتخاب، نگهداری و چیدمان مبلمان برای ساختن خانه‌ای ماندگار</p>
+            <p class="mt-8 max-w-3xl text-stone-700 leading-8">
+                در مجله مارکزا هوم، راهنماهای کاربردی انتخاب مبلمان چرمی، روش‌های نگهداری از چرم طبیعی و ایده‌های چیدمان و دکوراسیون داخلی را بخوانید و برای ساختن فضایی زیبا، راحت و ماندگار تصمیم آگاهانه‌تری بگیرید.
+            </p>
         </div>
 
         <?php if ($posts !== []): ?>
@@ -47,7 +96,7 @@
 
                             <div class="flex items-start mb-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="mt-1">
-                                    <path d="M13.98 5.31999L10.77 8.52999L8.79999 10.49C7.96999 11.32 7.96999 12.67 8.79999 13.5L13.98 18.68C14.66 19.36 15.82 18.87 15.82 17.92V12.31V6.07999C15.82 5.11999 14.66 4.63999 13.98 5.31999Z" fill="#124f48"/>
+                                    <path d="M13.98 5.31999L10.77 8.52999L8.79999 10.49C7.96999 11.32 7.96999 12.67 8.79999 13.5L13.98 18.68C14.66 19.36 15.82 18.87 15.82 17.92V12.31V6.07999C15.82 5.11999 14.66 4.63999 13.98 5.31999Z" fill="#1a3336"/>
                                 </svg>
                                 <a href="<?= base_url('blog/' . $post['slug']) ?>">
                                     <h2 class="font-YekanBakh-ExtraBold text-base mr-1"><?= esc($post['title']) ?></h2>

@@ -1,6 +1,66 @@
 <?= $this->extend('_layout_/layout') ?>
 <?= $this->section('content') ?>
 
+<?php
+$collectionProductItems = [];
+foreach ($products as $index => $product) {
+    $collectionProductItems[] = [
+        '@type' => 'ListItem',
+        'position' => $index + 1,
+        'item' => [
+            '@type' => 'Product',
+            'name' => $product['title'],
+            'url' => base_url('product/' . $product['slug']),
+            'image' => base_url($product['thumbnail']),
+        ],
+    ];
+}
+
+$collectionImageUrls = [];
+foreach ($images as $image) {
+    if (! empty($image['image_path'])) {
+        $collectionImageUrls[] = base_url($image['image_path']);
+    }
+}
+if ($collectionImageUrls === [] && ! empty($collection['thumbnail'])) {
+    $collectionImageUrls[] = base_url($collection['thumbnail']);
+}
+
+$collectionPageSchema = [
+    '@context' => 'https://schema.org',
+    '@type' => 'CollectionPage',
+    'name' => $collection['title'],
+    'url' => base_url('collection/' . $collection['slug']),
+    'description' => trim(strip_tags((string) ($collection['description'] ?: $collection['subtitle'] ?? ''))),
+    'image' => $collectionImageUrls,
+];
+if ($collectionProductItems !== []) {
+    $collectionPageSchema['mainEntity'] = [
+        '@type' => 'ItemList',
+        'name' => 'محصولات ' . $collection['title'],
+        'numberOfItems' => count($collectionProductItems),
+        'itemListElement' => $collectionProductItems,
+    ];
+}
+
+$collectionDetailSchemas = [
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'خانه', 'item' => base_url('/')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'کالکشن‌ها', 'item' => base_url('collection')],
+            ['@type' => 'ListItem', 'position' => 3, 'name' => $collection['title'], 'item' => base_url('collection/' . $collection['slug'])],
+        ],
+    ],
+    $collectionPageSchema,
+];
+?>
+
+<?php foreach ($collectionDetailSchemas as $schema): ?>
+    <script type="application/ld+json"><?= json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
+<?php endforeach; ?>
+
     <section class="px-4 mb-24">
         <div class="container mx-auto max-w-screen-xl">
 
@@ -43,7 +103,7 @@
                 <!-- Gallery -->
                 <?php if (!empty($images)): ?>
                     <div class="mb-12">
-                        <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #124f48" class="swiper project-main">
+                        <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #1a3336" class="swiper project-main">
                             <div class="swiper-wrapper">
                                 <?php foreach ($images as $img): ?>
                                     <div class="swiper-slide">

@@ -21,4 +21,20 @@
   .menu li details summary:active {
     @apply bg-transparent rounded-none text-stone-900;
   }
+
+  .blog-rich-content p {
+    @apply mb-4;
+  }
+
+  .blog-rich-content ul {
+    @apply mb-4 list-disc pr-6;
+  }
+
+  .blog-rich-content ol {
+    @apply mb-4 list-decimal pr-6;
+  }
+
+  .blog-rich-content a {
+    @apply text-orange-600 underline underline-offset-4;
+  }
 }

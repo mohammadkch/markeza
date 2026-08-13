@@ -1,6 +1,59 @@
 <?= $this->extend('_layout_/layout') ?>
 <?= $this->section('content') ?>
 
+<?php
+$articleTextParts = [$post['excerpt']];
+foreach ($blocks as $block) {
+    if (in_array($block['block_type'], ['text', 'heading', 'quote'], true) && ! empty($block['content'])) {
+        $articleTextParts[] = strip_tags((string) $block['content']);
+    }
+}
+$articleBody = trim(implode("\n", $articleTextParts));
+$articleWords = preg_split('/\s+/u', $articleBody, -1, PREG_SPLIT_NO_EMPTY) ?: [];
+$articleUrl = base_url('blog/' . $post['slug']);
+$articleSchemas = [
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'BreadcrumbList',
+        'itemListElement' => [
+            ['@type' => 'ListItem', 'position' => 1, 'name' => 'خانه', 'item' => base_url('/')],
+            ['@type' => 'ListItem', 'position' => 2, 'name' => 'وبلاگ', 'item' => base_url('blog')],
+            ['@type' => 'ListItem', 'position' => 3, 'name' => $post['title'], 'item' => $articleUrl],
+        ],
+    ],
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'BlogPosting',
+        'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => $articleUrl],
+        'headline' => $post['title'],
+        'description' => $post['meta_description'] ?: $post['excerpt'],
+        'image' => [$post['banner_url'], $post['thumbnail_url']],
+        'datePublished' => date(DATE_ATOM, (int) $post['created_at']),
+        'dateModified' => date(DATE_ATOM, (int) $post['updated_at']),
+        'author' => [
+            '@type' => 'Person',
+            'name' => $post['author_name'],
+        ],
+        'publisher' => [
+            '@type' => 'Organization',
+            'name' => 'مارکزا هوم',
+            'logo' => [
+                '@type' => 'ImageObject',
+                'url' => base_url('assets/images/logo/logo-black-trans.png'),
+            ],
+        ],
+        'articleBody' => $articleBody,
+        'wordCount' => count($articleWords),
+        'inLanguage' => 'fa-IR',
+        'url' => $articleUrl,
+    ],
+];
+?>
+
+<?php foreach ($articleSchemas as $schema): ?>
+    <script type="application/ld+json"><?= json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
+<?php endforeach; ?>
+
 <section class="px-4 mb-24">
     <div class="container mx-auto max-w-screen-xl">
         <nav class="flex mb-5 border-y border-orange-200 py-3" aria-label="Breadcrumb">
@@ -41,7 +94,10 @@
                     </div>
                     <div class="text-right">
                         <p class="font-YekanBakh-Bold"><?= esc($post['author_name']) ?></p>
-                        <p class="text-xs mt-1"><?= esc($post['author_role_label']) ?> · <?= esc(date('Y/m/d', (int) $post['created_at'])) ?></p>
+                        <p class="text-xs mt-1">
+                            <?= esc($post['author_role_label']) ?> ·
+                            <time datetime="<?= esc(date(DATE_ATOM, (int) $post['created_at'])) ?>"><?= esc(date('Y/m/d', (int) $post['created_at'])) ?></time>
+                        </p>
                     </div>
                 </div>
             </header>
@@ -59,7 +115,8 @@
                             <h2 class="font-YekanBakh-ExtraBlack text-2xl mb-5" style="margin-top: 3rem"><?= esc($block['content']) ?></h2>
                         <?php endif; ?>
                     <?php elseif ($block['block_type'] === 'text'): ?>
-                        <p class="mb-5 text-base text-stone-700"><?= nl2br(esc($block['content'])) ?></p>
+                        <?php helper('blog_content'); ?>
+                        <div class="blog-rich-content mb-5 text-base text-stone-700 leading-8"><?= render_blog_rich_text((string) $block['content']) ?></div>
                     <?php elseif ($block['block_type'] === 'image' && ! empty($block['image_path'])): ?>
                         <figure style="margin-top: 2.5rem; margin-bottom: 2.5rem">
                             <img class="rounded-3xl w-full object-cover" src="<?= esc(base_url($block['image_path'])) ?>" alt="<?= esc($block['alt_text'] ?? '') ?>" loading="lazy">

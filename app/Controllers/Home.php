@@ -100,8 +100,10 @@ class Home extends BaseController
         ];
 
         $this->viewData['seo'] = [
-            'title'       => 'مارکزا | مبلمان چرم',
-            'description' => 'فروشگاه مبلمان چرم مارکزا - بهترین کیفیت، شیک‌ترین طراحی',
+            'title'       => 'مبلمان چرمی لوکس و دست‌ساز | مارکزا هوم',
+            'description' => 'مارکزا هوم، طراح و تولیدکننده مبلمان چرمی لوکس و دست‌ساز با الهام از طراحی ایتالیایی؛ مشاهده کالکشن‌ها، محصولات و دریافت مشاوره تخصصی.',
+            'canonical'   => base_url('/'),
+            'og_image'    => $this->viewData['banners'][0]['image'] ?? base_url('assets/images/logo/logo-black-trans.png'),
         ];
 
         return view($this->viewPath . 'home/index', $this->viewData);

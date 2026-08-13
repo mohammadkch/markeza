@@ -1,6 +1,49 @@
 <?= $this->extend('_layout_/layout') ?>
 <?= $this->section('content') ?>
 
+<?php
+$homeUrl = base_url('/');
+$organizationId = $homeUrl . '#organization';
+$homeSchemas = [
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'WebSite',
+        '@id' => $homeUrl . '#website',
+        'url' => $homeUrl,
+        'name' => 'مارکزا هوم',
+        'inLanguage' => 'fa-IR',
+        'publisher' => ['@id' => $organizationId],
+    ],
+    [
+        '@context' => 'https://schema.org',
+        '@type' => 'Organization',
+        '@id' => $organizationId,
+        'name' => 'مارکزا هوم',
+        'url' => $homeUrl,
+        'logo' => [
+            '@type' => 'ImageObject',
+            'url' => base_url('assets/images/logo/logo-black-trans.png'),
+        ],
+        'description' => 'طراحی و تولید مبلمان چرمی لوکس و دست‌ساز با الهام از طراحی ایتالیایی.',
+        'email' => 'info@markeza.ir',
+        'telephone' => '+989128130135',
+        'sameAs' => [
+            'https://instagram.com/markezahome',
+        ],
+        'contactPoint' => [
+            '@type' => 'ContactPoint',
+            'telephone' => '+989128130135',
+            'contactType' => 'sales',
+            'availableLanguage' => ['fa'],
+        ],
+    ],
+];
+?>
+
+<?php foreach ($homeSchemas as $schema): ?>
+    <script type="application/ld+json"><?= json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?></script>
+<?php endforeach; ?>
+
     <!-- Hero / Slider -->
     <section class="px-4 mb-24">
         <div class="container mx-auto max-w-screen-xl relative pt-5 pl-5 lg:pt-10 lg:pl-10">
@@ -78,7 +121,7 @@
                         </div>
                         <div class="flex items-center mb-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M13.98 5.31999L10.77 8.52999L8.79999 10.49C7.96999 11.32 7.96999 12.67 8.79999 13.5L13.98 18.68C14.66 19.36 15.82 18.87 15.82 17.92V12.31V6.07999C15.82 5.11999 14.66 4.63999 13.98 5.31999Z" fill="#124f48"/>
+                                <path d="M13.98 5.31999L10.77 8.52999L8.79999 10.49C7.96999 11.32 7.96999 12.67 8.79999 13.5L13.98 18.68C14.66 19.36 15.82 18.87 15.82 17.92V12.31V6.07999C15.82 5.11999 14.66 4.63999 13.98 5.31999Z" fill="#1a3336"/>
                             </svg>
                             <h3 class="font-YekanBakh-ExtraBold text-base mr-1"><?= esc($service['title']) ?></h3>
                         </div>
@@ -134,7 +177,7 @@
                 <div class="col-span-12 md:col-span-5 relative">
                     <div class="leading-8">
                         <h2 class="font-YekanBakh-ExtraBlack text-3xl my-4">از زبان مشتریان ما بشنوید...</h2>
-                        <p class="mb-4">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.</p>
+                        <p class="mb-4">تجربه مشتریان، معیار مهمی برای سنجش کیفیت طراحی، راحتی و دوام محصولات مارکزا هوم است. دیدگاه خریداران به ما کمک می‌کند جزئیات هر محصول و کیفیت خدمات را پیوسته بهبود دهیم.</p>
                         <div class="flex justify-end">
                             <a href="<?= base_url('contact') ?>" class="mt-4 py-1 px-7 rounded-full bg-orange-200 hover:duration-300 font-YekanBakh-SemiBold">بیشتر بخوانید...</a>
                         </div>
@@ -199,7 +242,7 @@
                     <div class="relative flex flex-col">
                         <div class="sm:text-center">
                             <h2 class="font-YekanBakh-ExtraBlack text-4xl text-white">با مشـــاوران مـــا در ارتبـــاط باشیــــد...</h2>
-                            <p class="mt-6 mx-auto max-w-2xl text-base text-gray-100">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده</p>
+                            <p class="mt-6 mx-auto max-w-2xl text-base text-gray-100">برای انتخاب مدل، چرم، رنگ و ابعاد متناسب با فضای خود، از مشاوره تخصصی کارشناسان مارکزا هوم استفاده کنید.</p>
                         </div>
                         <a href="<?= base_url('contact') ?>" class="w-auto inline-block mt-5 mx-auto py-2 px-7 rounded-full bg-orange-200 hover:duration-300 font-YekanBakh-SemiBold">ارتباط با کارشناسان</a>
                     </div>
@@ -234,7 +277,7 @@
                             <div class="leading-8">
                                 <div class="flex items-center mb-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path d="M13.98 5.31999L10.77 8.52999L8.79999 10.49C7.96999 11.32 7.96999 12.67 8.79999 13.5L13.98 18.68C14.66 19.36 15.82 18.87 15.82 17.92V12.31V6.07999C15.82 5.11999 14.66 4.63999 13.98 5.31999Z" fill="#124f48"/>
+                                        <path d="M13.98 5.31999L10.77 8.52999L8.79999 10.49C7.96999 11.32 7.96999 12.67 8.79999 13.5L13.98 18.68C14.66 19.36 15.82 18.87 15.82 17.92V12.31V6.07999C15.82 5.11999 14.66 4.63999 13.98 5.31999Z" fill="#1a3336"/>
                                     </svg>
                                     <a href="<?= base_url('blog/' . $post['slug']) ?>">
                                         <h4 class="font-YekanBakh-ExtraBold text-base mr-1"><?= esc($post['title']) ?></h4>
