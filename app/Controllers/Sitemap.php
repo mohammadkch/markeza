@@ -53,7 +53,7 @@ class Sitemap extends BaseController
 
         return $this->response
             ->setContentType('application/xml', 'UTF-8')
-            ->setBody(view('sitemap/index', ['urls' => $urls]));
+            ->setBody(view('sitemap/index', ['urls' => $urls], ['debug' => false]));
     }
 
     private function dynamicUrl(string $section, array $row): array
