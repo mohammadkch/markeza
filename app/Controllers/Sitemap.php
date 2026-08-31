@@ -9,23 +9,22 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class Sitemap extends BaseController
 {
-    private const SITE_URL = 'https://www.markeza.ir';
-
     public function index(): ResponseInterface
     {
         $urls = [
-            ['loc' => self::SITE_URL . '/'],
-            ['loc' => self::SITE_URL . '/collection'],
-            ['loc' => self::SITE_URL . '/product'],
-            ['loc' => self::SITE_URL . '/blog'],
-            ['loc' => self::SITE_URL . '/about'],
-            ['loc' => self::SITE_URL . '/branches'],
-            ['loc' => self::SITE_URL . '/contact'],
+            ['loc' => base_url('/')],
+            ['loc' => base_url('collection')],
+            ['loc' => base_url('product')],
+            ['loc' => base_url('blog')],
+            ['loc' => base_url('about')],
+            ['loc' => base_url('branches')],
+            ['loc' => base_url('contact')],
         ];
 
         $collections = (new CollectionModel())
             ->select('slug, updated_at')
             ->where('is_active', 1)
+            ->where("TRIM(slug) <> ''", null, false)
             ->orderBy('sort_order', 'ASC')
             ->findAll();
         foreach ($collections as $collection) {
@@ -33,9 +32,12 @@ class Sitemap extends BaseController
         }
 
         $products = (new ProductModel())
-            ->select('slug, updated_at')
-            ->where('is_active', 1)
-            ->orderBy('sort_order', 'ASC')
+            ->select('product.slug, product.updated_at')
+            ->join('collection', 'collection.id = product.collection_id')
+            ->where('product.is_active', 1)
+            ->where('collection.is_active', 1)
+            ->where("TRIM(product.slug) <> ''", null, false)
+            ->orderBy('product.sort_order', 'ASC')
             ->findAll();
         foreach ($products as $product) {
             $urls[] = $this->dynamicUrl('product', $product);
@@ -44,6 +46,7 @@ class Sitemap extends BaseController
         $posts = (new BlogPostModel())
             ->select('slug, updated_at')
             ->where('is_active', 1)
+            ->where("TRIM(slug) <> ''", null, false)
             ->orderBy('sort_order', 'ASC')
             ->orderBy('created_at', 'DESC')
             ->findAll();
@@ -59,10 +62,10 @@ class Sitemap extends BaseController
     private function dynamicUrl(string $section, array $row): array
     {
         $url = [
-            'loc' => self::SITE_URL . '/' . $section . '/' . rawurlencode((string) $row['slug']),
+            'loc' => base_url($section . '/' . rawurlencode((string) $row['slug'])),
         ];
 
-        if (! empty($row['updated_at'])) {
+        if (filter_var($row['updated_at'] ?? null, FILTER_VALIDATE_INT) !== false && (int) $row['updated_at'] > 0) {
             $url['lastmod'] = gmdate('Y-m-d\TH:i:s\Z', (int) $row['updated_at']);
         }
 
