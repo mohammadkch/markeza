@@ -88,9 +88,8 @@ $blogSchemas = [
                                         <img class="w-full object-cover" style="height: 3.5rem" src="<?= esc($post['author_avatar_url']) ?>" alt="<?= esc($post['author_name']) ?>">
                                     </div>
                                 </div>
-                                <div class="flex flex-col mt-1">
-                                    <span class="font-YekanBakh-Bold text-slate-800 text-sm mb-2"><?= esc($post['author_name']) ?></span>
-                                    <span class="text-xs"><?= esc($post['author_role_label']) ?></span>
+                                <div class="flex flex-col">
+                                    <span class="font-YekanBakh-Bold text-slate-800 text-sm"><?= esc($post['author_name']) ?></span>
                                 </div>
                             </div>
 

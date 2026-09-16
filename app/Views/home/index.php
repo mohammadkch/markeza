@@ -195,11 +195,13 @@ $homeSchemas = [
                                 <div class="swiper-slide">
                                     <div class="bg-white p-6 leading-8 rounded-3xl">
                                         <div class="flex items-center mb-4">
+                                            <?php if (! empty($t['avatar'])): ?>
                                             <div class="avatar ml-4">
                                                 <div class="w-20 rounded-full">
                                                     <img src="<?= esc($t['avatar']) ?>" alt="<?= esc($t['name']) ?>">
                                                 </div>
                                             </div>
+                                            <?php endif; ?>
                                             <div class="flex flex-col items-center">
                                                 <h3 class="font-YekanBakh-Bold text-slate-800 text-sm"><?= esc($t['name']) ?></h3>
                                                 <p><?= esc($t['role']) ?></p>
@@ -269,9 +271,8 @@ $homeSchemas = [
                                         <img src="<?= esc($post['author_avatar']) ?>" alt="<?= esc($post['author_name']) ?>">
                                     </div>
                                 </div>
-                                <div class="flex flex-col mt-1">
-                                    <h3 class="font-YekanBakh-Bold text-slate-800 text-sm mb-2"><?= esc($post['author_name']) ?></h3>
-                                    <p class="text-xs"><?= esc($post['author_role']) ?></p>
+                                <div class="flex flex-col">
+                                    <h3 class="font-YekanBakh-Bold text-slate-800 text-sm"><?= esc($post['author_name']) ?></h3>
                                 </div>
                             </div>
                             <div class="leading-8">
@@ -319,9 +320,9 @@ $homeSchemas = [
                         <div class="swiper-wrapper">
                             <?php foreach ($partners as $partner): ?>
                                 <div class="swiper-slide">
-                                    <div class="flex justify-center">
+                                    <a class="flex justify-center" href="<?= esc($partner['url']) ?>" target="_blank" rel="noopener noreferrer">
                                         <img class="grayscale hover:grayscale-0 duration-300" src="<?= esc($partner['logo']) ?>" alt="<?= esc($partner['name']) ?>">
-                                    </div>
+                                    </a>
                                 </div>
                             <?php endforeach; ?>
                         </div>

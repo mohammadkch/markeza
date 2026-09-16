@@ -77,9 +77,7 @@ class Blog extends BaseController
 
         $post['thumbnail_url'] = base_url($post['thumbnail']);
         $post['banner_url'] = base_url($post['banner']);
-        $post['author_avatar_url'] = ! empty($post['author_avatar'])
-            ? base_url($post['author_avatar'])
-            : base_url('assets/images/user.jpg');
+        $post['author_avatar_url'] = $this->viewData['assetsPath'] . 'images/user.jpg';
         $post['author_role_label'] = $roleLabels[$post['author_role']] ?? 'نویسنده';
 
         return $post;

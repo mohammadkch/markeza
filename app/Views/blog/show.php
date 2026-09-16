@@ -95,7 +95,6 @@ $articleSchemas = [
                     <div class="text-right">
                         <p class="font-YekanBakh-Bold"><?= esc($post['author_name']) ?></p>
                         <p class="text-xs mt-1">
-                            <?= esc($post['author_role_label']) ?> ·
                             <time datetime="<?= esc(date(DATE_ATOM, (int) $post['created_at'])) ?>"><?= esc(date('Y/m/d', (int) $post['created_at'])) ?></time>
                         </p>
                     </div>
