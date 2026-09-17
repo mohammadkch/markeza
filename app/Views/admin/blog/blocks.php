@@ -23,14 +23,16 @@ $blockValue = static function (string $field, $default = '') use ($edit_block) {
                             <h1 class="font-black text-2xl with-highlight">محتوای مقاله</h1>
                             <p class="text-gray-600 mt-2"><?= esc($post['title']) ?></p>
                         </div>
-                        <div class="flex gap-2 mt-4 md:mt-0" style="margin-right: auto">
-                            <a href="<?= site_url('blog/' . $post['slug']) ?>" target="_blank" rel="noopener" class="bg-green-600 text-white py-2 px-4 rounded-lg flex items-center gap-2">
+                        <div class="flex flex-wrap gap-2 mt-4 md:mt-0" style="margin-right: auto">
+                            <a href="<?= site_url('blog/' . $post['id'] . '/' . rawurlencode($post['slug'])) ?>" target="_blank" rel="noopener" class="bg-green-600 text-white py-2 px-4 rounded-lg flex items-center gap-2">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                                 </svg>
                                 پیش‌نمایش
                             </a>
+                            <a href="<?= site_url('admin/blog/history/' . $post['id']) ?>" class="bg-primary text-white py-2 px-4 rounded-lg flex items-center gap-2" title="تاریخچه آدرس‌ها" aria-label="تاریخچه آدرس‌ها"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>تاریخچه آدرس‌ها</a>
+                            <a href="<?= site_url('admin/blog/redirects/' . $post['id']) ?>" class="bg-primary text-white py-2 px-4 rounded-lg flex items-center gap-2" title="مدیریت ریدایرکت‌ها" aria-label="مدیریت ریدایرکت‌ها"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H5v14h14v-4M13 3h8v8m0-8L10 14"/></svg>ریدایرکت‌ها</a>
                             <a href="<?= site_url('admin/blog/edit/' . $post['id']) ?>" class="bg-amber-500 text-white py-2 px-4 rounded-lg flex items-center gap-2">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>

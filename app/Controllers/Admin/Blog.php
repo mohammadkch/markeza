@@ -4,6 +4,8 @@ namespace App\Controllers\Admin;
 
 use App\Models\BlogPostBlockModel;
 use App\Models\BlogPostModel;
+use App\Models\BlogPostSlugHistoryModel;
+use App\Models\BlogPostRedirectModel;
 use CodeIgniter\HTTP\RedirectResponse;
 use RuntimeException;
 use Throwable;
@@ -219,6 +221,57 @@ class Blog extends BaseController
         return redirect()->to(site_url('admin/blog/blocks/' . $postId));
     }
 
+    public function history(int $postId): string
+    {
+        $post = (new BlogPostModel())->find($postId);
+        if ($post === null) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+        $model = new BlogPostSlugHistoryModel();
+        $this->viewData['post'] = $post;
+        $this->viewData['history'] = $model->where('post_id', $postId)->orderBy('id', 'DESC')->paginate(20);
+        $this->viewData['pager'] = $model->pager;
+        return view($this->viewPath . 'blog/history', $this->viewData);
+    }
+
+    public function redirects(int $postId): string
+    {
+        $post = (new BlogPostModel())->find($postId);
+        if ($post === null) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+        $model = new BlogPostRedirectModel();
+        $status = $this->request->getGet('is_active');
+        $model->where('post_id', $postId);
+        if ($status === '0' || $status === '1') {
+            $model->where('is_active', (int) $status);
+        }
+        $this->viewData['post'] = $post;
+        $this->viewData['redirects'] = $model->orderBy('id', 'DESC')->paginate(20);
+        $model->pager->only(['is_active']);
+        $this->viewData['pager'] = $model->pager;
+        $this->viewData['status'] = $status;
+        return view($this->viewPath . 'blog/redirects', $this->viewData);
+    }
+
+    public function updateRedirect(int $postId, int $redirectId): RedirectResponse
+    {
+        $model = new BlogPostRedirectModel();
+        $row = $model->where('post_id', $postId)->find($redirectId);
+        if ($row === null) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+        $active = $this->request->getPost('is_active');
+        if (! in_array($active, ['0', '1'], true)) {
+            $this->flash('blog_save_error', 'وضعیت ریدایرکت معتبر نیست.');
+        } elseif (! $model->update($redirectId, ['is_active' => (int) $active])) {
+            $this->flash('blog_save_error');
+        } else {
+            $this->flash('blog_update_success', 'وضعیت ریدایرکت ذخیره شد.');
+        }
+        return redirect()->to(site_url('admin/blog/redirects/' . $postId));
+    }
+
     private function savePost(?int $id = null): RedirectResponse
     {
         $postModel = new BlogPostModel();
@@ -241,10 +294,9 @@ class Blog extends BaseController
             return $this->redirectPostForm($id, $this->validator->getErrors());
         }
 
-        $slug = $this->uniqueSlug(
+        $slug = $this->normalizeSlug(
             (string) $this->request->getPost('slug'),
-            (string) $this->request->getPost('title'),
-            $id
+            (string) $this->request->getPost('title')
         );
         $newFiles = [];
 
@@ -292,7 +344,26 @@ class Blog extends BaseController
             if ($existing === null) {
                 $id = (int) $postModel->insert($data, true);
             } else {
-                $postModel->update($id, $data);
+                $locked = $db->query('SELECT slug FROM blog_post WHERE id = ? FOR UPDATE', [$id])->getRowArray();
+                if ($locked === null) {
+                    throw new RuntimeException('Blog post no longer exists.');
+                }
+                if (! $postModel->update($id, $data)) {
+                    throw new RuntimeException('Blog update failed.');
+                }
+                if ($locked['slug'] !== $slug) {
+                    if (! (new BlogPostSlugHistoryModel())->insert([
+                        'post_id' => $id,
+                        'old_slug' => $locked['slug'],
+                        'new_slug' => $slug,
+                        'created_at' => time(),
+                    ])) {
+                        throw new RuntimeException('Blog slug history save failed.');
+                    }
+                    if (! (new BlogPostRedirectModel())->registerSlugChange($id, $locked['slug'])) {
+                        throw new RuntimeException('Blog redirect save failed.');
+                    }
+                }
             }
             $transactionSucceeded = $db->transComplete();
         } catch (Throwable $exception) {
@@ -499,7 +570,7 @@ class Blog extends BaseController
         return $relativeDirectory . $name;
     }
 
-    private function uniqueSlug(string $requestedSlug, string $title, ?int $ignoreId): string
+    private function normalizeSlug(string $requestedSlug, string $title): string
     {
         $slug = mb_strtolower(trim($requestedSlug !== '' ? $requestedSlug : $title));
         $slug = preg_replace('/[\s_]+/u', '-', $slug) ?? '';
@@ -509,20 +580,7 @@ class Blog extends BaseController
             $slug = 'post-' . bin2hex(random_bytes(4));
         }
 
-        $base = $slug;
-        $suffix = 2;
-        $model = new BlogPostModel();
-        while (true) {
-            $model->where('slug', $slug);
-            if ($ignoreId !== null) {
-                $model->where('id !=', $ignoreId);
-            }
-            if ($model->first() === null) {
-                return $slug;
-            }
-            $suffixText = '-' . $suffix++;
-            $slug = mb_substr($base, 0, 255 - mb_strlen($suffixText)) . $suffixText;
-        }
+        return mb_substr($slug, 0, 255);
     }
 
     private function redirectPostForm(?int $id, array $errors): RedirectResponse

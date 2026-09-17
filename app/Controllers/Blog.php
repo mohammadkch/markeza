@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\BlogPostBlockModel;
 use App\Models\BlogPostModel;
+use App\Models\BlogPostRedirectModel;
+use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Blog extends BaseController
@@ -38,13 +40,21 @@ class Blog extends BaseController
         return view($this->viewPath . 'blog/index', $this->viewData);
     }
 
-    public function show(string $slug): string
+    public function show(int $id, string $slug): string|RedirectResponse
     {
         $postModel = new BlogPostModel();
-        $post = $postModel->getPublishedBySlug($slug);
+        $post = $postModel->publishedWithAuthor()->where('blog_post.id', $id)->first();
 
         if ($post === null) {
             throw PageNotFoundException::forPageNotFound();
+        }
+
+        if ($slug !== $post['slug']) {
+            $redirect = (new BlogPostRedirectModel())->findActive('blog/' . $id . '/' . $slug);
+            if ($redirect === null || (int) $redirect['post_id'] !== $id) {
+                throw PageNotFoundException::forPageNotFound();
+            }
+            return redirect()->to(base_url('blog/' . $post['id'] . '/' . rawurlencode($post['slug'])), 301);
         }
 
         $blockModel = new BlogPostBlockModel();
@@ -57,7 +67,7 @@ class Blog extends BaseController
         $this->viewData['seo'] = [
             'title' => $post['meta_title'] ?: $post['title'] . ' | مارکزا هوم',
             'description' => $post['meta_description'] ?: $post['excerpt'],
-            'canonical' => base_url('blog/' . $post['slug']),
+            'canonical' => base_url('blog/' . $post['id'] . '/' . rawurlencode($post['slug'])),
             'og_type' => 'article',
             'og_image' => base_url($post['banner']),
             'article_published_time' => date(DATE_ATOM, (int) $post['created_at']),
@@ -65,6 +75,17 @@ class Blog extends BaseController
         ];
 
         return view($this->viewPath . 'blog/show', $this->viewData);
+    }
+
+    public function legacy(string $slug): RedirectResponse
+    {
+        $redirect = (new BlogPostRedirectModel())->findActive('blog/' . $slug);
+        $post = $redirect === null ? null : (new BlogPostModel())->publishedWithAuthor()
+            ->where('blog_post.id', $redirect['post_id'])->first();
+        if ($post === null) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+        return redirect()->to(base_url('blog/' . $post['id'] . '/' . rawurlencode($post['slug'])), 301);
     }
 
     private function preparePost(array $post): array

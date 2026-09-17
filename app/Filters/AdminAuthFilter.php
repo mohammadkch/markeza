@@ -23,6 +23,8 @@ class AdminAuthFilter implements FilterInterface
             'blog/create' => 'افزودن مقاله | مارکزا',
             'blog/edit' => 'ویرایش مقاله | مارکزا',
             'blog/blocks' => 'ویرایش محتوای مقاله | مارکزا',
+            'blog/history' => 'تاریخچه آدرس‌های مقاله | مارکزا',
+            'blog/redirects' => 'ریدایرکت‌های مقاله | مارکزا',
             'contact/index' => 'تماس با ما | فروشگاه لباس',
             'about/index' => 'درباره ما | فروشگاه لباس',
             'auth/login' => 'ورود | فروشگاه لباس',

@@ -18,9 +18,11 @@ $value = static function (string $field, $default = '') use ($post) {
                 <div class="bg-white rounded-2xl drop-shadow-lg p-6 dark:bg-custom-dark dark:border dark:border-gray-700">
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
                         <h1 class="font-black text-2xl with-highlight dark:text-gray-200"><?= $isEdit ? 'ویرایش مقاله' : 'افزودن مقاله' ?></h1>
-                        <div class="flex gap-2 mt-4 md:mt-0" style="margin-right: auto">
+                        <div class="flex flex-wrap gap-2 mt-4 md:mt-0" style="margin-right: auto">
                             <a href="<?= site_url('admin/blog') ?>" class="bg-gray-500 text-white py-2 px-4 rounded-lg">بازگشت</a>
                             <?php if ($isEdit): ?>
+                                <a href="<?= site_url('admin/blog/history/' . $post['id']) ?>" class="bg-primary text-white py-2 px-4 rounded-lg flex items-center gap-2" title="تاریخچه آدرس‌ها" aria-label="تاریخچه آدرس‌ها"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>تاریخچه آدرس‌ها</a>
+                                <a href="<?= site_url('admin/blog/redirects/' . $post['id']) ?>" class="bg-primary text-white py-2 px-4 rounded-lg flex items-center gap-2" title="مدیریت ریدایرکت‌ها" aria-label="مدیریت ریدایرکت‌ها"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H5v14h14v-4M13 3h8v8m0-8L10 14"/></svg>ریدایرکت‌ها</a>
                                 <a href="<?= site_url('admin/blog/blocks/' . $post['id']) ?>" class="bg-amber-500 text-white py-2 px-4 rounded-lg flex items-center gap-2">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h10"/>

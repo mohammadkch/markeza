@@ -10,7 +10,7 @@ foreach ($blocks as $block) {
 }
 $articleBody = trim(implode("\n", $articleTextParts));
 $articleWords = preg_split('/\s+/u', $articleBody, -1, PREG_SPLIT_NO_EMPTY) ?: [];
-$articleUrl = base_url('blog/' . $post['slug']);
+$articleUrl = base_url('blog/' . $post['id'] . '/' . rawurlencode($post['slug']));
 $articleSchemas = [
     [
         '@context' => 'https://schema.org',
@@ -142,12 +142,12 @@ $articleSchemas = [
                         <?php foreach ($relatedPosts as $relatedPost): ?>
                             <article class="flex items-center bg-white p-3 rounded-3xl">
                                 <div class="w-32 ml-4">
-                                    <a href="<?= base_url('blog/' . $relatedPost['slug']) ?>">
+                                    <a href="<?= base_url('blog/' . $relatedPost['id'] . '/' . rawurlencode($relatedPost['slug'])) ?>">
                                         <img class="rounded-xl w-full object-cover" style="height: 6rem" src="<?= esc($relatedPost['thumbnail_url']) ?>" alt="<?= esc($relatedPost['title']) ?>" loading="lazy">
                                     </a>
                                 </div>
                                 <div>
-                                    <a href="<?= base_url('blog/' . $relatedPost['slug']) ?>">
+                                    <a href="<?= base_url('blog/' . $relatedPost['id'] . '/' . rawurlencode($relatedPost['slug'])) ?>">
                                         <h2 class="font-YekanBakh-ExtraBold text-base"><?= esc($relatedPost['title']) ?></h2>
                                     </a>
                                     <p class="mt-2 text-stone-700"><?= esc($relatedPost['excerpt']) ?></p>

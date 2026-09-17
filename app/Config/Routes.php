@@ -15,7 +15,8 @@ $routes->group('', ['filter' => 'parse_url'], function ($routes) {
     $routes->get('product/(:segment)', 'Product::show/$1');
 
     $routes->get('blog', 'Blog::index');
-    $routes->get('blog/(:segment)', 'Blog::show/$1');
+    $routes->get('blog/(:num)/(:segment)', 'Blog::show/$1/$2');
+    $routes->get('blog/(:segment)', 'Blog::legacy/$1');
 
     $routes->get('about', 'About::index');
 
@@ -99,6 +100,9 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'ad
         $routes->get('edit/(:num)', 'Blog::edit/$1');
         $routes->post('edit/(:num)', 'Blog::update/$1');
         $routes->post('delete/(:num)', 'Blog::delete/$1');
+        $routes->get('history/(:num)', 'Blog::history/$1');
+        $routes->get('redirects/(:num)', 'Blog::redirects/$1');
+        $routes->post('redirects/(:num)/(:num)', 'Blog::updateRedirect/$1/$2');
         $routes->get('blocks/(:num)', 'Blog::blocks/$1');
         $routes->post('blocks/(:num)/create', 'Blog::storeBlock/$1');
         $routes->get('blocks/(:num)/edit/(:num)', 'Blog::editBlock/$1/$2');

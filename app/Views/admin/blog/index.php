@@ -81,13 +81,15 @@
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h10"/>
                                                     </svg>
                                                 </a>
+                                                <a href="<?= site_url('admin/blog/history/' . $post['id']) ?>" class="text-blue-600 hover:text-blue-800" title="تاریخچه آدرس‌ها" aria-label="تاریخچه آدرس‌ها"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></a>
+                                                <a href="<?= site_url('admin/blog/redirects/' . $post['id']) ?>" class="text-blue-600 hover:text-blue-800" title="مدیریت ریدایرکت‌ها" aria-label="مدیریت ریدایرکت‌ها"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H5v14h14v-4M13 3h8v8m0-8L10 14"/></svg></a>
                                                 <a href="<?= site_url('admin/blog/edit/' . $post['id']) ?>" class="text-primary hover:text-primary-800" title="ویرایش مقاله" aria-label="ویرایش مقاله">
                                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                                     </svg>
                                                 </a>
                                                 <?php if ((int) $post['is_active'] === 1): ?>
-                                                    <a href="<?= site_url('blog/' . $post['slug']) ?>" target="_blank" rel="noopener" class="text-green-600 hover:text-green-800" title="نمایش مقاله" aria-label="نمایش مقاله">
+                                                    <a href="<?= site_url('blog/' . $post['id'] . '/' . rawurlencode($post['slug'])) ?>" target="_blank" rel="noopener" class="text-green-600 hover:text-green-800" title="نمایش مقاله" aria-label="نمایش مقاله">
                                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>

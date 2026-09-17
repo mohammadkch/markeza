@@ -280,7 +280,7 @@ $homeSchemas = [
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <path d="M13.98 5.31999L10.77 8.52999L8.79999 10.49C7.96999 11.32 7.96999 12.67 8.79999 13.5L13.98 18.68C14.66 19.36 15.82 18.87 15.82 17.92V12.31V6.07999C15.82 5.11999 14.66 4.63999 13.98 5.31999Z" fill="#1a3336"/>
                                     </svg>
-                                    <a href="<?= base_url('blog/' . $post['slug']) ?>">
+                                    <a href="<?= base_url('blog/' . $post['id'] . '/' . rawurlencode($post['slug'])) ?>">
                                         <h4 class="font-YekanBakh-ExtraBold text-base mr-1"><?= esc($post['title']) ?></h4>
                                     </a>
                                 </div>
@@ -288,7 +288,7 @@ $homeSchemas = [
                             </div>
                         </div>
                         <div style="margin-top: auto">
-                            <a href="<?= base_url('blog/' . $post['slug']) ?>">
+                            <a href="<?= base_url('blog/' . $post['id'] . '/' . rawurlencode($post['slug'])) ?>">
                                 <img class="rounded-b-lg w-full object-cover" style="height: 14rem" src="<?= esc($post['thumbnail']) ?>" alt="<?= esc($post['title']) ?>">
                             </a>
                         </div>

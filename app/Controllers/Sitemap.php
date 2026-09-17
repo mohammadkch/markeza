@@ -44,14 +44,14 @@ class Sitemap extends BaseController
         }
 
         $posts = (new BlogPostModel())
-            ->select('slug, updated_at')
+            ->select('id, slug, updated_at')
             ->where('is_active', 1)
             ->where("TRIM(slug) <> ''", null, false)
             ->orderBy('sort_order', 'ASC')
             ->orderBy('created_at', 'DESC')
             ->findAll();
         foreach ($posts as $post) {
-            $urls[] = $this->dynamicUrl('blog', $post);
+            $urls[] = $this->dynamicUrl('blog/' . $post['id'], $post);
         }
 
         return $this->response
