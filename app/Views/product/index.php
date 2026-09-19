@@ -50,7 +50,7 @@ $productItemList = [
             </nav>
 
             <div class="flex flex-col items-center justify-center relative my-16">
-                <h1 class="font-YekanBakh-ExtraBlack text-3xl">محصولات مارکزا</h1>
+                <h1 class="font-YekanBakh-ExtraBlack text-3xl">محصولات مارکزا هوم</h1>
                 <div class="bg-orange-200 w-20 h-1.5 rounded-full absolute top-10"></div>
                 <p class="mt-6 max-w-3xl text-center text-gray-600 leading-8">
                     محصولات مارکزا هوم مجموعه‌ای از مبلمان چرمی لوکس و دست‌ساز هستند که با الهام از طراحی ایتالیایی، متریال باکیفیت و توجه دقیق به جزئیات ساخته می‌شوند. کالکشن‌ها و مدل‌های مختلف را بررسی کنید و محصول متناسب با فضای خانه یا محل کار خود را بیابید.

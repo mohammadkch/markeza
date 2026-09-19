@@ -112,7 +112,8 @@ class Home extends BaseController
             ['name' => 'آرمیتاژ گلشن', 'logo' => $this->viewData['assetsPath'] . 'images/customers-logo/armitajgolshan-mall-142x142.png', 'url' => 'https://armitajmall.com/'],
             ['name' => 'هتل‌های هما', 'logo' => $this->viewData['assetsPath'] . 'images/customers-logo/logo-homa-hotels-142x142.png', 'url' => 'https://homahotels.com/'],
             ['name' => 'هتل آراز', 'logo' => $this->viewData['assetsPath'] . 'images/customers-logo/araz-logo-142x142.png', 'url' => 'https://arazhotels.com/'],
-            ['name' => 'بیمه پارسیان', 'logo' => $this->viewData['assetsPath'] . 'images/customers-logo/parsian-insurance.png', 'url' => 'https://parsianinsurance.ir/'],
+            ['name' => 'مبلمان گل سرخ', 'logo' => $this->viewData['assetsPath'] . 'images/customers-logo/rose-logo-142x142.png', 'url' => 'https://rose1980.ir'],
+            
         ];
 
         $this->viewData['seo'] = [

@@ -63,7 +63,7 @@ $collectionSchemas = [
 
             <!-- Title -->
             <div class="flex flex-col items-center justify-center relative my-16">
-                <h1 class="font-YekanBakh-ExtraBlack text-3xl">کالکشن‌های مارکزا</h1>
+                <h1 class="font-YekanBakh-ExtraBlack text-3xl">کالکشن‌های مارکزا هوم</h1>
                 <div class="bg-orange-200 w-20 h-1.5 rounded-full absolute top-10"></div>
                 <p class="mt-6 max-w-3xl text-center text-gray-600 leading-8">
                     کالکشن‌های مارکزا هوم با ترکیب طراحی ایتالیایی، چرم باکیفیت و هنر ساخت دست شکل گرفته‌اند. هر مجموعه هویت و جزئیات منحصربه‌فردی دارد تا برای سبک‌ها و فضاهای گوناگون، انتخابی هماهنگ و ماندگار در اختیار شما قرار دهد.
