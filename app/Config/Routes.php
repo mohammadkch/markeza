@@ -22,6 +22,8 @@ $routes->group('', ['filter' => 'parse_url'], function ($routes) {
 
     $routes->get('branches', 'Branches::index');
 
+    $routes->get('faq', 'Faq::index');
+
     $routes->get('contact', 'Contact::index');
     $routes->post('contact', 'Contact::submit', ['filter' => 'csrf']);
 
@@ -91,6 +93,24 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'ad
     $routes->get('product/editFaq/(:num)', 'Product::editFaq/$1');
     $routes->post('product/editFaq/(:num)', 'Product::editFaq/$1');
     $routes->delete('product/deleteFaq/(:num)', 'Product::deleteFaq/$1');
+
+    // General FAQ and category management
+    $routes->group('faq', ['filter' => 'csrf'], function ($routes) {
+        $routes->get('/', 'Faq::index');
+        $routes->get('create', 'Faq::create');
+        $routes->post('create', 'Faq::store');
+        $routes->get('edit/(:num)', 'Faq::edit/$1');
+        $routes->post('edit/(:num)', 'Faq::update/$1');
+        $routes->post('delete/(:num)', 'Faq::delete/$1');
+    });
+    $routes->group('faq-category', ['filter' => 'csrf'], function ($routes) {
+        $routes->get('/', 'Faq::categories');
+        $routes->get('create', 'Faq::createCategory');
+        $routes->post('create', 'Faq::storeCategory');
+        $routes->get('edit/(:num)', 'Faq::editCategory/$1');
+        $routes->post('edit/(:num)', 'Faq::updateCategory/$1');
+        $routes->post('delete/(:num)', 'Faq::deleteCategory/$1');
+    });
 
     // blog management
     $routes->get('blog', 'Blog::index');

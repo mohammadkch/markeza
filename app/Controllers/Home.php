@@ -11,7 +11,7 @@ class Home extends BaseController
     {
 
         $collectionModel = new CollectionModel();
-        $collections = $collectionModel->getAllActive();
+        $collections = $collectionModel->where('show_on_home', 1)->getAllActive();
 
         $this->viewData['banners'] = [
             ['image' => $this->viewData['assetsPath'] . 'images/banner/slider1_1160x530.webp', 'alt' => 'تصویری از خانه‌ای منظم، امن و پر از احساس'],
@@ -76,19 +76,19 @@ class Home extends BaseController
             [
                 'name' => 'آرش نادری',
                 'role' => 'معمار',
-                'avatar' => $this->viewData['assetsPath'] . 'images/avatar-4.jpg',
+                'avatar' => $this->viewData['assetsPath'] . 'images/avatar-default.svg',
                 'text' => 'در انتخاب مبلمان برای پروژه‌های معماری، تناسبات، کیفیت متریال و جزئیات اجرایی اهمیت زیادی دارد. چیزی که در این مجموعه برای من قابل‌توجه بود، هماهنگی فرم مبلمان با زبان معماری و کیفیت دقیق اجرای آن بود',
             ],
             [
                 'name' => 'نگار صادقی',
                 'role' => 'طراح داخلی',
-                'avatar' => null,
+                'avatar' => $this->viewData['assetsPath'] . 'images/avatar-default.svg',
                 'text' => 'یکی از نقاط قوت این مجموعه، توجه به جزئیات است؛ از انتخاب چرم و نوع دوخت گرفته تا تناسب خطوط و حجم کلی مبلمان. برای پروژه‌هایی که کیفیت متریال و هویت بصری اهمیت دارد، انتخاب مناسبی است.',
             ],
             [
                 'name' => 'سارا احمدی',
                 'role' => 'مشتری خانگی',
-                'avatar' => $this->viewData['assetsPath'] . 'images/user.jpg',
+                'avatar' => $this->viewData['assetsPath'] . 'images/avatar-default.svg',
                 'text' => 'من مدل سه ساله مدل کاناپه چستر رو خریدم و راستش قبلش فکر می‌کردم چون مدلش یه کم رسمی و سنگینه، شاید خیلی راحت نباشه. ولی واقعاً برخلاف تصورم، فوق‌العاده راحته! 😍 وقتی استفاده‌ش می‌کنیم اصلاً دلمون نمی‌خواد بلند شیم. کیفیت چرم و دوختش هم خیلی خوبه و بعد از استفاده کاملاً حس می‌کنم انتخاب درستی کردم.',
             ],
         ];
@@ -111,7 +111,6 @@ class Home extends BaseController
         $this->viewData['partners'] = [
             ['name' => 'آرمیتاژ گلشن', 'logo' => $this->viewData['assetsPath'] . 'images/customers-logo/armitajgolshan-mall-142x142.png', 'url' => 'https://armitajmall.com/'],
             ['name' => 'هتل‌های هما', 'logo' => $this->viewData['assetsPath'] . 'images/customers-logo/logo-homa-hotels-142x142.png', 'url' => 'https://homahotels.com/'],
-            ['name' => 'هتل آراز', 'logo' => $this->viewData['assetsPath'] . 'images/customers-logo/araz-logo-142x142.png', 'url' => 'https://arazhotels.com/'],
             ['name' => 'مبلمان گل سرخ', 'logo' => $this->viewData['assetsPath'] . 'images/customers-logo/rose-logo-142x142.png', 'url' => 'https://rose1980.ir'],
             
         ];

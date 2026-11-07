@@ -12,7 +12,7 @@ class ProductModel extends Model
 
     protected $allowedFields = [
         'collection_id', 'title', 'slug', 'thumbnail', 'description', 'meta_title', 'meta_description',
-        'dimensions_text', 'dimensions_img', 'is_active', 'sort_order'
+        'dimensions_text', 'dimensions_img', 'dimensions_img_2', 'is_active', 'sort_order'
     ];
 
     protected $useTimestamps = true;
@@ -108,6 +108,7 @@ class ProductModel extends Model
         }
 
         $builder->orderBy('product.sort_order', 'ASC');
+        $builder->orderBy('product.id', 'ASC');
 
         return $builder->get()->getResultArray();
     }

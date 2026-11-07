@@ -71,6 +71,15 @@ class Branches extends BaseController
                 'manager' => 'آقای فتحی',
                 'image' => null,
             ],
+            [
+                'city' => 'تهران (بل آرتی)',
+                'address' => 'تهران، خیابان ولیعصر، پایین‌تر از پارک ساعی، روبه‌روی پمپ بنزین، نبش خیابان هجدهم، فروشگاه بل آرتی',
+                'mobile' => '09924008751',
+                'phone' => '02188700512',
+                'phone_secondary' => '02188700513',
+                'manager' => 'پورعارف',
+                'image' => null,
+            ],
         ];
 
         $this->viewData['defaultBranchImage'] = $this->viewData['assetsPath'] . 'images/feature/feature2.svg';

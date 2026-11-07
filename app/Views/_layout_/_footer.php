@@ -10,7 +10,7 @@
 <footer class="p-10 bg-stone-800 text-white">
     <div class="container mx-auto max-w-screen-xl">
         <div class="grid grid-cols-12 gap-4 leading-8">
-            <div class="col-span-12 lg:col-span-5">
+            <div class="col-span-12 lg:col-span-6">
                 <a href="<?= base_url('/') ?>">
                     <img class="mb-4" src="<?= $assetsPath ?>images/logo/logo-white-trans.png" alt="لوگو مارکزا">
                 </a>
@@ -36,7 +36,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-2 text-right md:text-center">
+            <div class="col-span-12 sm:col-span-6 lg:col-span-3 text-right md:text-center">
                 <h3 class="font-YekanBakh-Bold text-white mb-4 text-base">دسترسی سریع</h3>
                 <ul>
                     <li><a href="<?= base_url('/') ?>">صفحه اصلی</a></li>
@@ -47,19 +47,13 @@
                     <li><a href="<?= base_url('branches') ?>">نمایندگی‌ها</a></li>
                 </ul>
             </div>
-            <div class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-2 text-right md:text-center">
+            <div class="col-span-12 sm:col-span-6 lg:col-span-3 text-right md:text-center">
                 <h3 class="font-YekanBakh-Bold text-white mb-4 text-base">خدمات شرکت</h3>
                 <ul>
                     <li><a href="<?= base_url('blog') ?>">وبلاگ</a></li>
                     <li><a href="<?= base_url('faq') ?>">سوالات متداول</a></li>
                 </ul>
             </div>
-            <div class="col-span-12 md:col-span-4 lg:col-span-3">
-                <h3 class="font-YekanBakh-Bold text-white mb-4 text-base">نماد اعتماد</h3>
-                <div class="flex items-center gap-2">
-                    <img src="<?= $assetsPath ?>images/enamad_logo.png" alt="نماد اعتماد الکترونیکی">
-                    <img src="<?= $assetsPath ?>images/samandehi_logo.png" alt="ساماندهی">
-                </div>
             </div>
         </div>
     </div>

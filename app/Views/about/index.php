@@ -126,50 +126,6 @@ $aboutSchemas = [
                 </div>
             </div>
 
-            <!-- 4 IMAGES SLIDER (مثل صفحه کالکشن) -->
-            <div class="mb-12">
-                <div class="flex items-center mb-6">
-                    <div class="mr-2">
-                        <span class="font-YekanBakh-Bold bg-orange-200 rounded-full px-4 py-1">گالری تصاویر</span>
-                        <p class="mt-2">تصاویری از کارخانه و محصولات مارکزا هوم</p>
-                    </div>
-                </div>
-                <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper about-main">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-1.webp') ?>" alt="نمای فضای تولید کارخانه مارکزا هوم">
-                        </div>
-                        <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-2.webp') ?>" alt="فرآیند ساخت مبلمان در مارکزا هوم">
-                        </div>
-                        <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-3.webp') ?>" alt="جزئیات تولید دست‌ساز مبلمان مارکزا هوم">
-                        </div>
-                        <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-4.webp') ?>" alt="محصولات چرمی تولیدشده در مارکزا هوم">
-                        </div>
-                    </div>
-                    <div class="swiper-button-next after:text-sm"></div>
-                    <div class="swiper-button-prev after:text-sm"></div>
-                </div>
-                <div thumbsSlider="" class="swiper about-thumb mt-4">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-1.webp') ?>" alt="نمای فضای تولید کارخانه مارکزا هوم">
-                        </div>
-                        <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-2.webp') ?>" alt="فرآیند ساخت مبلمان در مارکزا هوم">
-                        </div>
-                        <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-3.webp') ?>" alt="جزئیات تولید دست‌ساز مبلمان مارکزا هوم">
-                        </div>
-                        <div class="swiper-slide">
-                            <img class="rounded-xl cursor-pointer w-full object-cover" src="<?= base_url('assets/images/about/about-in-a-row-banner-4.webp') ?>" alt="محصولات چرمی تولیدشده در مارکزا هوم">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- ROW 5: IMAGE FULL WIDTH WITH TEXT BELOW -->
             <div class="mb-12">
                 <div class="w-full mb-8">

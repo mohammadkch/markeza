@@ -137,6 +137,12 @@ class Collection extends BaseController
                 'data' => ['class' => 'form-control', 'id' => 'sort_order', 'name' => 'sort_order', 'placeholder' => 'ترتیب نمایش', 'type' => 'number'],
                 'type' => 'text'
             ],
+            'show_on_home' => [
+                'input' => 'form_dropdown',
+                'data' => ['class' => 'form-control', 'id' => 'show_on_home', 'name' => 'show_on_home'],
+                'options' => ['1' => 'بله', '0' => 'خیر'],
+                'default' => '1',
+            ],
             'is_active' => [
                 'input' => 'form_dropdown',
                 'data' => ['class' => 'form-control', 'id' => 'is_active', 'name' => 'is_active'],
@@ -156,6 +162,7 @@ class Collection extends BaseController
             'meta_title' => 'عنوان سئو',
             'meta_description' => 'توضیحات سئو',
             'sort_order' => 'ترتیب نمایش',
+            'show_on_home' => 'نمایش در صفحه اصلی',
             'is_active' => 'وضعیت'
         ];
 
@@ -231,6 +238,12 @@ class Collection extends BaseController
                 'data' => ['class' => 'form-control', 'id' => 'sort_order', 'name' => 'sort_order', 'placeholder' => 'ترتیب نمایش', 'type' => 'number'],
                 'type' => 'text'
             ],
+            'show_on_home' => [
+                'input' => 'form_dropdown',
+                'data' => ['class' => 'form-control', 'id' => 'show_on_home', 'name' => 'show_on_home'],
+                'options' => ['1' => 'بله', '0' => 'خیر'],
+                'default' => '1',
+            ],
             'is_active' => [
                 'input' => 'form_dropdown',
                 'data' => ['class' => 'form-control', 'id' => 'is_active', 'name' => 'is_active'],
@@ -250,6 +263,7 @@ class Collection extends BaseController
             'meta_title' => 'عنوان سئو',
             'meta_description' => 'توضیحات سئو',
             'sort_order' => 'ترتیب نمایش',
+            'show_on_home' => 'نمایش در صفحه اصلی',
             'is_active' => 'وضعیت'
         ];
 
@@ -268,6 +282,7 @@ class Collection extends BaseController
         $collectionImageModel = model('App\Models\CollectionImageModel');
 
         $rules = [
+            'show_on_home' => ['label' => 'نمایش در صفحه اصلی', 'rules' => 'required|in_list[0,1]'],
             'title' => [
                 'label' => 'عنوان کالکشن',
                 'rules' => 'required|min_length[2]|max_length[255]'
@@ -308,6 +323,7 @@ class Collection extends BaseController
             'meta_description' => $this->request->getPost('meta_description', FILTER_SANITIZE_STRING),
             'sort_order' => (int) $this->request->getPost('sort_order') ?: 0,
             'is_active' => (int) $this->request->getPost('is_active'),
+            'show_on_home' => (int) $this->request->getPost('show_on_home'),
             'updated_at' => time()
         ];
 

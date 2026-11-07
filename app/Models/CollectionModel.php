@@ -13,7 +13,7 @@ class CollectionModel extends Model
     protected $allowedFields = [
         'title', 'slug', 'subtitle', 'description', 'excerpt',
         'thumbnail', 'meta_title', 'meta_description',
-        'is_active', 'sort_order'
+        'is_active', 'show_on_home', 'sort_order'
     ];
 
     protected $useTimestamps = true;
@@ -96,6 +96,7 @@ class CollectionModel extends Model
         }
 
         $builder->orderBy('collection.sort_order', 'ASC');
+        $builder->orderBy('collection.id', 'ASC');
 
         return $builder->get()->getResultArray();
     }

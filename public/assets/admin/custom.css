@@ -70,3 +70,46 @@ footer .py-2\.5 {
     }
 }
 
+
+/* Admin image upload controls. */
+.admin-image-upload {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    background: #f9fafb;
+    color: #374151;
+    font: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.admin-image-upload::file-selector-button {
+    margin-inline-end: 0.75rem;
+    padding: 0.625rem 1rem;
+    border: 0;
+    border-radius: 0.5rem;
+    background: #2563eb;
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.admin-image-upload:hover::file-selector-button {
+    background: #1d4ed8;
+}
+
+.admin-image-upload:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+.dark .admin-image-upload {
+    border-color: #4b5563;
+    background: #1f2937;
+    color: #e5e7eb;
+}

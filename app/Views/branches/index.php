@@ -75,7 +75,6 @@ foreach ($branches as $index => $branch) {
                     <div class="p-6">
                         <div class="flex items-center justify-between gap-4 mb-5">
                             <h2 class="font-YekanBakh-ExtraBlack text-xl">شعبه <?= esc($branch['city']) ?></h2>
-                            <span class="bg-orange-200 rounded-full py-1 px-3">مارکزا</span>
                         </div>
 
                         <div class="leading-8">
@@ -89,12 +88,12 @@ foreach ($branches as $index => $branch) {
                                 <a class="text-left" dir="ltr" href="tel:+98<?= esc(substr($branch['mobile'], 1)) ?>"><?= esc($branch['mobile']) ?></a>
                             </div>
 
-                            <?php if ($branch['phone']): ?>
+                            <?php foreach (array_filter([$branch['phone'], $branch['phone_secondary'] ?? null]) as $phone): ?>
                                 <div class="flex items-center justify-between gap-4 mb-2">
                                     <span class="font-YekanBakh-Bold">تلفن ثابت</span>
-                                    <a class="text-left" dir="ltr" href="tel:<?= esc($branch['phone']) ?>"><?= esc($branch['phone']) ?></a>
+                                    <a class="text-left" dir="ltr" href="tel:<?= esc($phone) ?>"><?= esc($phone) ?></a>
                                 </div>
-                            <?php endif; ?>
+                            <?php endforeach; ?>
 
                             <div class="border-t border-orange-200 mt-5 pt-4">
                                 <span class="font-YekanBakh-Bold">مدیریت فروشگاه:</span>

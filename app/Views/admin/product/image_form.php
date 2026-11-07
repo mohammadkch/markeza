@@ -28,7 +28,7 @@
                                     <!-- Add image form -->
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">انتخاب تصویر</label>
-                                        <input type="file" name="image" accept="image/jpeg,image/png,image/gif,image/webp" class="w-full text-sm" required>
+                                        <input type="file" name="image" accept="image/jpeg,image/png,image/gif,image/webp" class="admin-image-upload" required>
                                         <p class="text-xs text-gray-500 mt-1">فرمت‌های مجاز: jpeg, png, gif, webp | حداکثر حجم: ۲ مگابایت</p>
                                     </div>
 

@@ -2719,9 +2719,6 @@ html:has(.drawer-toggle:checked){
 .bottom-28{
   bottom: 7rem;
 }
-.bottom-5{
-  bottom: 1.25rem;
-}
 .end-0{
   inset-inline-end: 0px;
 }
@@ -2748,9 +2745,6 @@ html:has(.drawer-toggle:checked){
 }
 .right-10{
   right: 2.5rem;
-}
-.right-5{
-  right: 1.25rem;
 }
 .start-0{
   inset-inline-start: 0px;
@@ -3239,14 +3233,6 @@ html:has(.drawer-toggle:checked){
 }
 .translate-y-\[-20px\]{
   --tw-translate-y: -20px;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.rotate-0{
-  --tw-rotate: 0deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.rotate-45{
-  --tw-rotate: 45deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .transform{
@@ -4679,10 +4665,6 @@ html:has(.drawer-toggle:checked){
     grid-column: span 2 / span 2;
   }
 
-  .md\:col-span-4{
-    grid-column: span 4 / span 4;
-  }
-
   .md\:col-span-5{
     grid-column: span 5 / span 5;
   }
@@ -4717,11 +4699,6 @@ html:has(.drawer-toggle:checked){
 
   .md\:w-1\/2{
     width: 50%;
-  }
-
-  .md\:rotate-45{
-    --tw-rotate: 45deg;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 
   .md\:grid-cols-2{
@@ -4772,10 +4749,6 @@ html:has(.drawer-toggle:checked){
   }
 }
 @media (min-width: 1024px){
-
-  .lg\:bottom-2{
-    bottom: 0.5rem;
-  }
 
   .lg\:order-1{
     order: 1;

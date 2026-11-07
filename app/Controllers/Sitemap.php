@@ -19,6 +19,7 @@ class Sitemap extends BaseController
             ['loc' => base_url('about')],
             ['loc' => base_url('branches')],
             ['loc' => base_url('contact')],
+            ['loc' => base_url('faq')],
         ];
 
         $collections = (new CollectionModel())

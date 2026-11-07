@@ -85,53 +85,61 @@ function closeOffcanvas() {
 /**
  * صفحه‌بندی و جستجوی AJAX
  */
-function showPage(url = null, searchFormId = 'searchForm', resultContainerId = 'search-result', resetPage = false) {
-    if (!url) {
-        url = window.location.href;
-    }
+let pageRequestController = null;
 
-    let baseUrl = url.split('?')[0];
-    let urlParams = new URLSearchParams(url.split('?')[1] || '');
-    let page = urlParams.get('page');
-
+async function showPage(url = null, searchFormId = 'searchForm', resultContainerId = 'search-result', resetPage = false) {
     const formElement = document.getElementById(searchFormId);
-    const formData = new FormData(formElement);
+    const resultContainer = document.getElementById(resultContainerId);
+    if (!formElement || !resultContainer) return;
+
+    const requestUrl = new URL(url || window.location.href, window.location.href);
+    const page = resetPage ? '1' : (requestUrl.searchParams.get('page') || '1');
+    // Controllers read the page from the query string, even for POST searches.
+    requestUrl.searchParams.set('page', page);
 
     const filteredData = new FormData();
-    for (let pair of formData.entries()) {
-        if (pair[1].trim() !== '') {
-            filteredData.append(pair[0], pair[1]);
+    for (const [name, value] of new FormData(formElement).entries()) {
+        if (typeof value === 'string' && value.trim() !== '') {
+            filteredData.append(name, value);
         }
     }
 
-    if (resetPage) {
-        filteredData.append('page', 1);
-    } else if (page) {
-        filteredData.append('page', page);
+    if (pageRequestController) pageRequestController.abort();
+    const controller = new AbortController();
+    pageRequestController = controller;
+    resultContainer.setAttribute('aria-busy', 'true');
+
+    try {
+        const response = await fetch(requestUrl.href, {
+            method: 'POST',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            body: filteredData,
+            signal: controller.signal
+        });
+        if (response.redirected) {
+            window.location.assign(response.url);
+            return;
+        }
+        if (!response.ok) throw new Error('Page request failed');
+        const html = await response.text();
+        if (controller.signal.aborted) return;
+        resultContainer.innerHTML = html;
+
+        const historyUrl = new URL(requestUrl.href);
+        if (page === '1') historyUrl.searchParams.delete('page');
+        window.history.pushState({}, '', historyUrl.href);
+        bindDeleteButtons();
+        bindToggleActiveButtons();
+    } catch (error) {
+        if (error.name !== 'AbortError') {
+            console.error('Error:', error);
+            showNotification('خطا در دریافت اطلاعات؛ دوباره تلاش کنید.', 'error');
+        }
+    } finally {
+        if (pageRequestController === controller) {
+            resultContainer.removeAttribute('aria-busy');
+        }
     }
-
-    fetch(baseUrl, {
-        method: 'POST',
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        body: filteredData
-    })
-        .then(response => response.text())
-        .then(html => {
-            document.getElementById(resultContainerId).innerHTML = html;
-
-            let newUrl = baseUrl;
-            if (!resetPage && page && page != 1) {
-                newUrl = baseUrl + '?page=' + page;
-            }
-
-            window.history.pushState({}, '', newUrl);
-
-            bindDeleteButtons();
-            bindToggleActiveButtons();
-        })
-        .catch(error => console.error('Error:', error));
 }
 
 function resetFilters(searchFormId = 'searchForm') {

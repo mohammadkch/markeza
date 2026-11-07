@@ -168,21 +168,24 @@ if ($faqs !== []) {
 
                 </div>
 
+                <?php $dimensionImageCount = (int) !empty($product['dimensions_img']) + (int) !empty($product['dimensions_img_2']); ?>
                 <!-- Dimensions Section (text + image in one row) -->
-                <?php if (!empty($product['dimensions_text']) || !empty($product['dimensions_img'])): ?>
+                <?php if (!empty($product['dimensions_text']) || !empty($product['dimensions_img']) || !empty($product['dimensions_img_2'])): ?>
                     <div class="mb-12">
                         <h2 class="font-YekanBakh-ExtraBold text-2xl mb-6">ابعاد محصول</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                             <?php if (!empty($product['dimensions_text'])): ?>
-                                <div class="bg-orange-100 rounded-xl p-6 leading-8">
+                                <div class="bg-orange-100 rounded-xl p-6 leading-8 <?= $dimensionImageCount > 1 ? 'md:col-span-2' : '' ?>">
                                     <?= nl2br(esc($product['dimensions_text'])) ?>
                                 </div>
                             <?php endif; ?>
-                            <?php if (!empty($product['dimensions_img'])): ?>
-                                <div>
-                                    <img class="rounded-xl w-full" src="<?= base_url(esc($product['dimensions_img'])) ?>" alt="ابعاد <?= esc($product['title']) ?>">
-                                </div>
-                            <?php endif; ?>
+                            <?php foreach (['dimensions_img', 'dimensions_img_2'] as $dimensionField): ?>
+                                <?php if (!empty($product[$dimensionField])): ?>
+                                    <div>
+                                        <img class="rounded-xl w-full object-contain" src="<?= esc(base_url($product[$dimensionField])) ?>" alt="<?= $dimensionField === 'dimensions_img_2' ? 'تصویر دوم ابعاد' : 'ابعاد' ?> <?= esc($product['title']) ?>" loading="lazy">
+                                    </div>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 <?php endif; ?>

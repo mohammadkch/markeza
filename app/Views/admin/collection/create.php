@@ -41,7 +41,7 @@
                                             <?= $fields_name[$input_key] ?? $input_key ?>
                                         </label>
                                         <?php
-                                        $value = set_value($input_key, isset($edit_row[$input_key]) ? $edit_row[$input_key] : '');
+                                        $value = set_value($input_key, $edit_row[$input_key] ?? $input['default'] ?? '');
 
                                         if ($input['input'] == 'form_input'):
                                             echo form_input(array_merge($input['data'], ['value' => $value, 'class' => 'w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-400 focus:border-primary-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white']));
@@ -60,9 +60,9 @@
                             <div class="space-y-4">
                                 <h3 class="font-black text-lg with-highlight dark:text-gray-200">تصاویر کالکشن</h3>
                                 <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
-                                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                            <label for="collection-thumbnail" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                                 تصویر شاخص (Thumbnail)
                                             </label>
                                             <?php if (isset($edit_row) && !empty($edit_row['thumbnail'])): ?>
@@ -70,7 +70,8 @@
                                                     <img src="<?= base_url($edit_row['thumbnail']) ?>" class="w-20 h-20 object-cover rounded-lg border">
                                                 </div>
                                             <?php endif; ?>
-                                            <input type="file" name="thumbnail" accept="image/jpeg,image/png,image/gif,image/webp" class="w-full text-sm">
+                                            <input type="file" id="collection-thumbnail" name="thumbnail" accept="image/jpeg,image/png,image/gif,image/webp" class="admin-image-upload" aria-describedby="collection-thumbnail-size">
+                                            <p id="collection-thumbnail-size" class="text-xs text-gray-500 dark:text-gray-400 mt-2">ابعاد پیشنهادی: <bdi dir="ltr">1026 × 614</bdi> پیکسل — نسبت <bdi dir="ltr">1.67</bdi></p>
                                             <p class="text-xs text-gray-500 mt-1">حداکثر: 2MB</p>
                                         </div>
                                     </div>
@@ -91,8 +92,9 @@
                                         </div>
                                     <?php endif; ?>
                                     <div class="mt-2">
-                                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">افزودن تصاویر جدید</label>
-                                        <input type="file" name="gallery_images[]" accept="image/jpeg,image/png,image/gif,image/webp" class="w-full text-sm" multiple>
+                                        <label for="collection-gallery" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">افزودن تصاویر جدید</label>
+                                        <input type="file" id="collection-gallery" name="gallery_images[]" accept="image/jpeg,image/png,image/gif,image/webp" class="admin-image-upload" aria-describedby="collection-gallery-size" multiple>
+                                        <p id="collection-gallery-size" class="text-xs text-gray-500 dark:text-gray-400 mt-2">ابعاد پیشنهادی: <bdi dir="ltr">1026 × 614</bdi> پیکسل — نسبت <bdi dir="ltr">1.67</bdi></p>
                                         <p class="text-xs text-gray-500 mt-1">می‌توانید چند تصویر همزمان انتخاب کنید</p>
                                     </div>
                                 </div>

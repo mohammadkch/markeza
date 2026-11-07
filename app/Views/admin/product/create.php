@@ -99,7 +99,7 @@
                                                     <img src="<?= base_url($edit_row['thumbnail']) ?>" class="w-20 h-20 object-cover rounded-lg border">
                                                 </div>
                                             <?php endif; ?>
-                                            <input type="file" name="thumbnail" accept="image/jpeg,image/png,image/gif,image/webp" class="w-full text-sm">
+                                            <input type="file" name="thumbnail" accept="image/jpeg,image/png,image/gif,image/webp" class="admin-image-upload">
                                             <p class="text-xs text-gray-500 mt-1">حداکثر: 2MB</p>
                                         </div>
                                     </div>
@@ -108,21 +108,27 @@
 
                             <!-- Dimensions Image Upload -->
                             <div class="space-y-4">
-                                <h3 class="font-black text-lg with-highlight dark:text-gray-200">تصویر ابعاد محصول</h3>
+                                <h3 class="font-black text-lg with-highlight dark:text-gray-200">تصاویر ابعاد محصول</h3>
                                 <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                                تصویر ابعاد
-                                            </label>
-                                            <?php if (isset($edit_row) && !empty($edit_row['dimensions_img'])): ?>
-                                                <div class="mb-2">
-                                                    <img src="<?= base_url($edit_row['dimensions_img']) ?>" class="w-20 h-20 object-cover rounded-lg border">
+                                        <?php foreach (['dimensions_img' => 'تصویر ابعاد', 'dimensions_img_2' => 'تصویر دوم ابعاد (اختیاری)'] as $dimensionField => $dimensionLabel): ?>
+                                            <div>
+                                                <label for="<?= $dimensionField ?>" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"><?= $dimensionLabel ?></label>
+                                                <div class="h-20 mb-2 flex items-center gap-3">
+                                                    <?php if (!empty($edit_row[$dimensionField])): ?>
+                                                        <img src="<?= esc(base_url($edit_row[$dimensionField])) ?>" alt="<?= $dimensionLabel ?>" class="w-20 h-20 object-contain rounded-lg border">
+                                                        <label class="flex items-center gap-2 text-sm text-red-600 cursor-pointer">
+                                                            <input type="checkbox" name="remove_<?= $dimensionField ?>" value="1">
+                                                            حذف تصویر با بروزرسانی
+                                                        </label>
+                                                    <?php else: ?>
+                                                        <span class="text-xs text-gray-500">تصویری ثبت نشده است</span>
+                                                    <?php endif; ?>
                                                 </div>
-                                            <?php endif; ?>
-                                            <input type="file" name="dimensions_img" accept="image/jpeg,image/png,image/gif,image/webp" class="w-full text-sm">
-                                            <p class="text-xs text-gray-500 mt-1">حداکثر: 2MB</p>
-                                        </div>
+                                                <input type="file" id="<?= $dimensionField ?>" name="<?= $dimensionField ?>" accept="image/jpeg,image/png,image/gif,image/webp" class="admin-image-upload">
+                                                <p class="text-xs text-gray-500 mt-1">حداکثر: 2MB</p>
+                                            </div>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </div>

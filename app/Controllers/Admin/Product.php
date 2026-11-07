@@ -299,6 +299,16 @@ class Product extends BaseController
             ],
         ];
 
+        foreach (['dimensions_img', 'dimensions_img_2'] as $field) {
+            $file = $this->request->getFile($field);
+            if ($file && $file->getError() !== UPLOAD_ERR_NO_FILE) {
+                $rules[$field] = [
+                    'label' => $field === 'dimensions_img' ? 'تصویر ابعاد' : 'تصویر دوم ابعاد',
+                    'rules' => "uploaded[{$field}]|max_size[{$field},2048]|is_image[{$field}]|mime_in[{$field},image/jpeg,image/png,image/gif,image/webp]|ext_in[{$field},jpg,jpeg,png,gif,webp]",
+                ];
+            }
+        }
+
         if (!$this->validate($rules)) {
             $this->viewData['validation_errors'] = $validation->getErrors();
             $this->flash('validation_error');
@@ -327,6 +337,13 @@ class Product extends BaseController
             'is_active' => (int) $this->request->getPost('is_active'),
             'updated_at' => time()
         ];
+
+        // Clear only the image explicitly marked for removal. A new upload below replaces it.
+        foreach (['dimensions_img', 'dimensions_img_2'] as $field) {
+            if ($this->request->getPost('remove_' . $field) === '1') {
+                $model_data[$field] = null;
+            }
+        }
 
         if ($task == 'create') {
             $model_data['created_at'] = time();
@@ -364,20 +381,19 @@ class Product extends BaseController
             }
         }
 
-        // Handle dimensions image upload
-        $dimensionsImg = $this->request->getFile('dimensions_img');
-        if ($dimensionsImg && $dimensionsImg->getError() !== UPLOAD_ERR_NO_FILE) {
-            if ($dimensionsImg->isValid()) {
+        // Each optional upload replaces only its own existing image.
+        foreach (['dimensions_img', 'dimensions_img_2'] as $field) {
+            $dimensionsImg = $this->request->getFile($field);
+            if ($dimensionsImg && $dimensionsImg->isValid() && !$dimensionsImg->hasMoved()) {
                 $uploadPath = FCPATH . 'assets/images/product/';
                 if (!is_dir($uploadPath)) {
                     mkdir($uploadPath, 0777, true);
                 }
 
-                $newName = time() . '_dim_' . $dimensionsImg->getClientName();
+                $newName = $dimensionsImg->getRandomName();
                 $dimensionsImg->move($uploadPath, $newName);
-
                 $productModel->update($productId, [
-                    'dimensions_img' => 'assets/images/product/' . $newName
+                    $field => 'assets/images/product/' . $newName,
                 ]);
             }
         }
